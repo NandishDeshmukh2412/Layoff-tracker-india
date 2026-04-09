@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intuit India — Layoff Intelligence Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0f12;
+  --surface: #13161b;
+  --surface2: #1a1e25;
+  --surface3: #22272f;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --amber: #f0a500;
+  --amber-dim: rgba(240,165,0,0.15);
+  --amber-glow: rgba(240,165,0,0.08);
+  --red: #e05252;
+  --red-dim: rgba(224,82,82,0.12);
+  --green: #3ecf8e;
+  --green-dim: rgba(62,207,142,0.12);
+  --blue: #4a9eff;
+  --blue-dim: rgba(74,158,255,0.12);
+  --text: #e8eaed;
+  --text2: #9aa0ab;
+  --text3: #5c6370;
+  --mono: 'IBM Plex Mono', monospace;
+  --display: 'Syne', sans-serif;
+  --body: 'Instrument Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border2);
+  padding: 0 32px;
+  height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: 12px; }
+.header-logo {
+  width: 30px; height: 30px; background: var(--amber);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 16px; font-weight: 800; color: #0d0f12;
+}
+.header-title { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.header-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.05em; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.pulse-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--red);
+  animation: pulse-anim 2s ease-in-out infinite;
+}
+@keyframes pulse-anim { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.live-label { font-family: var(--mono); font-size: 10px; color: var(--red); font-weight: 600; letter-spacing: 0.08em; }
+.header-date { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+
+/* ── SUMMARY STRIP ── */
+.summary-strip {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 32px;
+  display: flex; gap: 0; overflow-x: auto;
+}
+.sum-stat {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 0 24px 0 0; margin-right: 24px;
+  border-right: 1px solid var(--border);
+}
+.sum-stat:last-child { border-right: none; }
+.sum-val { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--text); line-height: 1; }
+.sum-val.red { color: var(--red); }
+.sum-val.amber { color: var(--amber); }
+.sum-val.green { color: var(--green); }
+.sum-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+
+/* ── TABS ── */
+.tabs-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  display: flex; gap: 4px; overflow-x: auto;
+}
+.tab-btn {
+  padding: 14px 18px; font-family: var(--body); font-size: 13px; font-weight: 500;
+  color: var(--text3); background: none; border: none; border-bottom: 2px solid transparent;
+  cursor: pointer; white-space: nowrap; transition: all 0.15s;
+}
+.tab-btn:hover { color: var(--text2); }
+.tab-btn.active { color: var(--amber); border-bottom-color: var(--amber); font-weight: 600; }
+.tab-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--surface3); color: var(--text3); font-size: 10px; font-family: var(--mono);
+  padding: 1px 6px; border-radius: 10px; margin-left: 6px;
+}
+.tab-btn.active .tab-badge { background: var(--amber-dim); color: var(--amber); }
+
+/* ── CONTENT ── */
+.content { max-width: 1280px; margin: 0 auto; padding: 28px 32px 60px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── SECTION HEADER ── */
+.section-hd { margin-bottom: 20px; }
+.section-title { font-family: var(--display); font-size: 20px; font-weight: 700; color: var(--text); }
+.section-desc { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 4px; letter-spacing: 0.03em; }
+
+/* ── COMPANY SELECTOR ── */
+.co-selector { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.co-pill {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 14px; border-radius: 6px;
+  border: 1px solid var(--border2); background: var(--surface2);
+  font-family: var(--body); font-size: 12px; font-weight: 500; color: var(--text2);
+  cursor: pointer; transition: all 0.14s;
+}
+.co-pill:hover { border-color: var(--amber); color: var(--text); }
+.co-pill.active { background: var(--amber-dim); border-color: var(--amber); color: var(--amber); }
+.co-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.co-count { font-family: var(--mono); font-size: 10px; opacity: 0.7; }
+
+/* ── COMPANY PANEL ── */
+.co-panel { display: none; }
+.co-panel.active { display: block; animation: fadein 0.2s ease; }
+@keyframes fadein { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:none} }
+
+/* ── ALERT BAR ── */
+.alert-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 16px; border-radius: 6px; margin-bottom: 20px;
+  background: var(--red-dim); border: 1px solid rgba(224,82,82,0.25);
+}
+.alert-bar.amber { background: var(--amber-dim); border-color: rgba(240,165,0,0.25); }
+.alert-bar.green { background: var(--green-dim); border-color: rgba(62,207,142,0.2); }
+.alert-pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse-anim 1.5s infinite; }
+.alert-bar.amber .alert-pulse { background: var(--amber); }
+.alert-bar.green .alert-pulse { background: var(--green); animation: none; }
+.alert-text { font-family: var(--mono); font-size: 11.5px; font-weight: 600; color: var(--red); letter-spacing: 0.03em; }
+.alert-bar.amber .alert-text { color: var(--amber); }
+.alert-bar.green .alert-text { color: var(--green); }
+
+/* ── CO HEADER CARD ── */
+.co-header {
+  background: var(--surface2); border: 1px solid var(--border2);
+  border-radius: 10px; padding: 20px 24px; margin-bottom: 20px;
+  display: grid; grid-template-columns: 1fr auto; gap: 16px;
+}
+.co-name { font-family: var(--display); font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.co-meta { font-family: var(--mono); font-size: 11px; color: var(--text3); letter-spacing: 0.03em; margin-bottom: 12px; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 600;
+  padding: 3px 9px; border-radius: 4px; letter-spacing: 0.03em;
+}
+.chip-red { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.2); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(240,165,0,0.2); }
+.chip-green { background: var(--green-dim); color: var(--green); border: 1px solid rgba(62,207,142,0.15); }
+.chip-blue { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(74,158,255,0.2); }
+.chip-gray { background: var(--surface3); color: var(--text3); border: 1px solid var(--border); }
+.co-header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.match-score-big {
+  font-family: var(--display); font-size: 42px; font-weight: 800; line-height: 1;
+}
+.match-score-label { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.08em; text-align: right; }
+
+/* ── GRID LABELS ── */
+.grid-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text3); margin: 24px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.grid-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+/* ── TEAM CARDS ── */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.team-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px; transition: border-color 0.15s;
+}
+.team-card:hover { border-color: var(--border2); }
+.team-card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; margin-bottom: 10px; }
+.team-name { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.35; }
+.impact-tag {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0;
+  background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.2);
+}
+.skill-row { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.skill-tag {
+  font-size: 10.5px; padding: 2px 7px; border-radius: 4px;
+  background: var(--surface3); color: var(--text3); border: 1px solid var(--border);
+}
+.skill-tag.match {
+  background: rgba(62,207,142,0.1); color: var(--green); border-color: rgba(62,207,142,0.2); font-weight: 600;
+}
+.match-row { display: flex; align-items: center; justify-content: space-between; margin-top: 10px; gap: 8px; }
+.match-bu { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.match-pct-label { font-family: var(--mono); font-size: 12px; font-weight: 600; }
+.bar-bg { height: 3px; background: var(--surface3); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 2px; }
+.team-note { font-size: 12px; color: var(--text3); line-height: 1.55; margin-top: 8px; }
+
+/* ── LEADER CARDS ── */
+.leader-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 16px; margin-bottom: 10px;
+}
+.leader-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.leader-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--surface3); border: 1px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--amber);
+  flex-shrink: 0;
+}
+.leader-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.leader-role { font-family: var(--mono); font-size: 10.5px; color: var(--text3); margin-top: 2px; }
+.leader-signal { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.leader-why {
+  margin-top: 10px; padding: 10px 12px; border-radius: 6px;
+  background: var(--amber-glow); border: 1px solid rgba(240,165,0,0.15);
+  font-size: 12px; color: var(--amber); line-height: 1.55;
+}
+.leader-why strong { font-weight: 600; }
+
+/* ── PLAYBOOK ── */
+.playbook-list { list-style: none; }
+.pb-item {
+  display: flex; gap: 14px; padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.pb-item:last-child { border-bottom: none; }
+.pb-num {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  background: var(--surface3); border: 1px solid var(--border2);
+  font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--amber);
+  display: flex; align-items: center; justify-content: center; margin-top: 1px;
+}
+.pb-title { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.pb-body { font-size: 12.5px; color: var(--text3); line-height: 1.6; }
+
+/* ── OVERVIEW TAB ── */
+.overview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+.ov-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px; cursor: pointer; transition: all 0.15s;
+  position: relative; overflow: hidden;
+}
+.ov-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.ov-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.ov-card.urgency-red::before { background: var(--red); }
+.ov-card.urgency-amber::before { background: var(--amber); }
+.ov-card.urgency-green::before { background: var(--green); }
+.ov-co-name { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.ov-meta { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 12px; }
+.ov-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.ov-stat { text-align: center; padding: 8px; background: var(--surface3); border-radius: 5px; }
+.ov-stat-val { font-family: var(--display); font-size: 16px; font-weight: 700; color: var(--text); }
+.ov-stat-val.red { color: var(--red); }
+.ov-stat-val.amber { color: var(--amber); }
+.ov-stat-val.green { color: var(--green); }
+.ov-stat-lbl { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; }
+.ov-urgency {
+  font-family: var(--mono); font-size: 10.5px; font-weight: 600; padding: 5px 10px;
+  border-radius: 4px; text-align: center;
+}
+.ov-urgency.red { background: var(--red-dim); color: var(--red); }
+.ov-urgency.amber { background: var(--amber-dim); color: var(--amber); }
+.ov-urgency.green { background: var(--green-dim); color: var(--green); }
+
+/* ── BOOLEAN BUILDER TAB ── */
+.bool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:700px){ .bool-grid { grid-template-columns:1fr; } }
+.bool-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px;
+}
+.bool-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.bool-card-title { font-size: 13px; font-weight: 600; color: var(--text); }
+.copy-btn {
+  font-family: var(--mono); font-size: 10px; padding: 3px 10px; border-radius: 4px;
+  background: var(--surface3); color: var(--text3); border: 1px solid var(--border2);
+  cursor: pointer; transition: all 0.12s;
+}
+.copy-btn:hover { background: var(--amber-dim); color: var(--amber); border-color: var(--amber); }
+.copy-btn.copied { background: var(--green-dim); color: var(--green); border-color: rgba(62,207,142,0.2); }
+.bool-string {
+  font-family: var(--mono); font-size: 11px; color: var(--green); line-height: 1.7;
+  background: var(--surface3); padding: 12px; border-radius: 5px; word-break: break-word;
+  border: 1px solid rgba(62,207,142,0.1);
+}
+.bool-notes { font-size: 11.5px; color: var(--text3); line-height: 1.55; margin-top: 10px; }
+
+/* ── MISC ── */
+.hidden { display: none !important; }
+@media(max-width:640px){
+  .header,.summary-strip,.tabs-bar,.content{ padding-left:16px;padding-right:16px; }
+  .team-grid,.bool-grid,.overview-grid{ grid-template-columns:1fr; }
+  .co-header{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-brand">
+    <div class="header-logo">I</div>
+    <div>
+      <div class="header-title">Layoff Intel — India</div>
+      <div class="header-sub">INTUIT INDIA · STAFF / SR. STAFF / PRINCIPAL ENG</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div style="display:flex;align-items:center;gap:6px">
+      <div class="pulse-dot"></div>
+      <span class="live-label">LIVE</span>
+    </div>
+    <span class="header-date" id="hdr-date"></span>
+  </div>
+</header>
+
+<!-- SUMMARY STRIP -->
+<div class="summary-strip">
+  <div class="sum-stat">
+    <span class="sum-val red" id="s-total">13,900+</span>
+    <span class="sum-label">India roles cut · 2026</span>
+  </div>
+  <div class="sum-stat">
+    <span class="sum-val amber">5</span>
+    <span class="sum-label">Companies tracked</span>
+  </div>
+  <div class="sum-stat">
+    <span class="sum-val green">3</span>
+    <span class="sum-label">Active sourcing windows</span>
+  </div>
+  <div class="sum-stat">
+    <span class="sum-val" style="color:var(--blue)">P5–P7</span>
+    <span class="sum-label">Target levels</span>
+  </div>
+  <div class="sum-stat">
+    <span class="sum-val amber">Apr 28</span>
+    <span class="sum-label">Next Oracle wave expected</span>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-bar">
+  <button class="tab-btn active" data-tab="overview">Overview <span class="tab-badge">5</span></button>
+  <button class="tab-btn" data-tab="oracle">Oracle <span class="tab-badge" style="background:rgba(224,82,82,0.15);color:var(--red)">HOT</span></button>
+  <button class="tab-btn" data-tab="atlassian">Atlassian <span class="tab-badge" style="background:rgba(224,82,82,0.15);color:var(--red)">HOT</span></button>
+  <button class="tab-btn" data-tab="amazon">Amazon <span class="tab-badge">500+</span></button>
+  <button class="tab-btn" data-tab="flipkart">Flipkart <span class="tab-badge">300+</span></button>
+  <button class="tab-btn" data-tab="gupshup">Gupshup <span class="tab-badge">500</span></button>
+  <button class="tab-btn" data-tab="booleans">Boolean Strings <span class="tab-badge">10</span></button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ── OVERVIEW ── -->
+  <div class="tab-panel active" id="tab-overview">
+    <div class="section-hd">
+      <div class="section-title">Layoff Intelligence Overview</div>
+      <div class="section-desc">India · Apr 2026 · Sourcing signal map for Intuit Staff, Sr. Staff & Principal Engineering</div>
+    </div>
+    <div class="overview-grid" id="overview-grid"></div>
+  </div>
+
+  <!-- ── ORACLE ── -->
+  <div class="tab-panel" id="tab-oracle">
+    <div id="panel-oracle"></div>
+  </div>
+
+  <!-- ── ATLASSIAN ── -->
+  <div class="tab-panel" id="tab-atlassian">
+    <div id="panel-atlassian"></div>
+  </div>
+
+  <!-- ── AMAZON ── -->
+  <div class="tab-panel" id="tab-amazon">
+    <div id="panel-amazon"></div>
+  </div>
+
+  <!-- ── FLIPKART ── -->
+  <div class="tab-panel" id="tab-flipkart">
+    <div id="panel-flipkart"></div>
+  </div>
+
+  <!-- ── GUPSHUP ── -->
+  <div class="tab-panel" id="tab-gupshup">
+    <div id="panel-gupshup"></div>
+  </div>
+
+  <!-- ── BOOLEANS ── -->
+  <div class="tab-panel" id="tab-booleans">
+    <div class="section-hd">
+      <div class="section-title">LinkedIn Boolean Search Strings</div>
+      <div class="section-desc">Ready-to-paste · Company-specific · Filtered for P5–P7 talent profiles</div>
+    </div>
+    <div class="bool-grid" id="bool-grid"></div>
+  </div>
+
+</div>
+
+<script>
+// ── DATE ──
+document.getElementById('hdr-date').textContent = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+
+// ── DATA ──
+const companies = [
+  {
+    id: "oracle",
+    name: "Oracle India",
+    meta: "~12,000 laid off · Mar 31, 2026 · BLR / HYD / MUM / Pune / Noida",
+    urgency: "ACTIVE POOL — Round 2 expected ~Apr 28",
+    urgencyClass: "red",
+    topMatch: 85,
+    chips: [
+      {l:"~12,000 India cuts",c:"chip-red"},
+      {l:"40% of India workforce",c:"chip-red"},
+      {l:"NOT performance-based",c:"chip-amber"},
+      {l:"Round 2 in ~3 weeks",c:"chip-amber"},
+      {l:"Severance: N+2 months",c:"chip-gray"}
+    ],
+    ovStats: [
+      {val:"12K",lbl:"India Cuts",cls:"red"},
+      {val:"85%",lbl:"Best Match",cls:"green"},
+      {val:"4",lbl:"Target Teams",cls:"amber"}
+    ],
+    teams: [
+      {
+        name:"Cloud Engineering & OCI",
+        impact:"Broad cuts",
+        skills:["Cloud Infra","Distributed Systems","Golang","AWS","Kubernetes","Microservices"],
+        match:["Cloud Infra","Distributed Systems","Golang","Kubernetes"],
+        pct:85, bu:"Intuit Platform / GenOS",
+        note:"Highest Intuit match. Multi-region, compliance-aware cloud infra profiles. Engineers who built Oracle Cloud Infrastructure's distributed fabric map precisely to Intuit GenOS platform needs."
+      },
+      {
+        name:"SaaS & Virtual Ops Services (SVOS)",
+        impact:"30%+ reduction",
+        skills:["Cloud Native","Kubernetes","SaaS Infra","Java","Kafka","Ops Engineering"],
+        match:["Cloud Native","Kubernetes","Java","Kafka"],
+        pct:80, bu:"Intuit Platform / Consumer Group",
+        note:"Strong cloud-native and Kafka ops profiles. Direct match for GenOS infra and distributed systems roles. SVOS name is Oracle-specific — use it as a LinkedIn boolean signal."
+      },
+      {
+        name:"NetSuite India Dev Centre (IDC)",
+        impact:"Multi-level cuts",
+        skills:["Java","ERP Platform","SaaS","Product Engineering","Distributed Systems"],
+        match:["Java","SaaS","Distributed Systems"],
+        pct:75, bu:"SBSE — QuickBooks",
+        note:"Financial SaaS product engineers with compliance context. PMs, ICs, and managers all cut. Direct profile match for QuickBooks platform engineering."
+      },
+      {
+        name:"Revenue & Health Sciences (RHS)",
+        impact:"30%+ reduction",
+        skills:["Java","Oracle DB","Compliance Eng","SaaS Platform","Data Platform"],
+        match:["Java","Compliance Eng","SaaS Platform"],
+        pct:72, bu:"Consumer Group / SBSE",
+        note:"Senior engineers and architects cut first. Java + financial SaaS + compliance profiles map to TurboTax and QuickBooks platform teams."
+      }
+    ],
+    leaders: [
+      {
+        initials:"MS", name:"Michael Shepherd", role:"Senior Manager — Oracle India (impacted)",
+        signal:"Posted publicly on LinkedIn confirming cuts were 'not performance-based' and naming 'senior engineers, architects, operations leaders, and technical specialists' as affected. His connection graph is a live pipeline of displaced Oracle India talent.",
+        why:"Mine Shepherd's LinkedIn connections for BLR/HYD Java + Cloud + Distributed Systems profiles. Managers whose teams were cut are 2× more likely to explore new roles within 30 days of notification."
+      }
+    ],
+    playbook: [
+      {t:"SVOS + OCI boolean search — highest precision",b:"LinkedIn: 'Oracle' AND ('SVOS' OR 'OCI' OR 'NetSuite IDC') AND (Bangalore OR Bengaluru OR Hyderabad). Filter 'Open to Work' toggled on after Mar 31. These division names are Oracle-internal and highly specific — near-zero false positives."},
+      {t:"Outreach within the 14-day active window",b:"Oracle employees lost system access on Mar 31. Most start active search in days 5–14. You're now in that window. Volume of inbound applications will peak at week 3 — get there first with a personalised message, not a template."},
+      {t:"Lead with stability + non-performance narrative",b:"These engineers were blindsided by a 6AM email. They're emotionally shocked. Open with: 'I know Oracle's restructuring was abrupt and not about your performance. Your background is exactly what we're building at Intuit.' Address the context before pitching the role."},
+      {t:"Set Apr 28 reminder for Round 2 sourcing sweep",b:"Internal Oracle India chatter confirms another wave in ~4 weeks. Calendar alert Apr 28 — run a fresh LinkedIn search for 'Oracle' + 'open to work' with 'past month' date filter. The second wave will surface more senior OCI and cloud platform engineers."},
+      {t:"Monitor r/employeesOfOracle and Blind",b:"Both forums are live with displaced Oracle India engineers. Engage authentically — search for threads where engineers are discussing next steps and offer Intuit as a genuine path. Avoid generic outreach in these forums; add value to the conversation first."}
+    ]
+  },
+
+  {
+    id: "atlassian",
+    name: "Atlassian",
+    meta: "~1,600 laid off · Mar 11, 2026 · BLR + Global · 10% of workforce · CTO replaced",
+    urgency: "30-DAY WINDOW — CTO void creates org uncertainty",
+    urgencyClass: "red",
+    topMatch: 88,
+    chips: [
+      {l:"~1,600 global cuts",c:"chip-red"},
+      {l:"16% India impact (~256 roles)",c:"chip-red"},
+      {l:"900+ from R&D / SWE",c:"chip-amber"},
+      {l:"CTO Rajeev Rajan exited Mar 31",c:"chip-amber"},
+      {l:"16 weeks severance",c:"chip-green"},
+      {l:"Stock down 84% from peak",c:"chip-gray"}
+    ],
+    ovStats: [
+      {val:"256",lbl:"India Roles",cls:"red"},
+      {val:"88%",lbl:"Best Match",cls:"green"},
+      {val:"3",lbl:"Target Teams",cls:"amber"}
+    ],
+    teams: [
+      {
+        name:"Software R&D — Jira / Confluence Core Eng",
+        impact:"900+ cuts globally",
+        skills:["Java","Kotlin","Distributed Systems","SaaS Platform","API Design","Cloud Native","Microservices"],
+        match:["Java","Kotlin","Distributed Systems","SaaS Platform","Cloud Native"],
+        pct:88, bu:"Intuit Platform / Consumer Group",
+        note:"Over 900 of the 1,600 cuts were in software R&D. Atlassian BLR engineers who built Jira and Confluence backend systems carry Java/Kotlin + distributed SaaS platform skills that map precisely to Intuit Platform and Consumer Group roles. Prime target."
+      },
+      {
+        name:"AI Platform Engineering (survivors under pressure)",
+        impact:"Being retained but scope-shifting",
+        skills:["GenAI","LLM Platform","MLOps","Python","Agentic AI","Distributed Systems"],
+        match:["GenAI","LLM Platform","Python","Agentic AI"],
+        pct:88, bu:"Intuit Platform — GenOS",
+        note:"Atlassian is hiring 800 new AI roles but reshaping existing AI platform engineers under new CTO mandate. Engineers who don't fit Mandhana's AI-first vision will feel deprioritised. Long-game sourcing target — high skill match to GenOS."
+      },
+      {
+        name:"QA / Test Engineering",
+        impact:"Explicitly AI-replaced",
+        skills:["Test Automation","Java","Python","CI/CD","Quality Eng"],
+        match:["Java","Python","CI/CD"],
+        pct:40, bu:"Low match — screen carefully",
+        note:"CEO explicitly cited AI reducing manual testing by 60%. Only worth pursuing QA engineers who also have strong product-engineering depth — filter for 'SWE' or 'Software Engineer' in title, not QA/SDET as primary identity."
+      }
+    ],
+    leaders: [
+      {
+        initials:"RR", name:"Rajeev Rajan", role:"Former CTO — Atlassian (exited Mar 31, ex-Meta VP Eng, ex-Microsoft 20yr)",
+        signal:"Indian-origin CTO of 4 years stepped down Mar 31 during the layoffs. The CTO role was split into two: Taroon Mandhana (CTO Teamwork/AI) and Vikram Rao (CTO Enterprise). Engineers under Rajan's R&D org structure are now reporting into a split-mandate structure they didn't sign up for.",
+        why:"Rajan's LinkedIn profile is a goldmine. Engineers who endorsed him, appeared in his posts, or are in his connections are likely his direct reports from BLR R&D. Many will feel culturally adrift post his exit — your best sourcing window is the 30 days after his departure."
+      },
+      {
+        initials:"TM", name:"Taroon Mandhana", role:"New CTO Teamwork — Atlassian (ex-Head of AI & Products)",
+        signal:"Takes over the AI-first half of the CTO mandate. His hiring focus is AI engineers, MLOps, and LLM platform talent — creating internal scope pressure for non-AI-native engineers who remain.",
+        why:"Non-AI-native engineers who now report into Mandhana's org will feel scope shrink. Target Atlassian engineers with strong Java / distributed systems backgrounds who are not LLM-native — they're being de-prioritised internally and are psychologically open."
+      }
+    ],
+    playbook: [
+      {t:"Boolean: Atlassian + R&D + Java/Kotlin + BLR",b:"LinkedIn: 'Atlassian' AND (Jira OR Confluence OR 'platform engineering' OR 'R&D') AND (Java OR Kotlin OR 'distributed systems') AND (Bangalore OR Bengaluru). Filter Open to Work after Mar 11 2026. Precision target: the R&D software engineers from the core round."},
+      {t:"Mine Rajeev Rajan's connection graph — 30-day window",b:"Rajan stepped down Mar 31 and is now visible on LinkedIn. His connections list is the highest-concentration map of Atlassian India senior engineering leadership. Any current Atlassian engineer at Staff or Principal level in his network is a priority target."},
+      {t:"Target post-COVID hires (2021–23) with underwater RSUs",b:"Blind discussions confirm post-COVID hires were disproportionately targeted. Engineers who joined at peak Atlassian valuations hold RSUs that have lost 84% of value. Intuit's INTU stock at stable valuations with a 4-year RSU refresh is a materially better financial story — lead with total compensation math."},
+      {t:"Pitch: single clear leadership structure + financial domain stability",b:"Atlassian engineers are disoriented: stock down 84%, CTO split into two, 10% of colleagues gone in one announcement. Intuit counter-pitch: single CTO, financially stable public company, financial domain that AI augments rather than replaces, full product ownership from BLR."},
+      {t:"Ignore pure QA profiles — use title filter",b:"Filter must include 'Software Engineer' or 'SWE' or 'Platform Engineer' in title. Atlassian QA engineers are lowest Intuit match. The R&D SWEs building Jira core and Confluence platform are the target — save your time, filter aggressively."}
+    ]
+  },
+
+  {
+    id: "amazon",
+    name: "Amazon India",
+    meta: "~500–700 India roles · Jan–Feb 2026 · BLR / HYD / Chennai · Part of 16,000 global cuts",
+    urgency: "ONGOING POOL — AWS India intact, source scope-compressed Senior ICs",
+    urgencyClass: "amber",
+    topMatch: 87,
+    chips: [
+      {l:"500–700 India impact",c:"chip-amber"},
+      {l:"16,000 global (Jan 2026)",c:"chip-red"},
+      {l:"AWS India largely intact",c:"chip-green"},
+      {l:"Corporate / ops hit hardest",c:"chip-amber"},
+      {l:"Management layers thinned",c:"chip-gray"}
+    ],
+    ovStats: [
+      {val:"700",lbl:"India Roles",cls:"amber"},
+      {val:"87%",lbl:"AWS Match",cls:"green"},
+      {val:"30K",lbl:"Global Total",cls:"red"}
+    ],
+    teams: [
+      {
+        name:"AWS India — Cloud Engineering",
+        impact:"Largely intact · scope-compressed",
+        skills:["AWS","Distributed Systems","Cloud Infra","Kubernetes","Golang","Platform Engineering","Microservices"],
+        match:["AWS","Distributed Systems","Cloud Infra","Golang","Platform Engineering"],
+        pct:87, bu:"Intuit Platform — GenOS / Cloud Infra",
+        note:"AWS India engineering was preserved — it's core to Amazon's AI strategy. But management layer thinning means Principal ICs have less advocacy and more direct pressure. Engineers who feel scope-constrained post-restructuring are the target — not just the formally laid off."
+      },
+      {
+        name:"Amazon Retail Engineering — BLR / HYD",
+        impact:"Moderate cuts, mgmt thinned",
+        skills:["Java","Microservices","Distributed Systems","Kafka","Real-time Systems","AWS"],
+        match:["Java","Distributed Systems","Kafka","AWS"],
+        pct:78, bu:"Consumer Group / SBSE",
+        note:"Recommendation, search, and fulfilment platform engineers have strong Java + distributed systems + real-time processing profiles. Management thinning means Senior Staff ICs have less cover — some feel exposed and are quietly exploring."
+      },
+      {
+        name:"Prime Video / Devices India",
+        impact:"Some cuts",
+        skills:["Media Platform","Streaming Infra","Java","Python","Distributed Systems","ML Platform"],
+        match:["Java","Distributed Systems","ML Platform"],
+        pct:65, bu:"Intuit Platform (skills transferable)",
+        note:"Streaming infra and ML platform engineers. Less direct domain match but distributed systems and real-time data skills transfer well to Intuit's data pipelines and Consumer Group."
+      }
+    ],
+    leaders: [
+      {
+        initials:"VP", name:"Amazon India Director/VP Layer (multiple exits)",
+        role:"Engineering Directors & VPs — displaced in management thinning, Jan 2026",
+        signal:"Amazon's restructuring specifically targeted management layers as the company moved toward its stated 10:1 engineer-to-manager ratio. Several India engineering directors have surfaced on LinkedIn as 'open to opportunities' in Feb–Mar 2026.",
+        why:"Directors and VP-level exits from Amazon India with large distributed systems or cloud platform orgs are potential Distinguished Engineer or Principal IC targets at Intuit. Search for Amazon India Director/VP titles with 'open to work' set between Jan–Apr 2026."
+      }
+    ],
+    playbook: [
+      {t:"AWS India Principal SDE sourcing — precision boolean",b:"LinkedIn: 'Amazon Web Services' AND (Bangalore OR Hyderabad) AND ('Principal Engineer' OR 'SDE-III' OR 'Senior Software Engineer') AND (Kubernetes OR Golang OR 'distributed systems'). Even engineers not laid off may feel constrained post-restructuring."},
+      {t:"Use Amazon's 10:1 manager ratio as your pitch hook",b:"Amazon is aggressively removing management cover. Senior ICs who relied on director-level advocacy now have direct exposure. Intuit pitch: 'Principal Engineers here own architectural decisions and interface directly with product leadership — no management overhead, full scope.' This resonates strongly with Amazon L7+."},
+      {t:"Chennai: low-competition sourcing vector",b:"Reports specifically cite Chennai Amazon teams as more severely cut than BLR/HYD. Chennai-based Amazon engineers are underrepresented in India's Principal talent sourcing pipeline. Reach out to Chennai profiles proactively — lower competition from other recruiters."},
+      {t:"Lead with financial domain + mission pitch",b:"Amazon India engineers work in e-commerce and cloud. Pitch: 'At Intuit, your distributed systems work directly impacts 100M people's tax filings, payroll, and lending decisions. The stakes are higher, the domain is more defensible, and GenOS AI work is greenfield.' Domain prestige is a real differentiator for Amazon Principal talent."},
+      {t:"Source Directors/VPs for Distinguished Engineer + senior roles",b:"Search: Amazon AND (India OR Bengaluru) AND (Director OR 'VP Engineering') AND 'open to work' dated Jan–Apr 2026. These are high-calibre candidates for Intuit's Distinguished Engineer or senior Principal roles with org-building experience."}
+    ]
+  },
+
+  {
+    id: "flipkart",
+    name: "Flipkart",
+    meta: "300–500 exits · Feb–Mar 2026 · BLR · Performance review + OneTech restructuring",
+    urgency: "60-DAY WINDOW — new VP-Eng starts 90-day review cycle",
+    urgencyClass: "amber",
+    topMatch: 88,
+    chips: [
+      {l:"300–500 PIP exits",c:"chip-amber"},
+      {l:"SVPs: 18 → <12",c:"chip-amber"},
+      {l:"New CPTO Sep 2025",c:"chip-blue"},
+      {l:"New VP-Eng CPG Mar 30",c:"chip-blue"},
+      {l:"IPO: late 2026 target",c:"chip-green"},
+      {l:"OneTech AI-first overhaul",c:"chip-gray"}
+    ],
+    ovStats: [
+      {val:"500",lbl:"PIP Exits",cls:"amber"},
+      {val:"88%",lbl:"CPG Match",cls:"green"},
+      {val:"<12",lbl:"SVPs Remaining",cls:"amber"}
+    ],
+    teams: [
+      {
+        name:"Central Platforms Group (CPG) — legacy members",
+        impact:"Leadership replaced Mar 30",
+        skills:["Platform Engineering","Microservices","Java","Kafka","AWS","Distributed Systems","Kubernetes"],
+        match:["Platform Engineering","Java","Kafka","AWS","Distributed Systems"],
+        pct:88, bu:"Intuit Platform / GenOS",
+        note:"New VP Smita Ojha (ex-Mindtickle SVP) installed Mar 30. She will reorganise her inherited team in first 90 days — standard new-VP playbook. CPG engineers hired 2021–24 who aren't in her personal network are at risk. Source BEFORE her first review cycle (~Apr 28)."
+      },
+      {
+        name:"AI & Recommendation Systems",
+        impact:"Architecture reset under OneTech",
+        skills:["ML Platform","GenAI","Recommendation Systems","Python","TensorFlow","Spark"],
+        match:["ML Platform","GenAI","Python"],
+        pct:82, bu:"Intuit Platform / GenOS Assist",
+        note:"OneTech is shifting entirely to GPU-first, LLM-native architecture. Engineers from legacy TensorFlow or Spark ML stacks may not fit. Prime target for Intuit's GenOS Assist and ML infra roles."
+      },
+      {
+        name:"Supply Chain & Logistics Engineering",
+        impact:"Re-org under OneTech",
+        skills:["Real-time Systems","Kafka","Golang","Geospatial","Distributed Systems"],
+        match:["Kafka","Golang","Distributed Systems"],
+        pct:70, bu:"Consumer Group (real-time pipelines)",
+        note:"OneTech re-arch displaces some incumbents. Distributed systems + Kafka profiles usable in Intuit's real-time financial data processing. Secondary target behind CPG and AI teams."
+      }
+    ],
+    leaders: [
+      {
+        initials:"BT", name:"Balaji Thiagarajan", role:"CPTO — Flipkart (new Sep 2025, ex-Google/Uber/Microsoft)",
+        signal:"Driving 'OneTech' — replacing all legacy stacks with AI-first, agentic-LLM architectures. Built in-house GPU farms in 2026. His mandate requires AI-native engineers, creating internal friction for non-AI profiles.",
+        why:"His public vision creates internal losers. Target engineers whose LinkedIn profiles show legacy ML or backend focus without AI-native upskilling — they're being deprioritised and are receptive."
+      },
+      {
+        initials:"SO", name:"Smita Ojha", role:"VP Engineering, CPG — Flipkart (new hire Mar 30, ex-Mindtickle SVP Eng)",
+        signal:"Just installed Mar 30. Will lead the Central Platforms Group within OneTech. First 90 days = assessment mode. Engineers from the old CPG structure not personally known to her are most at risk.",
+        why:"New VP = new team. Any CPG engineer not hand-picked by Ojha should be contacted now. The window before her first review cycle (~Apr 28) is maximum receptivity for outreach."
+      },
+      {
+        initials:"JV", name:"Jeyandran Venugopal", role:"Former CTO — Flipkart (exited Feb 2025)",
+        signal:"Departed after 5+ years. Engineers closely aligned with his architectural vision may feel culturally unanchored under the new AI-first mandate.",
+        why:"Search LinkedIn for Flipkart engineers who endorsed Jeyandran — likely his direct reports with the strongest cultural discontinuity under new leadership."
+      }
+    ],
+    playbook: [
+      {t:"CPG boolean — time sensitive (before Apr 28)",b:"LinkedIn: 'Flipkart' AND ('Central Platforms' OR 'CPG' OR 'OneTech') AND (Java OR Kafka OR Kubernetes OR 'platform engineering'). Filter for profiles active in last 30 days. Contact before Apr 28 — Ojha's 90-day review window starts now."},
+      {t:"Mine Jeyandran Venugopal's connections",b:"His public LinkedIn connections list contains the highest concentration of senior Flipkart tech alumni. Any connection still at Flipkart in a Principal or Staff role is a priority target — they're his former team and feel the most cultural discontinuity under new leadership."},
+      {t:"IPO anxiety is your opening line",b:"IPO prep = 2x deliverable pressure, tighter timelines, less architectural creativity. Intuit pitch: already public (INTU), RSUs vest on Nasdaq, no IPO chaos, full technical ownership from BLR. Directly resolves the anxiety engineers are feeling."},
+      {t:"Target legacy ML engineers not GPU/LLM native",b:"OneTech needs PyTorch/CUDA/LLM-native engineers. Flipkart's existing ML team was built on TensorFlow and Spark. Engineers without the new stack will see scope shrink — they're highly receptive to Intuit GenOS opportunities."},
+      {t:"Don't mention 'OneTech' in outreach — it's a red flag term",b:"For engineers who are resistant to the new direction, 'OneTech' language signals you've been tracking the re-org, which can feel invasive. Lead instead with: 'I've been following Flipkart's engineering evolution' — acknowledges the change without implying surveillance."}
+    ]
+  },
+
+  {
+    id: "gupshup",
+    name: "Gupshup",
+    meta: "~500 laid off · Dec 2024–Apr 2025 · BLR, MUM · Acquisition teams + profitability push",
+    urgency: "ONGOING POOL — acquisition alumni still in market",
+    urgencyClass: "green",
+    topMatch: 82,
+    chips: [
+      {l:"500 cuts over 2 rounds",c:"chip-amber"},
+      {l:"Acquired teams hit hardest",c:"chip-amber"},
+      {l:"Now profitable",c:"chip-green"},
+      {l:"IPO exploring",c:"chip-blue"},
+      {l:"769 employees remaining",c:"chip-gray"}
+    ],
+    ovStats: [
+      {val:"500",lbl:"Total Cuts",cls:"amber"},
+      {val:"82%",lbl:"AI Team Match",cls:"green"},
+      {val:"2",lbl:"Layoff Rounds",cls:"amber"}
+    ],
+    teams: [
+      {
+        name:"Acquired Company Engineering Teams (2021–22)",
+        impact:"Primary cut target",
+        skills:["Conversational AI","NLP","Agentic Workflows","LLM Integration","Python","API Platform"],
+        match:["Conversational AI","NLP","Agentic Workflows","LLM Integration","Python"],
+        pct:82, bu:"Intuit Platform — GenOS Assist / Agentic AI",
+        note:"Gupshup acquired Active.ai, AskSid, OneDirect, Dotgo in 2021–22. Engineers built domain-specific conversational AI systems. Their profiles directly match Intuit's GenOS Assist layer — agentic reasoning, NLP, multi-turn conversation design."
+      },
+      {
+        name:"Customer Engagement Platform Engineering",
+        impact:"Moderate cuts",
+        skills:["Messaging APIs","Kafka","Real-time Delivery","Multi-channel Platform","AWS","Microservices"],
+        match:["Kafka","AWS","Microservices"],
+        pct:55, bu:"Consumer Group / Intuit Platform",
+        note:"Real-time messaging infra at scale. Kafka + multi-tenant cloud platform profiles usable for Intuit's notification and communication infrastructure. Secondary target after AI teams."
+      }
+    ],
+    leaders: [
+      {
+        initials:"BS", name:"Beerud Sheth", role:"CEO — Gupshup (co-founder)",
+        signal:"Pivoting toward profitability and IPO readiness after two layoff rounds. Retained core AI platform team. Engineers who survived two rounds in 5 months are fatigued despite holding employed status.",
+        why:"Source survivors, not just the laid-off. Employees through two rounds often have high openness even if employed. Lead with: 'I know Gupshup has been through a lot of change. I'm reaching out because your background is exactly what we're building at Intuit.' Acknowledge context."
+      }
+    ],
+    playbook: [
+      {t:"Search for acquisition company alumni within Gupshup",b:"LinkedIn boolean: ('Active.ai' OR 'AskSid' OR 'OneDirect' OR 'Dotgo') AND 'Gupshup'. Engineers joined via acquisition carry the original startup identity — many never truly landed at Gupshup culturally. Very high conversion potential."},
+      {t:"Pitch: acquisition fatigue + GenOS ownership",b:"Engineers who joined via acquisition rarely feel full product ownership at the acquirer. Intuit pitch: 'You define the GenOS Assist architecture from day one — not inherited, not a feature of someone else's product. You own it at BLR.' Directly resolves the core emotional pain."},
+      {t:"Filter for Python + LLM + agentic stack",b:"Gupshup's AI stack runs on Python, LLM APIs (OpenAI, Cohere), and agentic frameworks. Search: 'Gupshup' AND (LLM OR 'agentic' OR LangChain OR 'conversational AI' OR 'NLP platform'). Maps directly to Intuit GenOS Assist requirements."},
+      {t:"Source employed survivors — they're psychologically open",b:"Two layoff rounds in one company in 5 months leaves survivors drained regardless of employment status. Lead with acknowledgement: 'I know the past year at Gupshup has had a lot of turbulence.' This builds more trust in 10 seconds than a full pitch paragraph."},
+      {t:"Watch for IPO filing — second wave trigger",b:"If Gupshup confirms IPO filing, remaining engineers with pre-IPO equity face a liquidity decision. The 90-day window post-announcement generates peak receptivity — engineers weigh lock-up risk vs. moving now while they have leverage."}
+    ]
+  }
+];
+
+const booleans = [
+  {
+    title:"Oracle — OCI / Cloud Engineers · BLR",
+    str:`"Oracle" AND ("OCI" OR "Oracle Cloud Infrastructure" OR "SVOS" OR "NetSuite IDC") AND ("distributed systems" OR Kubernetes OR Golang OR Java) AND (Bangalore OR Bengaluru OR Hyderabad)`,
+    notes:"Use OCI and SVOS as division names — highly specific to Oracle. Filter 'Open to Work' after Mar 31 2026 for freshly displaced talent."
+  },
+  {
+    title:"Oracle — Java / SaaS Platform Engineers",
+    str:`"Oracle" AND (Java OR "SaaS platform" OR "cloud native") AND ("Senior Software Engineer" OR "Principal Engineer" OR "Staff Engineer" OR "Architect") AND (Bangalore OR Bengaluru)`,
+    notes:"Catches Java and SaaS platform engineers across RHS and SVOS. Combine with 'Open to Work' filter for active candidates."
+  },
+  {
+    title:"Atlassian — R&D / Platform Engineers · BLR",
+    str:`"Atlassian" AND (Jira OR Confluence OR "platform engineering" OR "R&D") AND (Java OR Kotlin OR "distributed systems" OR "cloud native") AND (Bangalore OR Bengaluru)`,
+    notes:"Target R&D SWEs, not QA. Add 'Open to Work after March 11 2026' for the layoff cohort."
+  },
+  {
+    title:"Atlassian — CTO Transition Targets (Rajeev Rajan network)",
+    str:`"Atlassian" AND ("Principal Engineer" OR "Staff Engineer" OR "Senior Staff") AND (Bangalore OR Bengaluru) AND (Java OR Kotlin OR "platform" OR "distributed")`,
+    notes:"Cross-reference with Rajeev Rajan's LinkedIn connections for highest-conviction targets. These are likely his former direct reports."
+  },
+  {
+    title:"Amazon — AWS Principal Engineers · BLR / HYD",
+    str:`"Amazon Web Services" AND ("Principal Engineer" OR "SDE-III" OR "Senior Software Engineer") AND (Kubernetes OR Golang OR "distributed systems" OR AWS) AND (Bangalore OR Bengaluru OR Hyderabad)`,
+    notes:"AWS India teams largely intact but scope-compressed. Source engineers open to financial domain + full ownership — not just the formally laid off."
+  },
+  {
+    title:"Amazon — Retail Platform + ML Engineers",
+    str:`"Amazon" AND (Java OR Kafka OR "machine learning" OR "ML platform") AND ("Senior" OR "Principal" OR "Staff") AND (Bangalore OR Bengaluru OR Hyderabad) AND -"HR" AND -"operations"`,
+    notes:"The -'HR' and -'operations' exclusions filter out corporate functions. Targets retail backend and ML platform engineers."
+  },
+  {
+    title:"Flipkart — CPG / OneTech Platform Engineers",
+    str:`"Flipkart" AND ("Central Platforms" OR "CPG" OR "OneTech" OR "platform engineering") AND (Java OR Kafka OR Kubernetes OR "distributed systems") AND Bangalore`,
+    notes:"Time-sensitive — contact before Apr 28 when new VP Smita Ojha completes her 90-day assessment of the CPG team."
+  },
+  {
+    title:"Flipkart — Legacy ML / AI Engineers (non-LLM-native)",
+    str:`"Flipkart" AND ("machine learning" OR "ML platform" OR "recommendation" OR TensorFlow OR Spark) AND ("Senior" OR "Staff" OR "Principal") AND Bangalore`,
+    notes:"Target engineers whose stack (TF/Spark) doesn't align with Flipkart's new GPU/LLM-first OneTech direction. They're being deprioritised internally."
+  },
+  {
+    title:"Gupshup — Acquisition Team NLP Engineers",
+    str:`("Active.ai" OR "AskSid" OR "OneDirect" OR "Dotgo" OR "Gupshup") AND ("conversational AI" OR NLP OR "agentic" OR LangChain OR LLM OR "Python") AND ("Senior" OR "Staff" OR "Principal") AND Bangalore`,
+    notes:"Engineers from Gupshup's 2021–22 acquisitions. High agentic AI and NLP profile match to Intuit GenOS Assist layer. Very high conversion potential due to acquisition fatigue."
+  },
+  {
+    title:"Multi-company — Broad Displaced Senior ICs · BLR",
+    str:`("Oracle" OR "Atlassian" OR "Amazon" OR "Flipkart") AND ("Principal Engineer" OR "Staff Engineer" OR "Senior Staff") AND ("distributed systems" OR Java OR Kubernetes OR "cloud native" OR GenAI) AND (Bangalore OR Bengaluru)`,
+    notes:"Broadest signal sweep. Use to identify displaced talent across all four companies in a single search. Filter by 'Open to Work' in the past 30 days."
+  }
+];
+
+// ── RENDER OVERVIEW ──
+const ovGrid = document.getElementById('overview-grid');
+companies.forEach(co => {
+  const statsHtml = co.ovStats.map(s => `<div class="ov-stat">
+    <div class="ov-stat-val ${s.cls}">${s.val}</div>
+    <div class="ov-stat-lbl">${s.lbl}</div>
+  </div>`).join('');
+  const card = document.createElement('div');
+  card.className = `ov-card urgency-${co.urgencyClass}`;
+  card.innerHTML = `
+    <div class="ov-co-name">${co.name}</div>
+    <div class="ov-meta">${co.meta}</div>
+    <div class="ov-stats">${statsHtml}</div>
+    <div class="ov-urgency ${co.urgencyClass}">${co.urgency}</div>
+  `;
+  card.onclick = () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    const btn = document.querySelector(`[data-tab="${co.id}"]`);
+    const panel = document.getElementById(`tab-${co.id}`);
+    if(btn) btn.classList.add('active');
+    if(panel) panel.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+  ovGrid.appendChild(card);
+});
+
+// ── RENDER COMPANY PANELS ──
+function renderPanel(co) {
+  const el = document.getElementById(`panel-${co.id}`);
+  if(!el) return;
+
+  const chipsHtml = co.chips.map(c => `<span class="chip ${c.c}">${c.l}</span>`).join('');
+  const alertCls = co.urgencyClass === 'red' ? '' : co.urgencyClass === 'amber' ? 'amber' : 'green';
+  const scoreColor = co.topMatch >= 80 ? 'var(--green)' : co.topMatch >= 60 ? 'var(--amber)' : 'var(--text3)';
+
+  const teamsHtml = co.teams.map(t => {
+    const skillsHtml = t.skills.map(s => `<span class="skill-tag${t.match.includes(s)?' match':''}">${s}</span>`).join('');
+    const fillColor = t.pct >= 75 ? 'var(--green)' : t.pct >= 55 ? 'var(--amber)' : 'var(--text3)';
+    const pctColor = t.pct >= 75 ? 'var(--green)' : t.pct >= 55 ? 'var(--amber)' : 'var(--text3)';
+    return `<div class="team-card">
+      <div class="team-card-top">
+        <span class="team-name">${t.name}</span>
+        <span class="impact-tag">${t.impact}</span>
+      </div>
+      <div class="skill-row">${skillsHtml}</div>
+      <div class="match-row">
+        <span class="match-bu">${t.bu}</span>
+        <span class="match-pct-label" style="color:${pctColor}">${t.pct}% match</span>
+      </div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${t.pct}%;background:${fillColor}"></div></div>
+      <p class="team-note">${t.note}</p>
+    </div>`;
+  }).join('');
+
+  const leadersHtml = co.leaders.map(l => `<div class="leader-card">
+    <div class="leader-top">
+      <div class="leader-avatar">${l.initials}</div>
+      <div><div class="leader-name">${l.name}</div><div class="leader-role">${l.role}</div></div>
+    </div>
+    <div class="leader-signal">${l.signal}</div>
+    <div class="leader-why"><strong>Sourcing angle:</strong> ${l.why}</div>
+  </div>`).join('');
+
+  const pbHtml = co.playbook.map((p,i) => `<li class="pb-item">
+    <div class="pb-num">${i+1}</div>
+    <div><div class="pb-title">${p.t}</div><div class="pb-body">${p.b}</div></div>
+  </li>`).join('');
+
+  el.innerHTML = `
+    <div class="alert-bar ${alertCls}">
+      <div class="alert-pulse"></div>
+      <span class="alert-text">${co.urgency}</span>
+    </div>
+    <div class="co-header">
+      <div>
+        <div class="co-name">${co.name}</div>
+        <div class="co-meta">${co.meta}</div>
+        <div class="chips-row">${chipsHtml}</div>
+      </div>
+      <div class="co-header-right">
+        <div class="match-score-big" style="color:${scoreColor}">${co.topMatch}%</div>
+        <div class="match-score-label">INTUIT<br>SKILL MATCH</div>
+      </div>
+    </div>
+    <div class="grid-label">Affected teams — skill match to Intuit roles</div>
+    <div class="team-grid">${teamsHtml}</div>
+    <div class="grid-label">Leadership movements & restructuring signals</div>
+    ${leadersHtml}
+    <div class="grid-label">Sourcing playbook</div>
+    <ul class="playbook-list">${pbHtml}</ul>
+  `;
+}
+companies.forEach(renderPanel);
+
+// ── RENDER BOOLEANS ──
+const boolGrid = document.getElementById('bool-grid');
+booleans.forEach(b => {
+  const card = document.createElement('div');
+  card.className = 'bool-card';
+  card.innerHTML = `
+    <div class="bool-card-header">
+      <span class="bool-card-title">${b.title}</span>
+      <button class="copy-btn" onclick="copyBool(this, \`${b.str.replace(/`/g,"'")}\`)">Copy</button>
+    </div>
+    <div class="bool-string">${b.str}</div>
+    <div class="bool-notes">${b.notes}</div>
+  `;
+  boolGrid.appendChild(card);
+});
+
+function copyBool(btn, str) {
+  navigator.clipboard.writeText(str).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ── TABS ──
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
