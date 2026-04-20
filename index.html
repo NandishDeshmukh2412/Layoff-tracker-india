@@ -329,7 +329,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--body); min-
 <!-- SUMMARY STRIP -->
 <div class="summary-strip">
   <div class="sum-stat">
-    <span class="sum-val red" id="s-total">13,900+</span>
+    <span class="sum-val red" id="s-total">14,200+</span>
     <span class="sum-label">India roles cut · 2026</span>
   </div>
   <div class="sum-stat">
@@ -346,7 +346,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--body); min-
   </div>
   <div class="sum-stat">
     <span class="sum-val amber">Apr 28</span>
-    <span class="sum-label">Next Oracle wave expected</span>
+    <span class="sum-label">Oracle Round 2 — 8 days</span>
   </div>
 </div>
 
@@ -355,7 +355,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--body); min-
   <button class="tab-btn active" data-tab="overview">Overview <span class="tab-badge">5</span></button>
   <button class="tab-btn" data-tab="oracle">Oracle <span class="tab-badge" style="background:rgba(224,82,82,0.15);color:var(--red)">HOT</span></button>
   <button class="tab-btn" data-tab="atlassian">Atlassian <span class="tab-badge" style="background:rgba(224,82,82,0.15);color:var(--red)">HOT</span></button>
-  <button class="tab-btn" data-tab="amazon">Amazon <span class="tab-badge">500+</span></button>
+  <button class="tab-btn" data-tab="amazon">Amazon <span class="tab-badge" style="background:rgba(224,82,82,0.15);color:var(--red)">1,500+</span></button>
   <button class="tab-btn" data-tab="flipkart">Flipkart <span class="tab-badge">300+</span></button>
   <button class="tab-btn" data-tab="gupshup">Gupshup <span class="tab-badge">500</span></button>
   <button class="tab-btn" data-tab="booleans">Boolean Strings <span class="tab-badge">10</span></button>
@@ -419,7 +419,7 @@ const companies = [
     id: "oracle",
     name: "Oracle India",
     meta: "~12,000 laid off · Mar 31, 2026 · BLR / HYD / MUM / Pune / Noida",
-    urgency: "ACTIVE POOL — Round 2 expected ~Apr 28",
+    urgency: "CRITICAL — 3 wks post-layoff (peak reachability). Round 2 expected Apr 28 — 8 DAYS AWAY. Source NOW.",
     urgencyClass: "red",
     topMatch: 85,
     chips: [
@@ -554,19 +554,19 @@ const companies = [
   {
     id: "amazon",
     name: "Amazon India",
-    meta: "~500–700 India roles · Jan–Feb 2026 · BLR / HYD / Chennai · Part of 16,000 global cuts",
-    urgency: "ONGOING POOL — AWS India intact, source scope-compressed Senior ICs",
+    meta: "~1,000–2,000 India roles · Jan–Apr 2026 · BLR / HYD / Chennai · Bedrock GenAI team hit hardest",
+    urgency: "ONGOING POOL — AWS Bedrock BLR (~400 of 450 engineers cut), Redshift & ProServe also hit. Ongoing through Jun 2026.",
     urgencyClass: "amber",
     topMatch: 87,
     chips: [
-      {l:"500–700 India impact",c:"chip-amber"},
+      {l:"1,000–2,000 India impact",c:"chip-amber"},
       {l:"16,000 global (Jan 2026)",c:"chip-red"},
-      {l:"AWS India largely intact",c:"chip-green"},
+      {l:"Bedrock BLR: 400/450 cut",c:"chip-red"},
       {l:"Corporate / ops hit hardest",c:"chip-amber"},
       {l:"Management layers thinned",c:"chip-gray"}
     ],
     ovStats: [
-      {val:"700",lbl:"India Roles",cls:"amber"},
+      {val:"~1,500",lbl:"India Roles",cls:"amber"},
       {val:"87%",lbl:"AWS Match",cls:"green"},
       {val:"30K",lbl:"Global Total",cls:"red"}
     ],
@@ -688,16 +688,16 @@ const companies = [
   {
     id: "gupshup",
     name: "Gupshup",
-    meta: "~500 laid off · Dec 2024–Apr 2025 · BLR, MUM · Acquisition teams + profitability push",
-    urgency: "ONGOING POOL — acquisition alumni still in market",
-    urgencyClass: "green",
+    meta: "~600+ laid off · Dec 2024–Apr 2026 · BLR, MUM · Valuation −80% ($280–300M) · Revenue −5%, Profit −52%",
+    urgency: "DISTRESS SIGNAL — Fidelity markdown to $280–300M (−80%). Senior engineers actively seeking exits NOW.",
+    urgencyClass: "amber",
     topMatch: 82,
     chips: [
-      {l:"500 cuts over 2 rounds",c:"chip-amber"},
+      {l:"600+ cuts (multiple rounds)",c:"chip-amber"},
       {l:"Acquired teams hit hardest",c:"chip-amber"},
-      {l:"Now profitable",c:"chip-green"},
+      {l:"Valuation −80% ($280–300M)",c:"chip-red"},
       {l:"IPO exploring",c:"chip-blue"},
-      {l:"769 employees remaining",c:"chip-gray"}
+      {l:"Revenue −5%, Profit −52% FY25",c:"chip-red"}
     ],
     ovStats: [
       {val:"500",lbl:"Total Cuts",cls:"amber"},
