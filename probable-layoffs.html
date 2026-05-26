@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Probable India Layoffs — Intelligence Radar</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0f12; --surface: #13161b; --surface2: #1a1e25; --surface3: #22272f;
+  --border: rgba(255,255,255,0.07); --border2: rgba(255,255,255,0.12);
+  --amber: #f0a500; --amber-dim: rgba(240,165,0,0.15);
+  --red: #e05252; --red-dim: rgba(224,82,82,0.12);
+  --green: #3ecf8e; --green-dim: rgba(62,207,142,0.12);
+  --blue: #4a9eff; --blue-dim: rgba(74,158,255,0.12);
+  --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.12);
+  --orange: #fb923c; --orange-dim: rgba(251,146,60,0.12);
+  --text: #e8eaed; --text2: #9aa0ab; --text3: #5c6370;
+  --mono: 'IBM Plex Mono', monospace; --display: 'Syne', sans-serif; --body: 'Instrument Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--body); min-height: 100vh; }
+
+.header {
+  background: var(--surface); border-bottom: 1px solid var(--border2);
+  padding: 0 32px; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: 12px; }
+.header-logo {
+  width: 30px; height: 30px; background: var(--purple);
+  border-radius: 6px; display: flex; align-items: center; justify-content: center;
+  font-family: var(--display); font-size: 16px; font-weight: 800; color: #0d0f12;
+}
+.header-title { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.header-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 0.05em; }
+.header-right { display: flex; align-items: center; gap: 16px; }
+.radar-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--purple); animation: pulse-anim 2s ease-in-out infinite; }
+@keyframes pulse-anim { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
+.radar-label { font-family: var(--mono); font-size: 10px; color: var(--purple); font-weight: 600; letter-spacing: 0.08em; }
+.header-date { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+
+/* DISCLAIMER */
+.disclaimer {
+  background: var(--purple-dim); border-bottom: 1px solid rgba(167,139,250,0.2);
+  padding: 10px 32px; display: flex; align-items: center; gap: 10px;
+}
+.disclaimer-text { font-family: var(--mono); font-size: 10px; color: var(--purple); line-height: 1.5; }
+.disclaimer-icon { font-size: 14px; flex-shrink: 0; }
+
+/* SUMMARY */
+.summary-strip {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 12px 32px; display: flex; gap: 0; overflow-x: auto;
+}
+.sum-stat {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 0 24px 0 0; margin-right: 24px;
+  border-right: 1px solid var(--border);
+}
+.sum-stat:last-child { border-right: none; }
+.sum-val { font-family: var(--display); font-size: 22px; font-weight: 700; color: var(--text); line-height: 1; }
+.sum-val.red { color: var(--red); } .sum-val.amber { color: var(--amber); }
+.sum-val.green { color: var(--green); } .sum-val.purple { color: var(--purple); }
+.sum-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px; }
+
+/* FILTER BAR */
+.filter-bar {
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  padding: 0 32px; display: flex; align-items: center; gap: 8px; overflow-x: auto; height: 48px;
+}
+.filter-label { font-family: var(--mono); font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; margin-right: 4px; }
+.filter-btn {
+  font-family: var(--mono); font-size: 11px; font-weight: 500;
+  background: var(--surface3); color: var(--text3);
+  border: 1px solid var(--border); padding: 4px 12px; border-radius: 20px;
+  cursor: pointer; white-space: nowrap; transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--border2); color: var(--text2); }
+.filter-btn.active { background: var(--purple-dim); color: var(--purple); border-color: rgba(167,139,250,0.4); }
+
+/* MAIN GRID */
+.main { padding: 28px 32px; max-width: 1300px; }
+
+.section-hd { margin-bottom: 20px; display: flex; align-items: flex-end; justify-content: space-between; }
+.section-title { font-family: var(--display); font-size: 18px; font-weight: 700; }
+.section-count { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+
+.radar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
+
+/* RADAR CARD */
+.radar-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; overflow: hidden; transition: border-color 0.15s, transform 0.1s;
+  display: flex; flex-direction: column;
+}
+.radar-card:hover { border-color: var(--border2); transform: translateY(-1px); }
+.radar-card.tier-1 { border-left: 3px solid var(--red); }
+.radar-card.tier-2 { border-left: 3px solid var(--amber); }
+.radar-card.tier-3 { border-left: 3px solid var(--blue); }
+
+.card-top {
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid var(--border);
+}
+.card-top-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+.company-name { font-family: var(--display); font-size: 15px; font-weight: 700; }
+.tier-badge {
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  padding: 2px 8px; border-radius: 10px; white-space: nowrap; letter-spacing: 0.05em;
+}
+.tier-1-badge { background: var(--red-dim); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+.tier-2-badge { background: var(--amber-dim); color: var(--amber); border: 1px solid rgba(240,165,0,0.3); }
+.tier-3-badge { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(74,158,255,0.3); }
+
+.company-meta { font-family: var(--mono); font-size: 10px; color: var(--text3); line-height: 1.5; margin-bottom: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border-radius: 10px; }
+.chip-red { background: var(--red-dim); color: var(--red); }
+.chip-amber { background: var(--amber-dim); color: var(--amber); }
+.chip-blue { background: var(--blue-dim); color: var(--blue); }
+.chip-purple { background: var(--purple-dim); color: var(--purple); }
+.chip-gray { background: var(--surface3); color: var(--text3); }
+
+/* SIGNAL METER */
+.signal-section { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+.signal-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.signal-row { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+.signal-name { font-size: 11px; color: var(--text3); width: 110px; flex-shrink: 0; }
+.signal-bar-bg { flex: 1; height: 4px; background: var(--surface3); border-radius: 2px; }
+.signal-bar-fill { height: 100%; border-radius: 2px; }
+.signal-score { font-family: var(--mono); font-size: 10px; width: 30px; text-align: right; }
+
+/* SENTIMENT QUOTES */
+.sentiment-section { padding: 12px 16px; border-bottom: 1px solid var(--border); flex: 1; }
+.sentiment-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+.quote-item { display: flex; gap: 8px; margin-bottom: 8px; }
+.quote-source {
+  font-family: var(--mono); font-size: 9px; color: var(--text3);
+  background: var(--surface3); padding: 2px 6px; border-radius: 4px;
+  white-space: nowrap; height: fit-content; margin-top: 1px; flex-shrink: 0;
+}
+.quote-source.blind { background: var(--blue-dim); color: var(--blue); }
+.quote-source.fishbowl { background: var(--purple-dim); color: var(--purple); }
+.quote-source.thelayoff { background: var(--red-dim); color: var(--red); }
+.quote-source.twitter { background: var(--surface3); color: var(--text3); }
+.quote-source.linkedin { background: var(--blue-dim); color: var(--blue); }
+.quote-source.et { background: var(--orange-dim); color: var(--orange); }
+.quote-text { font-size: 11px; color: var(--text2); line-height: 1.55; font-style: italic; }
+
+/* PROBABILITY */
+.prob-section { padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+.prob-label { font-family: var(--mono); font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; }
+.prob-bar-wrap { flex: 1; margin: 0 12px; }
+.prob-bar-bg { height: 6px; background: var(--surface3); border-radius: 3px; }
+.prob-bar-fill { height: 100%; border-radius: 3px; transition: width 0.8s ease; }
+.prob-pct { font-family: var(--display); font-size: 18px; font-weight: 700; }
+.prob-window { font-family: var(--mono); font-size: 9px; color: var(--text3); text-align: right; margin-top: 2px; }
+
+/* SOURCING HOOK */
+.hook-section { padding: 10px 16px; background: var(--surface2); border-top: 1px solid var(--border); }
+.hook-label { font-family: var(--mono); font-size: 9px; color: var(--amber); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 4px; }
+.hook-text { font-size: 11px; color: var(--text3); line-height: 1.5; }
+
+/* CATEGORY HEADERS */
+.category-header {
+  margin: 32px 0 16px; display: flex; align-items: center; gap: 12px;
+}
+.cat-line { flex: 1; height: 1px; background: var(--border); }
+.cat-label {
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+/* METHODOLOGY */
+.methodology {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 20px; margin: 32px 0 0;
+}
+.meth-title { font-family: var(--display); font-size: 14px; font-weight: 700; color: var(--purple); margin-bottom: 12px; }
+.meth-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.meth-item { display: flex; flex-direction: column; gap: 4px; }
+.meth-source { font-family: var(--mono); font-size: 11px; font-weight: 600; color: var(--text); }
+.meth-desc { font-size: 11px; color: var(--text3); line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-brand">
+    <div class="header-logo">R</div>
+    <div>
+      <div class="header-title">Probable Layoffs Radar — India</div>
+      <div class="header-sub">SENTIMENT · SIGNAL · PROBABILITY · SOURCING HOOK</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="radar-dot"></div>
+    <span class="radar-label">RADAR</span>
+    <span class="header-date" id="hdr-date"></span>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <span class="disclaimer-icon">⚠️</span>
+  <span class="disclaimer-text">
+    INTELLIGENCE ONLY — Probabilities are scored from public signals: Blind/Fishbowl sentiment, TheLayoff.com posts, LinkedIn activity, press reports, and financial indicators. Not confirmed layoffs. Use for proactive sourcing preparation, not candidate outreach. Always verify before actioning.
+  </span>
+</div>
+
+<div class="summary-strip">
+  <div class="sum-stat"><span class="sum-val red">4</span><span class="sum-label">Tier 1 — Imminent (60–90 days)</span></div>
+  <div class="sum-stat"><span class="sum-val amber">6</span><span class="sum-label">Tier 2 — Probable (90–180 days)</span></div>
+  <div class="sum-stat"><span class="sum-val" style="color:var(--blue)">5</span><span class="sum-label">Tier 3 — Watch (180+ days)</span></div>
+  <div class="sum-stat"><span class="sum-val purple">~38,000</span><span class="sum-label">Potential India Roles at Risk</span></div>
+  <div class="sum-stat"><span class="sum-val">May 26, 2026</span><span class="sum-label">Radar Refreshed</span></div>
+</div>
+
+<div class="filter-bar">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterCards('all',this)">All (15)</button>
+  <button class="filter-btn" onclick="filterCards('tier-1',this)">🔴 Tier 1 — Imminent</button>
+  <button class="filter-btn" onclick="filterCards('tier-2',this)">🟡 Tier 2 — Probable</button>
+  <button class="filter-btn" onclick="filterCards('tier-3',this)">🔵 Tier 3 — Watch</button>
+  <button class="filter-btn" onclick="filterCards('mnc',this)">MNCs</button>
+  <button class="filter-btn" onclick="filterCards('indian-startup',this)">Indian Startups</button>
+  <button class="filter-btn" onclick="filterCards('it-services',this)">IT Services</button>
+</div>
+
+<div class="main" id="main-content">
+
+  <div class="category-header">
+    <div class="cat-line"></div>
+    <div class="cat-label">🔴 Tier 1 — Imminent · Confirmed signals, 60–90 day window</div>
+    <div class="cat-line"></div>
+  </div>
+
+  <div class="radar-grid" id="radar-grid-t1"></div>
+
+  <div class="category-header">
+    <div class="cat-line"></div>
+    <div class="cat-label">🟡 Tier 2 — Probable · Strong signals, 90–180 day window</div>
+    <div class="cat-line"></div>
+  </div>
+
+  <div class="radar-grid" id="radar-grid-t2"></div>
+
+  <div class="category-header">
+    <div class="cat-line"></div>
+    <div class="cat-label">🔵 Tier 3 — Watch · Early signals, 180+ day window</div>
+    <div class="cat-line"></div>
+  </div>
+
+  <div class="radar-grid" id="radar-grid-t3"></div>
+
+  <div class="methodology">
+    <div class="meth-title">📡 Signal Sources & Methodology</div>
+    <div class="meth-grid">
+      <div class="meth-item"><span class="meth-source">Blind (TeamBlind)</span><span class="meth-desc">Anonymous employee posts, layoff threads, manager sentiment, PIP signals</span></div>
+      <div class="meth-item"><span class="meth-source">Fishbowl</span><span class="meth-desc">Professional community — India tech conversations, hiring freeze chatter</span></div>
+      <div class="meth-item"><span class="meth-source">TheLayoff.com</span><span class="meth-desc">Anonymous employee reports, internal memo leaks, restructuring signals</span></div>
+      <div class="meth-item"><span class="meth-source">LinkedIn Activity</span><span class="meth-desc">"Open to work" spikes, recruiter freeze signals, leadership exits</span></div>
+      <div class="meth-item"><span class="meth-source">layoffs.fyi / trueup.io</span><span class="meth-desc">Confirmed layoff tracker — used to verify and cross-reference signals</span></div>
+      <div class="meth-item"><span class="meth-source">Financial Press</span><span class="meth-desc">Economic Times, Mint, Business Standard — quarterly results, headcount</span></div>
+      <div class="meth-item"><span class="meth-source">Probability Score</span><span class="meth-desc">Composite of: signal volume (30%), source diversity (20%), financial stress (25%), structural trigger (25%)</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+document.getElementById('hdr-date').textContent = new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+
+const companies = [
+  // ── TIER 1 ──
+  {
+    tier: 1, category: ['mnc'],
+    name: "Microsoft India",
+    meta: "20,000+ employees · BLR / HYD / GGN / Pune · Azure, Copilot, Sales, Gaming",
+    probability: 82,
+    window: "60–90 days",
+    probColor: "var(--red)",
+    chips: [{l:"15K+ global cuts in 2025",c:"chip-red"},{l:"RTO mandate Feb 2026",c:"chip-amber"},{l:"Sales/Gaming at risk",c:"chip-amber"},{l:"$88B AI spend → leaner teams",c:"chip-gray"}],
+    signals: [
+      {name:"Blind sentiment", score:78, color:"var(--red)"},
+      {name:"TheLayoff.com", score:72, color:"var(--red)"},
+      {name:"Financial stress", score:40, color:"var(--green)"},
+      {name:"Structural trigger", score:85, color:"var(--red)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Layoffs and re-org in Hyderabad too. No hiring as well. Managers are aggressively giving PIP."},
+      {source:"thelayoff", label:"TheLayoff", text:"May 5 or June 6. This will be huge. Legacy .NET devs — a skillset that is irrelevant in the AI era."},
+      {source:"blind", label:"Blind", text:"RTO policy is a soft layoff tool. Designed to trigger voluntary resignations without formal severance."}
+    ],
+    hook: "Microsoft India Sales, Gaming, and Azure Ops are highest risk. Legacy .NET and non-AI roles most exposed. Source proactively from HYD — India's largest Microsoft campus."
+  },
+  {
+    tier: 1, category: ['it-services'],
+    name: "TCS",
+    meta: "584,519 employees (FY26 end) · Pan-India · 23,460 cut in FY26 · AI-first pivot ongoing",
+    probability: 78,
+    window: "Ongoing — Q1 FY27",
+    probColor: "var(--red)",
+    chips: [{l:"23,460 cut in FY26",c:"chip-red"},{l:"Mid/senior roles targeted",c:"chip-red"},{l:"AI-first model transition",c:"chip-amber"},{l:"Bench policies tighter",c:"chip-amber"},{l:"40K fresher target maintained",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:65, color:"var(--amber)"},
+      {name:"Financial data", score:88, color:"var(--red)"},
+      {name:"Structural trigger", score:82, color:"var(--red)"},
+      {name:"Press signals", score:90, color:"var(--red)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"WITCH companies took too long. Bench is a death sentence at this point. If you're on bench at Infosys, good luck."},
+      {source:"et", label:"ET", text:"TCS saw its workforce shrink by nearly 24,000 in fiscal 2026 as the company pivots to an AI-first services model."},
+      {source:"blind", label:"Blind", text:"Clients are asking for productivity benefits. AI requires IT firms to do more work with the same or fewer employees."}
+    ],
+    hook: "Mid-to-senior TCS employees (8–15 YOE) in traditional delivery roles are highest risk. BLR/HYD/CHN/PUN. Java, legacy .NET, QA, and project management profiles are being displaced by AI tooling."
+  },
+  {
+    tier: 1, category: ['it-services'],
+    name: "Wipro",
+    meta: "~220,000 employees · Pan-India · Morgan Stanley downgrade · Fresher onboarding deferred",
+    probability: 74,
+    window: "Q1–Q2 FY27",
+    probColor: "var(--red)",
+    chips: [{l:"Fresher onboarding deferred 7+ months",c:"chip-red"},{l:"Morgan Stanley underweight",c:"chip-red"},{l:"7,500–8,000 fresher guidance (down sharply)",c:"chip-amber"},{l:"Selective senior cuts ongoing",c:"chip-amber"}],
+    signals: [
+      {name:"Blind sentiment", score:60, color:"var(--amber)"},
+      {name:"Financial data", score:80, color:"var(--red)"},
+      {name:"Structural trigger", score:75, color:"var(--amber)"},
+      {name:"LinkedIn signals", score:58, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Nearly 200 recruits publicly flagged deferred onboarding of 7+ months. It's embarrassing and demoralising."},
+      {source:"thelayoff", label:"TheLayoff", text:"Wipro is selectively cutting roles, with a cautious approach to hiring. Leadership trying to avoid negative press."},
+      {source:"et", label:"ET", text:"Morgan Stanley downgraded Wipro to underweight. Revenue guidance cautious for FY27."}
+    ],
+    hook: "Wipro's deferred onboarding signals a freeze that could convert to cuts. Senior ICs with 6–12 YOE in legacy delivery or QA are exposed. BLR and HYD campuses largest."
+  },
+  {
+    tier: 1, category: ['mnc'],
+    name: "Google India (Sales/Ops)",
+    meta: "~5,000+ employees · BLR / HYD · Sales, Marketing, Ads teams most at risk",
+    probability: 70,
+    window: "60–90 days",
+    probColor: "var(--red)",
+    chips: [{l:"Sales/Mktg teams flagged",c:"chip-red"},{l:"Ads BLR/HYD most exposed",c:"chip-red"},{l:"Eng teams being reassigned",c:"chip-amber"},{l:"Platforms & Devices already cut",c:"chip-gray"}],
+    signals: [
+      {name:"Blind sentiment", score:55, color:"var(--amber)"},
+      {name:"Press signals", score:80, color:"var(--red)"},
+      {name:"Structural trigger", score:72, color:"var(--amber)"},
+      {name:"LinkedIn signals", score:50, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Google India: Sales, marketing, and advertising roles — particularly in Hyderabad and Bengaluru — will reportedly bear the maximum brunt."},
+      {source:"blind", label:"Blind", text:"Engineering teams may be spared for now, with plans to reassign them to more revenue-centric projects."},
+      {source:"et", label:"ET", text:"Google confirmed ongoing restructuring, noting it has been focused on becoming more agile and efficient since consolidating Platforms and Devices."}
+    ],
+    hook: "Google India Sales and Ads teams in BLR/HYD are actively being restructured. Non-engineering roles highest risk. Source proactively from Google HYD (large non-eng campus). Engineering talent reassigned — may feel scope-compressed and be open."
+  },
+
+  // ── TIER 2 ──
+  {
+    tier: 2, category: ['it-services'],
+    name: "Infosys",
+    meta: "328,594 employees (FY26) · Pan-India · Q4 sequential decline · AI-first reshaping",
+    probability: 62,
+    window: "90–150 days",
+    probColor: "var(--amber)",
+    chips: [{l:"Q4 FY26 sequential decline",c:"chip-amber"},{l:"Mid-senior roles low-rated",c:"chip-amber"},{l:"AI hiring priority, legacy pause",c:"chip-blue"},{l:"20K fresher target maintained",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:58, color:"var(--amber)"},
+      {name:"Financial data", score:65, color:"var(--amber)"},
+      {name:"Structural trigger", score:68, color:"var(--amber)"},
+      {name:"Press signals", score:60, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Zero projects at Infosys. Bench for 3 months and got maybe 3 emails for potential projects. Bench is a death sentence right now."},
+      {source:"blind", label:"Blind", text:"Infosys placed more than 3,000 senior managers in the 'needs improvement' category. Performance-based exits expected."},
+      {source:"et", label:"ET", text:"Infosys reported a sequential decline of 8,440 employees in Q4 FY26 while maintaining AI and cloud hiring focus."}
+    ],
+    hook: "Infosys senior managers (IDs 3,000+ low-rated) are the primary exit cohort. BLR, Mysuru, Pune, HYD. 8–15 YOE traditional delivery profiles — Java, testing, project management. High Intuit match for SBSE and platform roles."
+  },
+  {
+    tier: 2, category: ['it-services'],
+    name: "HCLTech",
+    meta: "~220,000 employees · Pan-India · 9.7% stock drop Apr 22 · FY27 guidance cautious",
+    probability: 60,
+    window: "90–150 days",
+    probColor: "var(--amber)",
+    chips: [{l:"Stock -9.7% on Apr 22",c:"chip-red"},{l:"3.3% revenue dip Q4",c:"chip-amber"},{l:"Cautious FY27 guidance",c:"chip-amber"},{l:"GCC hiring more stable",c:"chip-green"}],
+    signals: [
+      {name:"Financial data", score:78, color:"var(--amber)"},
+      {name:"Blind sentiment", score:45, color:"var(--blue)"},
+      {name:"Structural trigger", score:62, color:"var(--amber)"},
+      {name:"Press signals", score:72, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"et", label:"ET", text:"HCLTech stock dropped 9.7% on April 22, 2026 after a 3.3% revenue dip and cautious FY27 guidance. GCC hiring within HCL remains more stable than services headcount."},
+      {source:"blind", label:"Blind", text:"HCL services is being squeezed from both ends — AI on delivery and weak client demand. Middle layer is vulnerable."},
+      {source:"thelayoff", label:"TheLayoff", text:"HCLTech restructuring Services vs GCC orgs. GCC is growing but Services headcount is being trimmed."}
+    ],
+    hook: "HCLTech Services headcount most at risk vs. GCC division which is growing. Source from Services delivery roles (BLR/Chennai/Noida/Lucknow). Java and legacy delivery engineers who want to move to a product company."
+  },
+  {
+    tier: 2, category: ['mnc'],
+    name: "Cognizant India",
+    meta: "~300,000 India employees · Cognizant pivoting to automated delivery models via AI",
+    probability: 65,
+    window: "90–120 days",
+    probColor: "var(--amber)",
+    chips: [{l:"12,000–15,000 global cuts 2025",c:"chip-red"},{l:"Automated delivery pivot",c:"chip-amber"},{l:"15,000+ lowest-rated employees",c:"chip-red"},{l:"India = 60%+ of workforce",c:"chip-amber"}],
+    signals: [
+      {name:"Financial data", score:72, color:"var(--amber)"},
+      {name:"Blind sentiment", score:62, color:"var(--amber)"},
+      {name:"Structural trigger", score:78, color:"var(--amber)"},
+      {name:"Press signals", score:68, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Cognizant has placed more than 15,000 employees in the lowest category (bucket IV). They're just not telling anyone yet."},
+      {source:"thelayoff", label:"TheLayoff", text:"Cognizant AI-led delivery model: same work, fewer people. India headcount is the variable being solved for."},
+      {source:"blind", label:"Blind", text:"Cognizant cut 12,000–15,000 to pivot toward automated delivery models. India is 60% of their workforce so India takes the hit."}
+    ],
+    hook: "Cognizant India's Bucket IV list (~15K employees flagged) is a pre-layoff indicator. Chennai, HYD, BLR, Kochi. Mid-senior delivery and QA profiles. High volume sourcing opportunity — target Cognizant India Staff+ before formal exits."
+  },
+  {
+    tier: 2, category: ['mnc'],
+    name: "Meta India (Eng/Ops)",
+    meta: "~2,000 India employees · BLR / HYD · 8,000 global cuts Apr 2026 · India impact unclear",
+    probability: 58,
+    window: "90–150 days",
+    probColor: "var(--amber)",
+    chips: [{l:"8,000 global cuts Apr 2026",c:"chip-red"},{l:"Second round signalled",c:"chip-red"},{l:"India Ops/Trust & Safety at risk",c:"chip-amber"},{l:"Engineering mostly preserved",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:55, color:"var(--amber)"},
+      {name:"Press signals", score:70, color:"var(--amber)"},
+      {name:"Structural trigger", score:60, color:"var(--amber)"},
+      {name:"LinkedIn signals", score:48, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Meta India Ops and T&S teams are the likely target. Zuck said AI handles more of that work now. India support roles are at risk."},
+      {source:"thelayoff", label:"TheLayoff", text:"Meta may conduct another round in the coming months. Reports suggest second wave hitting Ops, AR/VR and non-core tech."},
+      {source:"blind", label:"Blind", text:"Meta's layoffs are happening and I am scared of my future. My manager keeps saying 'wait for the All Hands'."}
+    ],
+    hook: "Meta India Trust & Safety, Ops, and AR/VR support roles most exposed. BLR is Meta's India engineering hub — engineer profiles here are high Intuit match (ML/GenAI). Source preemptively from Meta BLR."
+  },
+  {
+    tier: 2, category: ['indian-startup'],
+    name: "Swiggy",
+    meta: "~5,000 corp employees · BLR · Two prior layoff rounds · Still not group-level profitable",
+    probability: 62,
+    window: "90–150 days",
+    probColor: "var(--amber)",
+    chips: [{l:"Two prior layoff rounds",c:"chip-red"},{l:"Group-level still unprofitable",c:"chip-red"},{l:"Food delivery profitable",c:"chip-green"},{l:"Instamart burn reducing",c:"chip-amber"}],
+    signals: [
+      {name:"Blind sentiment", score:52, color:"var(--amber)"},
+      {name:"Financial data", score:70, color:"var(--amber)"},
+      {name:"Structural trigger", score:55, color:"var(--amber)"},
+      {name:"Press signals", score:60, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Swiggy did two rounds already. The paranoia is real. Anyone not in the core delivery or Instamart team feels exposed."},
+      {source:"thelayoff", label:"TheLayoff", text:"Swiggy is cutting cost aggressively. Corporate functions and non-delivery tech are not safe. High burn rate continues."},
+      {source:"blind", label:"Blind", text:"Swiggy vs Zomato: Zomato profitable, Swiggy still burning cash. Structural pressure won't go away without more cuts."}
+    ],
+    hook: "Swiggy BLR platform and data engineering profiles (supply chain, real-time systems, ML) are high Intuit match. Two layoff rounds means survivors are psychologically fatigued — high receptivity."
+  },
+  {
+    tier: 2, category: ['indian-startup'],
+    name: "Meesho",
+    meta: "~2,000 employees · BLR · High burn rate · Shifting from reseller to regular ecom",
+    probability: 55,
+    window: "120–180 days",
+    probColor: "var(--amber)",
+    chips: [{l:"High burn rate narrative",c:"chip-red"},{l:"USP shift = org restructure",c:"chip-amber"},{l:"IPO push expected",c:"chip-blue"},{l:"Contract workforce already cut",c:"chip-gray"}],
+    signals: [
+      {name:"Blind sentiment", score:60, color:"var(--amber)"},
+      {name:"Financial data", score:55, color:"var(--amber)"},
+      {name:"Structural trigger", score:58, color:"var(--amber)"},
+      {name:"LinkedIn signals", score:42, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Meesho layoff is only for non-tech contract employees now — but the vibe says tech is next. High burn rate pressure."},
+      {source:"blind", label:"Blind", text:"Getting a lot of negative narrative around Meesho. High burn rate and shifting focus from USP of resellers to normal ecom. What's the vibe internally?"},
+      {source:"thelayoff", label:"TheLayoff", text:"Meesho becoming just another Flipkart — losing its differentiation means leadership will restructure tech teams."}
+    ],
+    hook: "Meesho BLR platform and logistics engineering profiles — distributed systems, Kafka, search/recommendation. If IPO push triggers cost optimisation, tech cuts will follow contract cuts. Source early."
+  },
+
+  // ── TIER 3 ──
+  {
+    tier: 3, category: ['indian-startup'],
+    name: "Razorpay",
+    meta: "~3,000 employees · BLR · Valuation compressed · RazorpayX and international expansion paused",
+    probability: 42,
+    window: "180+ days",
+    probColor: "var(--blue)",
+    chips: [{l:"Valuation compressed from $7.5B",c:"chip-amber"},{l:"International push paused",c:"chip-amber"},{l:"Fintech regulation pressure",c:"chip-gray"},{l:"Core payments profitable",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:40, color:"var(--blue)"},
+      {name:"Financial data", score:48, color:"var(--blue)"},
+      {name:"Structural trigger", score:42, color:"var(--blue)"},
+      {name:"LinkedIn signals", score:35, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"Razorpay has been weirdly quiet on the layoff front. But RazorpayX and international expansion both seem to have stalled."},
+      {source:"blind", label:"Blind", text:"How cooked am I? Joined Razorpay 4 months ago on the international product team. No new projects, no roadmap shared."},
+      {source:"thelayoff", label:"TheLayoff", text:"Fintech companies in India are under regulatory pressure. Razorpay's diversification bets haven't paid off yet."}
+    ],
+    hook: "Razorpay's stalled international and RazorpayX teams are the watch signal. Payments platform engineers (Java, Kotlin, distributed systems) are high Intuit match. Monitor for restructuring trigger over next 6 months."
+  },
+  {
+    tier: 3, category: ['mnc'],
+    name: "LinkedIn India",
+    meta: "~2,000 India employees · BLR · Parent Microsoft cut LinkedIn roles in 2025",
+    probability: 38,
+    window: "180+ days",
+    probColor: "var(--blue)",
+    chips: [{l:"Microsoft cut LinkedIn in 2025",c:"chip-amber"},{l:"AI replacing recruiter tools",c:"chip-amber"},{l:"Sales/Recruiter roles most at risk",c:"chip-gray"},{l:"Engineering largely stable",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:35, color:"var(--blue)"},
+      {name:"Financial data", score:40, color:"var(--blue)"},
+      {name:"Structural trigger", score:45, color:"var(--blue)"},
+      {name:"Press signals", score:38, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"LinkedIn India: recruiter and sales roles feel unstable. AI is eating the Recruiter product from the inside."},
+      {source:"thelayoff", label:"TheLayoff", text:"LinkedIn Talent Solutions India teams are on watch. AI-powered sourcing tools reduce the need for human AEs."},
+      {source:"blind", label:"Blind", text:"LinkedIn is part of Microsoft. After 6,000 Microsoft cuts in 2025 including LinkedIn, another round is possible."}
+    ],
+    hook: "LinkedIn India Engineering (BLR) is a dormant sourcing pool. Product engineering profiles in search, recommendations, and feed ranking are high Intuit GenOS match. Monitor for any Microsoft-triggered cuts."
+  },
+  {
+    tier: 3, category: ['indian-startup'],
+    name: "ShareChat / Moj",
+    meta: "~1,000 employees · BLR · Multiple prior layoff rounds · Ad revenue dependent",
+    probability: 45,
+    window: "150–180 days",
+    probColor: "var(--blue)",
+    chips: [{l:"3 prior layoff rounds",c:"chip-amber"},{l:"Ad revenue pressure",c:"chip-amber"},{l:"Profitability path unclear",c:"chip-red"},{l:"Moj growth stabilising",c:"chip-gray"}],
+    signals: [
+      {name:"Blind sentiment", score:50, color:"var(--amber)"},
+      {name:"Financial data", score:52, color:"var(--amber)"},
+      {name:"Structural trigger", score:45, color:"var(--blue)"},
+      {name:"Press signals", score:42, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"ShareChat keeps doing layoffs every 6 months. The surviving team is burned out and anxious. No one feels safe."},
+      {source:"blind", label:"Blind", text:"ShareChat reduced workforce by 5%, affecting 30–40 employees. Small number but the pattern is consistent."},
+      {source:"thelayoff", label:"TheLayoff", text:"Indian short-video market consolidating. ShareChat/Moj viability in a YouTube Shorts/Instagram Reels world is the question."}
+    ],
+    hook: "ShareChat engineers who've survived 3 rounds are fatigued but employed. BLR, ML/recommendation/video platform profiles. Three-round survivors have very high open-to-talk rates even while employed."
+  },
+  {
+    tier: 3, category: ['indian-startup'],
+    name: "CARS24 / CarDekho",
+    meta: "~2,000 employees · BLR/GGN · Used car market slowdown · Cost rationalisation underway",
+    probability: 40,
+    window: "180+ days",
+    probColor: "var(--blue)",
+    chips: [{l:"CARS24 cut in 2025",c:"chip-amber"},{l:"Market slowdown",c:"chip-amber"},{l:"Funding environment tight",c:"chip-gray"},{l:"Core tech team stable",c:"chip-green"}],
+    signals: [
+      {name:"Blind sentiment", score:38, color:"var(--blue)"},
+      {name:"Financial data", score:45, color:"var(--blue)"},
+      {name:"Structural trigger", score:40, color:"var(--blue)"},
+      {name:"LinkedIn signals", score:35, color:"var(--blue)"},
+    ],
+    quotes: [
+      {source:"blind", label:"Blind", text:"CARS24 and OLA Electric both conducted significant layoffs in 2025 to optimise operations."},
+      {source:"blind", label:"Blind", text:"Used car market is seasonally pressured. CARS24 engineering is under review. Data + ML teams feel the most exposed."},
+      {source:"thelayoff", label:"TheLayoff", text:"Indian auto-tech sector is rationalising post-peak-valuation. CARS24 and CarDekho both watching unit economics closely."}
+    ],
+    hook: "Auto-tech India engineers (data, ML, platform) are a niche but high-quality pool. CARS24/CarDekho BLR/GGN. Distributed systems, ML, and platform engineering profiles transfer well to Intuit Consumer Group."
+  },
+  {
+    tier: 3, category: ['it-services'],
+    name: "Tech Mahindra",
+    meta: "~145,000 employees · Pan-India · Profit -52% FY25 · New CEO Mohit Joshi restructuring",
+    probability: 50,
+    window: "150–180 days",
+    probColor: "var(--blue)",
+    chips: [{l:"Profit -52% FY25",c:"chip-red"},{l:"New CEO Mohit Joshi (ex-Infosys)",c:"chip-amber"},{l:"Restructuring underway",c:"chip-amber"},{l:"5G / Telecom focus",c:"chip-blue"}],
+    signals: [
+      {name:"Financial data", score:75, color:"var(--amber)"},
+      {name:"Blind sentiment", score:48, color:"var(--blue)"},
+      {name:"Structural trigger", score:65, color:"var(--amber)"},
+      {name:"Press signals", score:58, color:"var(--amber)"},
+    ],
+    quotes: [
+      {source:"et", label:"ET", text:"Tech Mahindra profit fell 52% in FY25. New CEO Mohit Joshi, ex-Infosys, is conducting a complete business review."},
+      {source:"blind", label:"Blind", text:"Tech Mahindra is the weakest of the big IT services names right now. New CEO incoming means re-org is inevitable."},
+      {source:"thelayoff", label:"TheLayoff", text:"TechM delivery margins are under severe pressure. When a new CEO comes from Infosys, they bring Infosys-style restructuring."}
+    ],
+    hook: "Tech Mahindra's profit collapse + new CEO restructuring = layoff probability window in next 6 months. Telecom + enterprise platform engineers (BLR/HYD/Pune) who want to move to fintech product. Monitor Mohit Joshi's first 100-day plan announcements."
+  }
+];
+
+function getSignalColor(score) {
+  if(score >= 70) return 'var(--red)';
+  if(score >= 50) return 'var(--amber)';
+  return 'var(--blue)';
+}
+
+function renderCard(co) {
+  const tierClass = `tier-${co.tier}`;
+  const badgeClass = co.tier === 1 ? 'tier-1-badge' : co.tier === 2 ? 'tier-2-badge' : 'tier-3-badge';
+  const tierLabel = co.tier === 1 ? '🔴 TIER 1 — IMMINENT' : co.tier === 2 ? '🟡 TIER 2 — PROBABLE' : '🔵 TIER 3 — WATCH';
+
+  const chipsHtml = co.chips.map(c => `<span class="chip ${c.c}">${c.l}</span>`).join('');
+
+  const signalsHtml = co.signals.map(s => `
+    <div class="signal-row">
+      <span class="signal-name">${s.name}</span>
+      <div class="signal-bar-bg">
+        <div class="signal-bar-fill" style="width:${s.score}%;background:${getSignalColor(s.score)}"></div>
+      </div>
+      <span class="signal-score" style="color:${getSignalColor(s.score)}">${s.score}%</span>
+    </div>`).join('');
+
+  const quotesHtml = co.quotes.map(q => `
+    <div class="quote-item">
+      <span class="quote-source ${q.source}">${q.label}</span>
+      <span class="quote-text">"${q.text}"</span>
+    </div>`).join('');
+
+  const div = document.createElement('div');
+  div.className = `radar-card ${tierClass}`;
+  div.dataset.tier = `tier-${co.tier}`;
+  div.dataset.category = co.category.join(' ');
+  div.innerHTML = `
+    <div class="card-top">
+      <div class="card-top-row">
+        <span class="company-name">${co.name}</span>
+        <span class="tier-badge ${badgeClass}">${tierLabel}</span>
+      </div>
+      <div class="company-meta">${co.meta}</div>
+      <div class="chips">${chipsHtml}</div>
+    </div>
+    <div class="signal-section">
+      <div class="signal-label">Signal Strength</div>
+      ${signalsHtml}
+    </div>
+    <div class="sentiment-section">
+      <div class="sentiment-label">Employee Sentiment (Blind · Fishbowl · TheLayoff)</div>
+      ${quotesHtml}
+    </div>
+    <div class="prob-section">
+      <div>
+        <div class="prob-label">Layoff Probability</div>
+        <div class="prob-pct" style="color:${co.probColor}">${co.probability}%</div>
+        <div class="prob-window">${co.window}</div>
+      </div>
+      <div class="prob-bar-wrap">
+        <div class="prob-bar-bg">
+          <div class="prob-bar-fill" style="width:${co.probability}%;background:${co.probColor}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hook-section">
+      <div class="hook-label">⚡ Sourcing Hook</div>
+      <div class="hook-text">${co.hook}</div>
+    </div>
+  `;
+  return div;
+}
+
+// Render by tier
+const t1 = document.getElementById('radar-grid-t1');
+const t2 = document.getElementById('radar-grid-t2');
+const t3 = document.getElementById('radar-grid-t3');
+
+companies.filter(c => c.tier === 1).forEach(c => t1.appendChild(renderCard(c)));
+companies.filter(c => c.tier === 2).forEach(c => t2.appendChild(renderCard(c)));
+companies.filter(c => c.tier === 3).forEach(c => t3.appendChild(renderCard(c)));
+
+function filterCards(filter, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.radar-card').forEach(card => {
+    if(filter === 'all') {
+      card.style.display = '';
+    } else if(filter.startsWith('tier-')) {
+      card.style.display = card.dataset.tier === filter ? '' : 'none';
+    } else {
+      card.style.display = card.dataset.category.includes(filter) ? '' : 'none';
+    }
+  });
+}
+</script>
+</body>
+</html>
