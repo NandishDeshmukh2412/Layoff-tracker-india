@@ -58,6 +58,18 @@ body { background: var(--bg); color: var(--text); font-family: var(--body); min-
 @keyframes pulse-anim { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.8)} }
 .live-label { font-family: var(--mono); font-size: 10px; color: var(--red); font-weight: 600; letter-spacing: 0.08em; }
 .header-date { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.nav-btn {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  background: var(--purple-dim,rgba(167,139,250,0.12));
+  color: #a78bfa;
+  border: 1px solid rgba(167,139,250,0.35);
+  padding: 5px 14px; border-radius: 6px;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: background 0.15s, border-color 0.15s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-btn:hover { background: rgba(167,139,250,0.22); border-color: rgba(167,139,250,0.6); }
+
 
 /* ── SUMMARY STRIP ── */
 .summary-strip {
@@ -255,6 +267,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--body); min-
     </div>
   </div>
   <div class="header-right">
+    <a class="nav-btn" href="probable-layoffs.html">📡 Probable Layoffs Radar</a>
     <div class="pulse-dot"></div>
     <span class="live-label">LIVE</span>
     <span class="header-date" id="hdr-date"></span>
