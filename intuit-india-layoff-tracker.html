@@ -146,7 +146,7 @@
   <div class="header-top">
     <div class="logo-badge">INTUIT</div>
     <h1>India Layoff Intelligence Tracker</h1>
-    <div class="refresh-badge">🔄 Auto-refreshed · May 27, 2026</div>
+    <div class="refresh-badge">🔄 Auto-refreshed · June 1, 2026</div>
   </div>
   <div class="header-sub">Sourcing intelligence for Intuit India Recruiting — targeting P5–P7 Staff, Sr. Staff &amp; Principal Engineers from recently restructured orgs</div>
 </div>
@@ -154,11 +154,11 @@
 <!-- Summary Strip -->
 <div class="summary-strip">
   <div class="stat-cell">
-    <div class="stat-num" id="stat-roles">16,500+</div>
+    <div class="stat-num" id="stat-roles">29,500+</div>
     <div class="stat-label">India Roles Cut (2026)</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num" id="stat-windows">7</div>
+    <div class="stat-num" id="stat-windows">8</div>
     <div class="stat-label">Active Sourcing Windows</div>
   </div>
   <div class="stat-cell">
@@ -166,7 +166,7 @@
     <div class="stat-label">Next Expected Wave</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num" id="stat-cos">7</div>
+    <div class="stat-num" id="stat-cos">8</div>
     <div class="stat-label">Companies Tracked</div>
   </div>
 </div>
@@ -186,7 +186,7 @@
 <div class="cards-grid" id="cards-grid"></div>
 
 <div class="footer">
-  Intuit India Recruiting Intelligence · Confidential · For internal recruiter use only · Last updated: May 27, 2026 · Auto-refresh via scheduled task
+  Intuit India Recruiting Intelligence · Confidential · For internal recruiter use only · Last updated: June 1, 2026 · Auto-refresh via scheduled task
 </div>
 
 <script>
@@ -197,15 +197,15 @@ const companies = [
     logoClass: "logo-red",
     logoText: "OCI",
     isNew: false,
-    meta: "12,000 India roles cut · March 31, 2026 · Bangalore, Pune, Hyderabad, Mumbai · $2.1B global restructuring",
-    urgency: "HOTTEST WINDOW — 12,000 India engineers displaced 8 weeks ago; many still actively open to opportunities",
-    urgencyClass: "red",
+    meta: "12,000 India roles cut · March 31, 2026 · Bangalore, Pune, Hyderabad, Mumbai · $2.1B global restructuring · 40% India headcount gone",
+    urgency: "ACTIVE WINDOW — 9 weeks post-layoff; engineers still in market. Severance window (N+2) providing runway. Source NOW before Amazon re-hiring absorbs this pool.",
+    urgencyClass: "amber",
     chips: [
       { label: "12K India Cuts", cls: "chip-red" },
       { label: "40% India Headcount Gone", cls: "chip-red" },
       { label: "AI Replacement Drive", cls: "chip-amber" },
       { label: "Abrupt Terminations", cls: "chip-amber" },
-      { label: "No Prior Warning", cls: "chip-gray" },
+      { label: "N+2 Severance Running", cls: "chip-green" },
       { label: "Cloud · DB · ERP", cls: "chip-blue" }
     ],
     teams: [
@@ -220,15 +220,15 @@ const companies = [
       { name: "India VPs", title: "Multiple Exits — Mar 2026", status: "left", statusLabel: "EXITED" }
     ],
     playbook: [
-      "<strong>Run LinkedIn Recruiter Boolean now</strong> — search for Oracle India engineers open to work, filter Bangalore/Pune/Hyderabad, seniority 8+ yrs",
-      "<strong>Target OCI & Fusion engineers specifically</strong> — these map directly to Intuit's platform & fintech infrastructure needs",
-      "<strong>Outreach angle:</strong> Lead with Intuit's mission and stability — contrast Oracle's abrupt 6am termination email",
-      "<strong>Check Blind & LinkedIn posts tagged #OracleLayoffs</strong> — active talent is posting; engage within 24hrs",
-      "<strong>Pipeline to P5–P7 roles:</strong> Principal/Staff Cloud, Principal DB, Sr. Staff Platform Engineering at Intuit India"
+      "<strong>Run LinkedIn Recruiter Boolean today</strong> — 9-week mark is still viable; filter Bangalore/Pune/Hyderabad, 8+ yrs seniority, OCI/Fusion specializations",
+      "<strong>Target OCI & Fusion engineers specifically</strong> — map directly to Intuit's platform & fintech infrastructure needs",
+      "<strong>Outreach angle:</strong> Contrast Oracle's 6am termination email with Intuit's engineering culture and mission-driven work",
+      "<strong>Severance window is closing</strong> — N+2 severance means engineers who were cut in March have 2–3 months of pay ending mid-June; urgency rising",
+      "<strong>Pipeline to P5–P7 roles:</strong> Principal/Staff Cloud, Principal DB, Sr. Staff Platform Engineering — strong overlap with Intuit India open reqs"
     ],
     linkedin: true,
     booleanSearch: '("Oracle" OR "Oracle India" OR "Oracle OCI") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "cloud engineer" OR "SRE") AND ("Bangalore" OR "Bengaluru" OR "Pune" OR "Hyderabad") AND (#opentowork OR "open to opportunities" OR "seeking opportunities") NOT "hiring"',
-    ovStats: { cut: "12,000", pct: "40%", window: "8 wks" }
+    ovStats: { cut: "12,000", pct: "40%", window: "9 wks" }
   },
   {
     id: "atlassian",
@@ -236,16 +236,16 @@ const companies = [
     logoClass: "logo-blue",
     logoText: "ATL",
     isNew: false,
-    meta: "1,600 global cuts (incl. India) · March 11, 2026 · Bangalore · CTO replaced · 10% global workforce",
-    urgency: "ACTIVE WINDOW — 11 weeks post-layoff; Sr. engineers still evaluating options, CTO transition = uncertainty",
+    meta: "1,600 global cuts (incl. India) · March 11, 2026 · Bangalore · CTO Rajeev Rajan exited Mar 31 · 10% global workforce",
+    urgency: "ACTIVE WINDOW — 12 weeks post-layoff; engineers with 16-wk severance still financially stable, evaluating carefully. CTO vacancy = org uncertainty.",
     urgencyClass: "amber",
     chips: [
       { label: "1,600 Global Cuts", cls: "chip-amber" },
-      { label: "CTO Replaced", cls: "chip-red" },
+      { label: "CTO Rajeev Rajan Exited", cls: "chip-red" },
       { label: "India Bangalore HQ", cls: "chip-blue" },
       { label: "900+ Eng Affected", cls: "chip-amber" },
       { label: "AI-Native Pivot", cls: "chip-purple" },
-      { label: "16-wk Severance", cls: "chip-green" }
+      { label: "16-wk Severance Active", cls: "chip-green" }
     ],
     teams: [
       { name: "Platform / Core Infrastructure Engineering", pct: 85 },
@@ -255,20 +255,20 @@ const companies = [
       { name: "Customer Success Engineering", pct: 55 }
     ],
     leaders: [
-      { name: "Sri Viswanath", title: "Former CTO, Atlassian", status: "left", statusLabel: "EXITED" },
+      { name: "Rajeev Rajan", title: "Former CTO — exited Mar 31, 2026", status: "left", statusLabel: "EXITED" },
       { name: "Mike Cannon-Brookes", title: "CEO, Atlassian", status: "active", statusLabel: "ACTIVE" },
       { name: "New CTO (TBA)", title: "Incoming — AI-Native Focus", status: "new", statusLabel: "NEW" }
     ],
     playbook: [
-      "<strong>Target Jira/Confluence product engineers</strong> — deep platform expertise maps to Intuit's SaaS product infra",
-      "<strong>Lead with engineering culture</strong> — Atlassian engineers value autonomy; emphasize Intuit's eng-driven culture",
-      "<strong>CTO uncertainty = opportunity</strong> — Sr. Staff+ engineers often leave during leadership transitions; outreach now",
-      "<strong>Use 16-week severance window</strong> — engineers are financially stable and can afford to be selective; quality hires available",
-      "<strong>Filter for Atlassian Bangalore profiles</strong> with 6+ yrs experience; target Jira Cloud and Forge platform teams specifically"
+      "<strong>CTO Rajeev Rajan exit (Mar 31) = Sr. Staff engineers re-evaluating loyalty</strong> — outreach now while org direction is uncertain",
+      "<strong>Target Jira/Confluence product engineers</strong> — deep platform expertise maps to Intuit's SaaS product infra stack",
+      "<strong>Lead with engineering culture:</strong> Atlassian engineers value autonomy; emphasize Intuit's eng-driven culture and fintech mission",
+      "<strong>16-week severance window ends late June:</strong> Engineers financially stable enough to be choosy — offer compelling comp + equity package",
+      "<strong>Filter Atlassian Bangalore profiles</strong> with 6+ yrs experience; target Jira Cloud, Forge platform, and Bitbucket teams specifically"
     ],
     linkedin: true,
     booleanSearch: '("Atlassian") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "senior engineer" OR "engineering manager") AND ("Bangalore" OR "Bengaluru") AND ("platform" OR "cloud" OR "infrastructure" OR "Jira" OR "Confluence") NOT "hiring" NOT "recruiter"',
-    ovStats: { cut: "1,600", pct: "10%", window: "11 wks" }
+    ovStats: { cut: "1,600", pct: "10%", window: "12 wks" }
   },
   {
     id: "amazon",
@@ -276,38 +276,38 @@ const companies = [
     logoClass: "logo-orange",
     logoText: "AMZ",
     isNew: false,
-    meta: "~16,000 global cuts · Jan 28, 2026 · Bengaluru, Chennai, Hyderabad · AWS + Retail Engineering",
-    urgency: "ACTIVE WINDOW — 17 weeks post-layoff; many engineers now settled into job search. AWS engineers command premium.",
+    meta: "~16,000 global cuts · Jan 28, 2026 · Bengaluru, Chennai, Hyderabad · AWS + Retail Engineering · Amazon now re-hiring 11K globally",
+    urgency: "NARROWING WINDOW — 18 weeks post-layoff; Amazon re-hiring 11K engineers. Best talent being absorbed fast. Final sprint to source before window closes.",
     urgencyClass: "amber",
     chips: [
       { label: "16K Global Cuts", cls: "chip-amber" },
       { label: "India: Blr · Chn · Hyd", cls: "chip-blue" },
       { label: "AWS + Retail Eng", cls: "chip-amber" },
-      { label: "AI Strategy Shift", cls: "chip-purple" },
-      { label: "Hiring Again (11K)", cls: "chip-green" },
-      { label: "Premium AWS Talent", cls: "chip-blue" }
+      { label: "Re-Hiring 11K (Closing Window)", cls: "chip-red" },
+      { label: "Premium AWS Talent", cls: "chip-blue" },
+      { label: "AI Strategy Shift", cls: "chip-purple" }
     ],
     teams: [
       { name: "AWS Cloud Engineering (S3, EC2, RDS teams)", pct: 90 },
       { name: "Payments & FinTech Engineering", pct: 88 },
-      { name: "Retail / E-commerce Backend", pct: 70 },
       { name: "ML Platform & Data Engineering", pct: 82 },
+      { name: "Retail / E-commerce Backend", pct: 70 },
       { name: "Operations & Supply Chain Eng", pct: 58 }
     ],
     leaders: [
       { name: "Matt Garman", title: "AWS CEO", status: "active", statusLabel: "ACTIVE" },
-      { name: "India VPs (AWS)", title: "Partially Reorganized", status: "active", statusLabel: "RESTRUCTURED" }
+      { name: "India VPs (AWS)", title: "Partially Reorganized — Jan 2026", status: "active", statusLabel: "RESTRUCTURED" }
     ],
     playbook: [
-      "<strong>AWS FinTech engineers = top priority</strong> — Amazon Payments & AWS Financial Services engineers directly overlap Intuit's core platform",
-      "<strong>Timing note:</strong> Amazon is now re-hiring 11K engineers — window for cherry-picking laid-off talent is narrowing; act in next 4 weeks",
-      "<strong>Messaging:</strong> Contrast Amazon's scale bureaucracy vs. Intuit's high-impact fintech mission — resonates with senior engineers",
-      "<strong>Target ML/AI platform engineers</strong> — Amazon's AI pivot means ML infra talent is available; Intuit AI teams are growing",
-      "<strong>Search for 'former Amazon' profiles</strong> opened to work since Feb 2026; cross-reference AWS + Payments + India keywords"
+      "<strong>FINAL SPRINT — Amazon's re-hiring of 11K engineers is absorbing the laid-off pool rapidly. Source before end of June.</strong>",
+      "<strong>AWS FinTech engineers = top priority</strong> — Amazon Payments & AWS Financial Services engineers directly overlap Intuit's core platform needs",
+      "<strong>Messaging:</strong> Contrast Amazon's scale bureaucracy vs. Intuit's high-impact fintech mission — resonates with senior engineers who want ownership",
+      "<strong>Target ML/AI platform engineers</strong> — Amazon's AI pivot means ML infra talent is available; Intuit AI teams are actively growing",
+      "<strong>Search for 'former Amazon' profiles</strong> opened to work since Feb 2026; cross-reference AWS + Payments + India keywords; prioritize P5–P7 levels"
     ],
     linkedin: true,
     booleanSearch: '("Amazon" OR "AWS" OR "Amazon Web Services") AND ("staff engineer" OR "principal engineer" OR "senior software engineer" OR "SDE III" OR "SDE II") AND ("Bangalore" OR "Bengaluru" OR "Hyderabad" OR "Chennai") AND ("payments" OR "fintech" OR "cloud" OR "platform" OR "ML" OR "data engineering") NOT "currently at Amazon" NOT "hiring"',
-    ovStats: { cut: "16,000", pct: "~5% India", window: "17 wks" }
+    ovStats: { cut: "16,000", pct: "~5% India", window: "18 wks" }
   },
   {
     id: "flipkart",
@@ -315,22 +315,22 @@ const companies = [
     logoClass: "logo-teal",
     logoText: "FK",
     isNew: false,
-    meta: "400–500 cuts · March 2026 · Performance review purge · Bangalore · IPO-bound · 3–4% workforce",
-    urgency: "ACTIVE WINDOW — Performance-exited engineers are high-quality; IPO uncertainty = motivation to move",
+    meta: "400–500 cuts · March 2026 · Performance review purge · Bangalore · IPO timeline uncertain · Fidelity valuation markdown Q1 2026",
+    urgency: "ACTIVE WINDOW — 13 weeks post-layoff. IPO delays + Fidelity valuation markdown = engineers reassessing. Performance-exited talent motivated to prove worth.",
     urgencyClass: "amber",
     chips: [
       { label: "500 Cuts (Perf Review)", cls: "chip-amber" },
-      { label: "IPO Pressure", cls: "chip-amber" },
+      { label: "IPO Uncertain", cls: "chip-amber" },
+      { label: "Fidelity Markdown", cls: "chip-red" },
       { label: "Engineering Included", cls: "chip-blue" },
       { label: "Bangalore HQ", cls: "chip-blue" },
-      { label: "3rd+ Year Cuts", cls: "chip-gray" },
       { label: "Walmart-Backed", cls: "chip-green" }
     ],
     teams: [
       { name: "Platform / OneTech Engineering", pct: 82 },
-      { name: "Payments & Fintech (PhonePe spin-off impact)", pct: 75 },
-      { name: "Supply Chain & Logistics Engineering", pct: 65 },
+      { name: "Payments & Fintech (post-PhonePe)", pct: 75 },
       { name: "Data Science & ML Engineering", pct: 70 },
+      { name: "Supply Chain & Logistics Engineering", pct: 65 },
       { name: "Marketing & Growth Engineering", pct: 55 }
     ],
     leaders: [
@@ -338,15 +338,15 @@ const companies = [
       { name: "Jeyandran Venugopal", title: "CTO, Flipkart", status: "active", statusLabel: "ACTIVE" }
     ],
     playbook: [
+      "<strong>Fidelity valuation markdown = equity anxiety</strong> — Flipkart engineers have illiquid stock with no clear IPO path; Intuit's NASDAQ listing is a strong differentiator",
       "<strong>Performance-exited engineers are motivated movers</strong> — often strong performers caught in stack-ranking; worth deep screening",
-      "<strong>Target platform & data engineers</strong> — Flipkart's OneTech platform = rich engineering experience, strong systems design",
-      "<strong>IPO uncertainty leverage:</strong> Flipkart's IPO timeline keeps slipping; offer equity clarity at Intuit (public company) as differentiator",
+      "<strong>Target platform & data engineers</strong> — Flipkart's OneTech platform = rich engineering experience, strong systems design skills",
       "<strong>Post-PhonePe separation</strong> — fintech engineers who stayed with Flipkart (not PhonePe) may feel undervalued; approach empathetically",
-      "<strong>LinkedIn search:</strong> Target 'former Flipkart' engineers in Bangalore, updated profile since March 2026, P5–P7 equivalent experience"
+      "<strong>LinkedIn search:</strong> Target 'former Flipkart' engineers in Bangalore updated since March 2026; P5–P7 equivalent experience with 5–10 yrs tenure"
     ],
     linkedin: true,
     booleanSearch: '("Flipkart") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "engineering manager" OR "technical lead") AND ("Bangalore" OR "Bengaluru") AND ("platform" OR "data" OR "payments" OR "ML" OR "backend" OR "infrastructure") NOT "hiring" NOT "recruiter"',
-    ovStats: { cut: "400–500", pct: "3–4%", window: "12 wks" }
+    ovStats: { cut: "400–500", pct: "3–4%", window: "13 wks" }
   },
   {
     id: "gupshup",
@@ -354,34 +354,34 @@ const companies = [
     logoClass: "logo-purple",
     logoText: "GS",
     isNew: false,
-    meta: "Multiple rounds · 100+ recent cut · Valuation -80% ($300M vs $1.8B peak) · India revenue -5% FY25 · IPO uncertain",
-    urgency: "HOT — Ongoing financial distress, valuation collapse. Engineers watching the clock. Outreach welcome.",
+    meta: "300+ total cuts · Multiple rounds · Fidelity marks down stake (Apr 2026) · Valuation -80% ($280-300M vs $1.8B peak) · India revenue -5% FY25 · IPO unclear",
+    urgency: "HOT — Fidelity valuation markdown confirmed in April 2026. Ongoing distress. Engineers watching the clock with equity worth pennies on the dollar.",
     urgencyClass: "red",
     chips: [
       { label: "Ongoing Distress", cls: "chip-red" },
       { label: "Unicorn Fallen (-80%)", cls: "chip-red" },
-      { label: "3rd+ Round of Cuts", cls: "chip-red" },
-      { label: "No Severance Policy", cls: "chip-amber" },
-      { label: "IPO Delayed", cls: "chip-amber" },
+      { label: "Fidelity Markdown Apr 2026", cls: "chip-red" },
+      { label: "3rd+ Round of Cuts", cls: "chip-amber" },
+      { label: "IPO Unclear", cls: "chip-amber" },
       { label: "CPaaS / Conversational AI", cls: "chip-blue" }
     ],
     teams: [
-      { name: "CPaaS Platform Engineering", pct: 88 },
       { name: "Conversational AI / NLP Engineering", pct: 92 },
+      { name: "CPaaS Platform Engineering", pct: 88 },
       { name: "WhatsApp API & Messaging Infrastructure", pct: 85 },
       { name: "Backend / API Gateway Engineering", pct: 78 },
       { name: "Enterprise Integrations Engineering", pct: 70 }
     ],
     leaders: [
       { name: "Beerud Sheth", title: "CEO & Co-founder, Gupshup", status: "active", statusLabel: "ACTIVE" },
-      { name: "Multiple VPs", title: "Exits across engineering org", status: "left", statusLabel: "EXITING" }
+      { name: "Multiple VPs", title: "Engineering org exits ongoing", status: "left", statusLabel: "EXITING" }
     ],
     playbook: [
-      "<strong>Outreach tone: rescue, not opportunistic</strong> — Gupshup engineers have watched their equity evaporate 80%; empathy is key",
-      "<strong>Conversational AI engineers are prime targets</strong> — Gupshup's NLP/AI infra engineers directly relevant to Intuit AI/ML teams",
-      "<strong>No severance = urgent need</strong> — engineers on 60-day notice with no package are highly motivated to move fast; prioritize screening",
-      "<strong>IPO delay messaging:</strong> Intuit is NASDAQ-listed — offer certainty of liquid equity vs. Gupshup's unclear IPO path",
-      "<strong>Monitor LinkedIn for 'former Gupshup'</strong> engineers in Bangalore/Pune; multiple exits happening in waves across the org"
+      "<strong>Fidelity markdown (Apr 2026) is a fresh trigger</strong> — engineers now seeing ESOP value at $280-300M vs. $1.8B peak; outreach with equity clarity lands hard",
+      "<strong>Outreach tone: rescue, not opportunistic</strong> — Gupshup engineers have watched 80% of their equity vanish; empathy and stability messaging is key",
+      "<strong>Conversational AI engineers are prime targets</strong> — Gupshup's NLP/AI infra engineers directly relevant to Intuit AI/ML and GenAI teams",
+      "<strong>No clear severance = urgent need</strong> — engineers on limited runway are highly motivated to move fast; prioritize fast screening loops",
+      "<strong>Monitor LinkedIn for 'former Gupshup'</strong> engineers in Bangalore/Pune; multiple exits happening in rolling waves across the org"
     ],
     linkedin: true,
     booleanSearch: '("Gupshup") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "NLP engineer" OR "ML engineer" OR "backend engineer") AND ("Bangalore" OR "Bengaluru" OR "Pune" OR "Mumbai") NOT "hiring" NOT "currently at Gupshup"',
@@ -392,21 +392,21 @@ const companies = [
     name: "Innovaccer",
     logoClass: "logo-indigo",
     logoText: "INN",
-    isNew: true,
-    meta: "340 global cuts · May 17, 2026 · India + US · 3rd layoff round · Healthcare AI unicorn · $3.45B valuation",
-    urgency: "FRESHEST OPPORTUNITY — Layoff announced 10 days ago. Engineers actively posting on LinkedIn now. Strike immediately.",
+    isNew: false,
+    meta: "340 global cuts · May 17, 2026 · India + US · 3rd layoff round in 4 years · Healthcare AI unicorn · $3.45B valuation · AI-native pivot",
+    urgency: "HOT WINDOW — 2 weeks since announcement. Engineers actively posting on LinkedIn NOW. Immediately outreach before competing offers close the gap.",
     urgencyClass: "red",
     chips: [
-      { label: "NEW — 10 Days Ago", cls: "chip-red" },
-      { label: "340 Cuts (3rd Round)", cls: "chip-red" },
+      { label: "340 Cuts — 2 Wks Ago", cls: "chip-red" },
+      { label: "3rd Round in 4 Years", cls: "chip-red" },
       { label: "AI-Native Pivot", cls: "chip-purple" },
       { label: "Healthcare Tech Unicorn", cls: "chip-blue" },
-      { label: "India + US", cls: "chip-amber" },
+      { label: "India + US Affected", cls: "chip-amber" },
       { label: "Strong Eng Culture", cls: "chip-green" }
     ],
     teams: [
-      { name: "Healthcare Data Integration Engineering", pct: 88 },
       { name: "AI / ML Platform Engineering", pct: 92 },
+      { name: "Healthcare Data Integration Engineering", pct: 88 },
       { name: "Data Analytics & BI Engineering", pct: 82 },
       { name: "Backend API & Microservices Engineering", pct: 78 },
       { name: "Product Engineering (EHR Integrations)", pct: 72 }
@@ -416,54 +416,93 @@ const companies = [
       { name: "India Eng Leadership", title: "Partially Reorganized — May 2026", status: "left", statusLabel: "RESTRUCTURED" }
     ],
     playbook: [
-      "<strong>Act within 48 hours</strong> — this is a 10-day-old layoff; the best engineers will be approached by multiple companies this week",
-      "<strong>Search LinkedIn #InnovaccerLayoffs & #OpenToWork</strong> — engineers are actively signaling availability right now",
-      "<strong>AI/ML platform engineers = top pick</strong> — Innovaccer's AI infrastructure engineers can power Intuit's generative AI roadmap",
-      "<strong>Data integration expertise is rare</strong> — engineers who built healthcare data pipelines understand complex regulatory/compliance data, relevant for Intuit's tax/financial data",
-      "<strong>Messaging:</strong> Third layoff in 4 years = ESOP uncertainty despite $75M buyback; Intuit's stable public equity + mission = strong contrast"
+      "<strong>Act this week</strong> — 2-week-old layoff; the best engineers will be approached by multiple companies simultaneously",
+      "<strong>Search LinkedIn #InnovaccerLayoffs & #OpenToWork</strong> — engineers are actively signaling availability in posts right now",
+      "<strong>AI/ML platform engineers = top pick</strong> — Innovaccer's AI infrastructure engineers can directly power Intuit's generative AI roadmap",
+      "<strong>Data integration expertise is rare</strong> — engineers who built complex healthcare data pipelines understand regulatory/compliance data, relevant for Intuit's tax/financial data infra",
+      "<strong>Messaging:</strong> 3rd layoff in 4 years despite $75M ESOP buyback = ESOP uncertainty; Intuit's stable public equity + fintech mission = compelling contrast"
     ],
     linkedin: true,
     booleanSearch: '("Innovaccer") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "ML engineer" OR "data engineer" OR "platform engineer") AND ("Bangalore" OR "Bengaluru" OR "India") AND (#opentowork OR "open to opportunities" OR "seeking") NOT "hiring"',
-    ovStats: { cut: "340", pct: "~15%", window: "0–2 wks" }
+    ovStats: { cut: "340", pct: "~15%", window: "2 wks" }
+  },
+  {
+    id: "krutrim",
+    name: "Krutrim (Ola AI)",
+    logoClass: "logo-rose",
+    logoText: "KRT",
+    isNew: true,
+    meta: "200+ cuts across multiple rounds · 2025–2026 · Bangalore · India's first GenAI unicorn · Pivoting from AI model dev to cloud services · Bhavish Aggarwal-founded",
+    urgency: "HOT — India's first GenAI unicorn halted AI model ambitions. Engineers who joined to build foundational AI are now stranded in a cloud pivot. Prime sourcing target.",
+    urgencyClass: "red",
+    chips: [
+      { label: "NEW TO TRACKER", cls: "chip-purple" },
+      { label: "200+ Cuts (Rolling)", cls: "chip-red" },
+      { label: "AI Model → Cloud Pivot", cls: "chip-red" },
+      { label: "India's First GenAI Unicorn", cls: "chip-blue" },
+      { label: "Chip Design Paused", cls: "chip-amber" },
+      { label: "Mission-Drift Risk", cls: "chip-amber" }
+    ],
+    teams: [
+      { name: "Foundation AI / LLM Research Engineering", pct: 95 },
+      { name: "ML Infrastructure & Training Platform", pct: 90 },
+      { name: "AI Product Engineering", pct: 85 },
+      { name: "Cloud Infrastructure Engineering", pct: 75 },
+      { name: "Chip Design / Hardware Eng (paused)", pct: 65 }
+    ],
+    leaders: [
+      { name: "Bhavish Aggarwal", title: "Founder & CEO, Krutrim / Ola", status: "active", statusLabel: "ACTIVE" },
+      { name: "AI Research Leadership", title: "Partially Exited — model pivot 2025", status: "left", statusLabel: "RESTRUCTURED" }
+    ],
+    playbook: [
+      "<strong>Mission pivot = talent exodus opportunity</strong> — engineers joined Krutrim to build India's foundational AI model; cloud pivot is a morale crusher for senior researchers",
+      "<strong>LLM/Foundation Model engineers are the rarest talent in India</strong> — even a handful of Krutrim's AI researchers would be transformative for Intuit's GenAI roadmap",
+      "<strong>Chip design pause = stranded hardware engineers</strong> — specialized ML hardware engineers suddenly without a mission; niche but powerful for Intuit's AI infra",
+      "<strong>Outreach angle:</strong> Intuit is applying GenAI to 100M+ customer financial journeys — a far more concrete and impactful mission than Krutrim's pivot to generic cloud",
+      "<strong>Search for 'Krutrim' or 'Ola AI' profiles</strong> in Bangalore with AI/ML research, LLM, or model training experience; profile updates since late 2025 signal openness"
+    ],
+    linkedin: true,
+    booleanSearch: '("Krutrim" OR "Ola AI" OR "Ola Electric AI") AND ("AI engineer" OR "ML engineer" OR "research engineer" OR "LLM engineer" OR "staff engineer" OR "principal engineer") AND ("Bangalore" OR "Bengaluru") NOT "hiring" NOT "currently at"',
+    ovStats: { cut: "200+", pct: "Ongoing", window: "Ongoing" }
   },
   {
     id: "livspace",
     name: "Livspace",
     logoClass: "logo-emerald",
     logoText: "LVS",
-    isNew: true,
-    meta: "~1,000 cuts · February 2026 · Co-founder Saurabh Jain exit · KKR-backed · AI transformation · Bangalore HQ",
-    urgency: "ACTIVE WINDOW — 13 weeks post-layoff. Co-founder exit signals deeper uncertainty. Strong eng talent available.",
-    urgencyClass: "amber",
+    isNew: false,
+    meta: "~1,000 cuts · February 2026 · Co-founder Saurabh Jain exit · KKR-backed · AI transformation · Bangalore HQ · 3rd layoff since 2020",
+    urgency: "MONITOR — 17 weeks post-layoff. Most engineers have landed or are close to deciding. Worth a final sweep for any senior engineers still in market.",
+    urgencyClass: "green",
     chips: [
-      { label: "NEW TO TRACKER", cls: "chip-purple" },
       { label: "1,000 Cuts (12% WF)", cls: "chip-amber" },
       { label: "Co-Founder Exit", cls: "chip-red" },
       { label: "KKR-Backed", cls: "chip-blue" },
-      { label: "AI-Native Pivot", cls: "chip-purple" },
+      { label: "3rd Layoff Since 2020", cls: "chip-gray" },
+      { label: "Window Closing", cls: "chip-gray" },
       { label: "Bangalore HQ", cls: "chip-blue" }
     ],
     teams: [
-      { name: "Product Engineering (Design Platform)", pct: 78 },
-      { name: "Backend / Marketplace Engineering", pct: 82 },
-      { name: "Data Engineering & Analytics", pct: 75 },
-      { name: "Mobile Engineering (iOS/Android)", pct: 68 },
-      { name: "Operations & Supply Chain Eng", pct: 55 }
+      { name: "Backend / Marketplace Engineering", pct: 72 },
+      { name: "Product Engineering (Design Platform)", pct: 68 },
+      { name: "Data Engineering & Analytics", pct: 65 },
+      { name: "Mobile Engineering (iOS/Android)", pct: 60 },
+      { name: "Operations & Supply Chain Eng", pct: 45 }
     ],
     leaders: [
       { name: "Anuj Srivastava", title: "CEO, Livspace", status: "active", statusLabel: "ACTIVE" },
       { name: "Saurabh Jain", title: "Co-founder / CBO (11 yrs)", status: "left", statusLabel: "EXITED" }
     ],
     playbook: [
-      "<strong>Co-founder departure = long-tenured engineers questioning the path</strong> — reach out to engineers who joined with Saurabh Jain's DezignUp team",
-      "<strong>Target backend + data engineers</strong> — Livspace's marketplace engineering is complex; those skills transfer directly to Intuit's platform",
-      "<strong>3rd layoff since 2020</strong> — senior engineers who survived 3 rounds are either frustrated or burned out; both are recruiters' friends",
-      "<strong>KKR-backed = exit pressure</strong> — engineers don't see clear liquidity path; Intuit public equity is a real advantage here",
-      "<strong>Search for 'former Livspace' engineers updated since Feb 2026</strong>; filter for 5–10 yrs experience, Bangalore/Bengaluru location"
+      "<strong>Final sweep window</strong> — do one last LinkedIn search pass for Livspace engineers still listed as open; most will have moved on soon",
+      "<strong>Target backend + data engineers who are still undecided</strong> — marketplace engineering skills transfer well to Intuit's platform teams",
+      "<strong>KKR-backed = no liquidity path</strong> — if any senior engineers remain available, equity certainty at Intuit (public) is the key message",
+      "<strong>Check referral networks</strong> — engineers who landed at nearby companies may know Livspace peers still searching; tap referral angle",
+      "<strong>Deprioritize</strong> relative to Krutrim and Innovaccer which have much fresher sourcing windows"
     ],
     linkedin: true,
     booleanSearch: '("Livspace") AND ("software engineer" OR "staff engineer" OR "principal engineer" OR "engineering manager" OR "backend engineer" OR "data engineer") AND ("Bangalore" OR "Bengaluru") NOT "hiring" NOT "recruiter" NOT "currently at Livspace"',
-    ovStats: { cut: "~1,000", pct: "12%", window: "13 wks" }
+    ovStats: { cut: "~1,000", pct: "12%", window: "17 wks" }
   }
 ];
 
