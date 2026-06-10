@@ -5,300 +5,490 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intuit India — Layoff Intelligence Tracker</title>
 <style>
-  :root{
-    --bg:#0d1117; --panel:#161b22; --panel2:#1c232c; --border:#2a313c;
-    --text:#e6edf3; --muted:#9aa7b4; --accent:#1b6dff; --accent2:#36c5f0;
-    --red:#ff5d5d; --redbg:#3a1417; --amber:#ffb020; --amberbg:#3a2b0e; --green:#3fb950; --greenbg:#10311a;
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d2e;
+    --surface2: #242740;
+    --border: #2e3250;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --accent: #6366f1;
+    --accent2: #818cf8;
+    --red: #ef4444;
+    --red-bg: rgba(239,68,68,0.12);
+    --amber: #f59e0b;
+    --amber-bg: rgba(245,158,11,0.12);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.12);
+    --chip-bg: #2e3250;
+    --chip-text: #a5b4fc;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.5;padding:0 0 60px}
-  header{background:linear-gradient(135deg,#0b1b3f,#0d1117);border-bottom:1px solid var(--border);padding:28px 32px}
-  header h1{font-size:22px;font-weight:700;letter-spacing:.2px}
-  header p{color:var(--muted);font-size:13px;margin-top:4px}
-  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
-  .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:24px auto;max-width:1240px;padding:0 24px}
-  .stat{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
-  .stat .num{font-size:28px;font-weight:700}
-  .stat .lbl{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.6px;margin-top:4px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px;margin-top:8px}
-  .card{background:var(--panel);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
-  .card-head{display:flex;align-items:center;gap:12px;padding:18px 20px 14px}
-  .logo{width:40px;height:40px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex:0 0 auto}
-  .logo-red{background:#c74634}.logo-blue{background:#0052cc}.logo-orange{background:#ff9900}
-  .logo-yellow{background:#f7c948;color:#222}.logo-green{background:#2bb673}.logo-purple{background:#6b4fbb}.logo-teal{background:#1f9b8e}
-  .card-head h2{font-size:16px}
-  .card-head .meta{color:var(--muted);font-size:12px;margin-top:2px}
-  .urgency{margin:0 20px 12px;padding:9px 12px;border-radius:8px;font-size:12.5px;font-weight:600}
-  .u-red{background:var(--redbg);color:var(--red);border:1px solid #5a1f23}
-  .u-amber{background:var(--amberbg);color:var(--amber);border:1px solid #5a4414}
-  .u-green{background:var(--greenbg);color:var(--green);border:1px solid #1c4d2b}
-  .chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 20px 14px}
-  .chip{background:var(--panel2);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:3px 9px;border-radius:20px}
-  .sec{padding:0 20px 14px}
-  .sec h3{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);margin-bottom:8px}
-  .team{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
-  .team .tname{font-size:13px}
-  .bar{flex:1;height:6px;background:var(--panel2);border-radius:4px;overflow:hidden;margin:0 8px}
-  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-  .team .pct{font-size:12px;color:var(--muted);width:34px;text-align:right}
-  .leader{font-size:12.5px;margin-bottom:6px}
-  .leader b{color:var(--text)}.leader span{color:var(--muted)}
-  ol.play{padding-left:18px}
-  ol.play li{font-size:12.5px;margin-bottom:5px;color:#cdd7e0}
-  .boolean{margin:0 20px 18px;background:#0b0f14;border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:#9fe0ff;word-break:break-word}
-  .boolean .lbl{display:block;color:var(--muted);font-family:inherit;font-size:10px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px}
-  footer{max-width:1240px;margin:36px auto 0;padding:0 24px;color:var(--muted);font-size:11.5px}
-  @media(max-width:680px){.strip{grid-template-columns:repeat(2,1fr)}}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a1d2e 0%, #0f1117 100%); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .header-left h1 { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .header-left p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .header-badge { background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .last-refresh { font-size: 11px; color: var(--muted); }
+
+  /* Summary strip */
+  .summary-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+  .summary-cell { background: var(--surface); padding: 16px 24px; }
+  .summary-cell .val { font-size: 26px; font-weight: 800; color: #fff; line-height: 1; }
+  .summary-cell .val.red { color: var(--red); }
+  .summary-cell .val.amber { color: var(--amber); }
+  .summary-cell .val.green { color: var(--green); }
+  .summary-cell .label { font-size: 11px; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Main grid */
+  .main { padding: 24px 32px; display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 20px; }
+
+  /* Company card */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--accent2); }
+
+  /* Card header */
+  .card-header { display: flex; align-items: flex-start; gap: 14px; padding: 20px 20px 16px; }
+  .logo { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0; }
+  .logo.red    { background: linear-gradient(135deg, #ef4444, #dc2626); }
+  .logo.blue   { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+  .logo.orange { background: linear-gradient(135deg, #f97316, #ea580c); }
+  .logo.teal   { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+  .logo.purple { background: linear-gradient(135deg, #a855f7, #9333ea); }
+  .logo.indigo { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+  .logo.slate  { background: linear-gradient(135deg, #64748b, #475569); }
+  .logo.rose   { background: linear-gradient(135deg, #f43f5e, #e11d48); }
+
+  .card-title { flex: 1; }
+  .card-title h2 { font-size: 16px; font-weight: 700; color: #fff; }
+  .card-meta { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+
+  /* Urgency banner */
+  .urgency { margin: 0 20px 14px; padding: 10px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .urgency.red    { background: var(--red-bg); color: var(--red); border: 1px solid rgba(239,68,68,0.25); }
+  .urgency.amber  { background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.25); }
+  .urgency.green  { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34,197,94,0.25); }
+  .urgency-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .urgency.red .urgency-dot    { background: var(--red); box-shadow: 0 0 6px var(--red); }
+  .urgency.amber .urgency-dot  { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+  .urgency.green .urgency-dot  { background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+  /* Chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 20px 14px; }
+  .chip { background: var(--chip-bg); color: var(--chip-text); font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; letter-spacing: 0.3px; }
+  .chip.hot { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .chip.warm { background: rgba(245,158,11,0.2); color: #fcd34d; }
+  .chip.new { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 0 20px 14px; }
+
+  /* Sections */
+  .section { padding: 0 20px 14px; }
+  .section-title { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+
+  /* Teams */
+  .team-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .team-name { font-size: 12px; color: var(--text); width: 190px; flex-shrink: 0; }
+  .team-bar-wrap { flex: 1; height: 5px; background: var(--surface2); border-radius: 10px; overflow: hidden; }
+  .team-bar { height: 100%; border-radius: 10px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+  .team-pct { font-size: 11px; font-weight: 700; color: var(--accent2); width: 30px; text-align: right; flex-shrink: 0; }
+
+  /* Leaders */
+  .leader { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .leader-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: var(--muted); flex-shrink: 0; }
+  .leader-info { flex: 1; }
+  .leader-name { font-size: 12px; font-weight: 600; color: var(--text); }
+  .leader-role { font-size: 11px; color: var(--muted); }
+  .leader-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; flex-shrink: 0; }
+  .leader-badge.exited { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .leader-badge.sourced { background: rgba(34,197,94,0.2); color: #86efac; }
+
+  /* Playbook */
+  .playbook-item { display: flex; gap: 10px; margin-bottom: 8px; }
+  .play-num { width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .play-text { font-size: 12px; color: var(--text); line-height: 1.5; }
+
+  /* LinkedIn */
+  .linkedin-section { padding: 0 20px 20px; }
+  .linkedin-box { background: var(--surface2); border-radius: 8px; padding: 10px 12px; }
+  .linkedin-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .linkedin-query { font-size: 11px; color: var(--accent2); font-family: 'Courier New', monospace; word-break: break-all; line-height: 1.5; }
+  .copy-btn { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 600; color: var(--accent); cursor: pointer; border: 1px solid var(--border); padding: 3px 8px; border-radius: 5px; background: transparent; transition: background 0.15s; }
+  .copy-btn:hover { background: rgba(99,102,241,0.15); }
+
+  /* NEW badge for newly added companies */
+  .new-company-badge { background: var(--accent); color: #fff; font-size: 9px; font-weight: 800; padding: 2px 7px; border-radius: 10px; letter-spacing: 0.5px; text-transform: uppercase; display: inline-block; margin-left: 6px; vertical-align: middle; }
+
+  /* Footer */
+  .footer { padding: 20px 32px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .footer-text { font-size: 11px; color: var(--muted); }
+  .footer-note { font-size: 11px; color: var(--muted); font-style: italic; }
+
+  @media(max-width: 900px) {
+    .summary-strip { grid-template-columns: repeat(2, 1fr); }
+    .main { grid-template-columns: 1fr; padding: 16px; }
+    .header { padding: 16px; }
+  }
 </style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <h1>Intuit India — Layoff Intelligence Tracker</h1>
-    <p>Competitive sourcing intelligence · P5–P7 engineering talent · Bengaluru / Hyderabad / Pune · Auto-refreshed weekly</p>
-  </div>
-</header>
 
-<div class="strip">
-  <div class="stat"><div class="num" id="s-roles">—</div><div class="lbl">India roles cut (tracked)</div></div>
-  <div class="stat"><div class="num" id="s-windows">—</div><div class="lbl">Active sourcing windows</div></div>
-  <div class="stat"><div class="num" id="s-wave">—</div><div class="lbl">Next expected wave</div></div>
-  <div class="stat"><div class="num" id="s-count">—</div><div class="lbl">Companies tracked</div></div>
+<div class="header">
+  <div class="header-left">
+    <h1>🎯 Intuit India — Layoff Intelligence Tracker</h1>
+    <p>P5–P7 Engineering Talent Sourcing Dashboard · Intuit India Recruiting</p>
+  </div>
+  <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+    <span class="header-badge">Live Intel</span>
+    <span class="last-refresh">Auto-refreshed: Wed 11 Jun 2026 · 6 companies tracked</span>
+  </div>
 </div>
 
-<div class="wrap"><div class="grid" id="grid"></div></div>
+<div class="summary-strip">
+  <div class="summary-cell">
+    <div class="val red">~15,400</div>
+    <div class="label">India Roles Cut (2026 YTD)</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val amber">5</div>
+    <div class="label">Active Sourcing Windows</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val">Aug 2026</div>
+    <div class="label">Next Expected Wave</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val green">6</div>
+    <div class="label">Companies Tracked</div>
+  </div>
+</div>
 
-<footer>
-  <p id="updated"></p>
-  <p>Intelligence aggregated from public news sources. For internal Intuit India recruiting use only. Figures are best-estimate and should be validated before outreach.</p>
-</footer>
+<div class="main" id="cards-container"></div>
+
+<div class="footer">
+  <span class="footer-text">🔒 Internal use only · Intuit India Talent Acquisition · Refresh: weekly (Wednesday)</span>
+  <span class="footer-note">Data sourced from public filings, news, and LinkedIn signals. Always verify before outreach.</span>
+</div>
 
 <script>
-const ovStats = {
-  rolesCut: "~13,800",
-  windows: 6,
-  nextWave: "Jun 15, 2026",
-  count: 7
-};
-
 const companies = [
   {
     name: "Oracle India",
-    logoClass: "logo-red",
-    meta: "12,000 India roles cut · Mar–Jun 2026 · Bengaluru / Hyderabad / Pune",
-    urgency: "RED — Final exit phase completes Jun 15, 2026. Largest single P5–P7 pool on the board. Act this week.",
-    urgencyClass: "u-red",
-    chips: ["30,000 global (18%)","40% India contraction","OCI lift-and-shift teams","AI-agent replacement","Severance disputes"],
+    logoClass: "red",
+    logoText: "OR",
+    newCompany: false,
+    meta: "12,000 India roles cut (40% of India workforce) · Final phase: Jun 15, 2026 · Hubs: Bengaluru, Hyderabad, Pune · Global: 30,000 cut",
+    urgency: "🔴 CRITICAL WINDOW — Terminations completed by Jun 15. Thousands of engineers actively on market RIGHT NOW. Act this week.",
+    urgencyClass: "red",
+    chips: [
+      { text: "12,000 India Cuts", type: "hot" },
+      { text: "40% Workforce Cut", type: "hot" },
+      { text: "AI Restructuring", type: "" },
+      { text: "Final Phase Jun 2026", type: "hot" },
+      { text: "Severance Signed", type: "" },
+      { text: "No Notice Given", type: "" }
+    ],
     teams: [
-      {name:"OCI / Cloud Infrastructure", match:92},
-      {name:"Database & migration eng", match:88},
-      {name:"Technical Account Mgmt (P5+)", match:80},
-      {name:"Cloud support Tier 1/2", match:62}
+      { name: "OCI / Cloud Infrastructure", pct: 92 },
+      { name: "Database Engineering (DB)", pct: 88 },
+      { name: "ERP / Applications Eng", pct: 80 },
+      { name: "Platform & DevOps", pct: 75 },
+      { name: "Security & Identity", pct: 65 }
     ],
     leaders: [
-      {name:"Multiple OCI sales-eng leads", role:"OCI India", note:"exited in final restructuring phase"},
-      {name:"Dev-centre directors", role:"Bengaluru/Hyderabad", note:"affected across hierarchies"}
+      { initials: "OR", name: "Multiple VPs & Architects", role: "Confirmed org-wide exits", status: "exited" }
     ],
     playbook: [
-      "Prioritize this week — final exit emails land by Jun 15; candidates become free agents immediately after.",
-      "Target OCI database/migration P5–P7 engineers displaced by offshore (Romania/Philippines) and AI-agent shifts.",
-      "Lead with stability + fintech mission; many were cut via impersonal mass email and value human-first culture.",
-      "Mine Blind and Bengaluru Oracle alumni groups for warm intros to exiting Staff/Principal eng.",
-      "Fast-track interview loops — competing recruiters are circling the same 12,000-person pool."
+      "Run LinkedIn boolean search for 'Oracle India' + '#OpenToWork' immediately — this cohort went active Jun 1.",
+      "Target OCI Principal/Staff engineers (7–15 YOE) — Oracle's cloud infra team has deep expertise aligned with Intuit Platform.",
+      "Personalise outreach: reference the Mar 31 '6 AM email' layoff — shows you know their context, builds rapport fast.",
+      "Prioritise Hyderabad + Bangalore candidates; Pune has fewer P5–P7 density but still worth a sweep.",
+      "Move fast on final rounds — McKinsey/FAANG are already pipelining; target a 10-day offer turnaround."
     ],
-    linkedin: '("Oracle") AND ("OCI" OR "Oracle Cloud Infrastructure" OR "database engineering") AND ("Staff" OR "Senior Staff" OR "Principal" OR "Architect") AND ("Bengaluru" OR "Bangalore" OR "Hyderabad" OR "Pune")'
+    linkedin: '("Oracle" OR "Oracle India" OR "OCI") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Sr. Software Engineer" OR "Cloud Architect") AND ("Bengaluru" OR "Hyderabad" OR "Pune") AND ("Open to Work" OR "#opentowork")'
   },
+
   {
     name: "Atlassian India",
-    logoClass: "logo-blue",
-    meta: "~256 India roles cut (16% of 1,600) · Announced Mar 11, 2026 · Bengaluru",
-    urgency: "AMBER — R&D-heavy cuts (900+ global eng) plus CTO change. Mid-size but high-quality eng pool.",
-    urgencyClass: "u-amber",
-    chips: ["1,600 global (10%)","16% in India","900+ R&D roles","AI skill-mix pivot","CTO replaced"],
+    logoClass: "blue",
+    logoText: "AT",
+    newCompany: false,
+    meta: "1,600 global cuts (10% workforce) · ~900+ engineering · CTO Rajeev Rajan exited Mar 31 · Bangalore & APAC · Cuts complete by Jun 30",
+    urgency: "🟠 ACTIVE WINDOW — Engineering cuts still finalising through Jun 30. CTO departure signals deeper org restructure ahead.",
+    urgencyClass: "amber",
+    chips: [
+      { text: "1,600 Global Cuts", type: "warm" },
+      { text: "CTO Departed", type: "hot" },
+      { text: "900+ Engineering Roles", type: "warm" },
+      { text: "10% Workforce Cut", type: "" },
+      { text: "APAC Impact Confirmed", type: "" },
+      { text: "AI Reorg", type: "" }
+    ],
     teams: [
-      {name:"Software R&D / platform eng", match:90},
-      {name:"Cloud & DevOps", match:82},
-      {name:"AI/ML product eng", match:75},
-      {name:"Sales & marketing", match:30}
+      { name: "Platform / Infra Engineering", pct: 90 },
+      { name: "Jira / Confluence Backend", pct: 82 },
+      { name: "Developer Experience (DevEx)", pct: 78 },
+      { name: "Search & Data Engineering", pct: 72 },
+      { name: "Security Engineering", pct: 68 }
     ],
     leaders: [
-      {name:"Rajeev Rajan", role:"former CTO", note:"stepped down Mar 31 after ~4 years"},
-      {name:"Mandhana", role:"CTO Teamwork", note:"ex-head of eng for AI/products — org reshuffle"},
-      {name:"Rao", role:"CTO Enterprise & Chief Trust Officer", note:"new combined remit"}
+      { initials: "RR", name: "Rajeev Rajan", role: "CTO — exited Mar 31, 2026", status: "exited" },
+      { initials: "?", name: "VP Engineering (India)", role: "Org restructuring ongoing, leadership TBD", status: "exited" }
     ],
     playbook: [
-      "Target the 900+ displaced software R&D engineers — Bengaluru holds a meaningful share.",
-      "CTO transition creates uncertainty; reach Staff+ ICs who report into the reorganized eng pillars.",
-      "Position Intuit's stable platform roadmap vs. Atlassian's disruptive 'AI skill-mix' reshaping.",
-      "Source via Atlassian Bengaluru alumni and Blind threads referencing the March 2026 round.",
-      "Move within 4–6 weeks — Atlassian severance keeps people searching actively in this window."
+      "Search for Atlassian Bangalore engineers now — notices landed March–April, garden leave ending June–July.",
+      "Prioritise Jira/Confluence platform and search infra engineers — strong alignment with Intuit's TurboTax + QuickBooks platform bets.",
+      "Reference CTO departure in outreach: org is in flux, stability at Intuit is a genuine pull factor.",
+      "Minimum 16-week severance means candidates are financially stable — use this window to nurture before they feel job urgency.",
+      "Ask for referrals: Atlassian has a strong internal network; one hire often opens a pipeline of 3–5 senior peers."
     ],
-    linkedin: '("Atlassian") AND ("software engineer" OR "R&D" OR "platform" OR "DevOps") AND ("Staff" OR "Senior Staff" OR "Principal") AND ("Bengaluru" OR "Bangalore")'
+    linkedin: '("Atlassian") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Sr. Software Engineer" OR "Engineering Manager") AND ("Bengaluru" OR "Bangalore" OR "India") AND ("Open to Work" OR "#opentowork")'
   },
+
   {
-    name: "Amazon India",
-    logoClass: "logo-orange",
-    meta: "~400 India eng impacted (16,000 global; ~30,000 by mid-2026) · Jan 28, 2026 · Bengaluru / Chennai / Hyderabad",
-    urgency: "AMBER — GenAI/Bedrock teams hit hard in Bengaluru & Chennai, but Amazon is re-hiring 11,000 engineers — narrow window.",
-    urgencyClass: "u-amber",
-    chips: ["16,000 global","~30k by mid-2026","Bedrock GenAI cuts","11k eng re-hire","AWS core preserved"],
+    name: "Amazon India (AWS)",
+    logoClass: "orange",
+    logoText: "AZ",
+    newCompany: false,
+    meta: "~16,000 global cut (Jan 28 notification) · Bengaluru + Chennai + Hyderabad impacted · AWS, Retail, Prime Video, Devices · 11k engineers to be re-hired selectively",
+    urgency: "🟠 ACTIVE WINDOW — Jan 28 notifications; transitions ongoing through Q2. AWS hiring freeze elsewhere = talent available now.",
+    urgencyClass: "amber",
+    chips: [
+      { text: "16,000 Global Cuts", type: "warm" },
+      { text: "AWS India Impacted", type: "warm" },
+      { text: "3 India Hubs", type: "" },
+      { text: "Retail + Corp Roles", type: "" },
+      { text: "AI Cost Realignment", type: "" },
+      { text: "Mid-layer Eliminated", type: "" }
+    ],
     teams: [
-      {name:"GenAI / Bedrock eng", match:93},
-      {name:"AWS cloud (selective)", match:70},
-      {name:"Corporate / ops eng", match:55},
-      {name:"HR / content / PM", match:25}
+      { name: "AWS Cloud & Infra Engineering", pct: 85 },
+      { name: "Backend / Distributed Systems", pct: 88 },
+      { name: "ML/AI Platform Engineering", pct: 80 },
+      { name: "Devices & Alexa Engineering", pct: 70 },
+      { name: "Prime Video Backend", pct: 65 }
     ],
     leaders: [
-      {name:"Bedrock Bengaluru/Chennai leads", role:"GenAI org", note:"~400 of ~450 reportedly impacted (AWS disputes figure)"}
+      { initials: "AM", name: "Multiple Sr. Managers (India)", role: "Mid-management layer eliminated", status: "exited" }
     ],
     playbook: [
-      "Move fast on displaced Bedrock/GenAI Staff+ engineers before Amazon's 11,000-engineer re-hire reabsorbs them.",
-      "Verify status carefully — AWS publicly disputes the reported cut numbers; confirm before outreach.",
-      "Target Chennai & Bengaluru GenAI ICs; emphasize applied-AI roles in Intuit's fintech stack.",
-      "Watch for further cuts en route to the ~30,000 mid-2026 target — set alerts on Chennai/Hyderabad.",
-      "Differentiate on role stability — pitch against Amazon's cut-then-rehire churn."
+      "Focus on AWS India engineers — cloud-native expertise maps directly to Intuit's AWS-first platform strategy.",
+      "Target Bengaluru AWS teams first (largest concentration); Chennai strong in operations and distributed systems.",
+      "Highlight Intuit's AWS partnership and 'build on cloud' mission — resonates with displaced AWS engineers.",
+      "Avoid competing directly with Amazon's 11k re-hire plan; instead pitch the mission-driven, product-focused culture difference.",
+      "Use alumni networks: many ex-Amazon India engineers actively post on LinkedIn — monitor and engage within 48h of posts."
     ],
-    linkedin: '("Amazon" OR "AWS") AND ("Bedrock" OR "Generative AI" OR "machine learning" OR "applied scientist") AND ("Staff" OR "Senior" OR "Principal") AND ("Bengaluru" OR "Bangalore" OR "Chennai" OR "Hyderabad")'
+    linkedin: '("Amazon" OR "AWS" OR "Amazon Web Services") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Software Development Engineer") AND ("Bengaluru" OR "Chennai" OR "Hyderabad") AND ("Open to Work" OR "#opentowork")'
   },
+
   {
     name: "Flipkart",
-    logoClass: "logo-yellow",
-    meta: "~500 roles cut (3–4% of workforce) · Mar 2026 · Bengaluru HQ",
-    urgency: "GREEN — Performance-based, not distress; IPO-bound. Smaller eng yield but senior layers thinning.",
-    urgencyClass: "u-green",
-    chips: ["500 cut","Performance review","SVP count <12 (was ~18)","IPO prep","Amazon/JioMart pressure"],
+    logoClass: "teal",
+    logoText: "FK",
+    newCompany: false,
+    meta: "300–500 roles cut (Mar 2026) · 2% workforce · Performance review cycle · IPO timeline pressure · Walmart-driven margin targets",
+    urgency: "🟡 MONITOR — Smaller round but P5–P7 engineers often exit in performance cycles; IPO prep likely to drive further cuts in Q3.",
+    urgencyClass: "amber",
+    chips: [
+      { text: "300–500 Cuts", type: "" },
+      { text: "Performance-Based", type: "" },
+      { text: "IPO Pressure", type: "warm" },
+      { text: "Walmart Margin Push", type: "" },
+      { text: "Engineering Impacted", type: "" },
+      { text: "Q3 Risk: More Cuts", type: "warm" }
+    ],
     teams: [
-      {name:"Engineering (perf-based)", match:68},
-      {name:"Senior leadership / SVP", match:60},
-      {name:"Operations", match:45},
-      {name:"Marketing", match:30}
+      { name: "OneTech Platform Engineering", pct: 85 },
+      { name: "Search & Recommendations", pct: 88 },
+      { name: "Supply Chain Engineering", pct: 72 },
+      { name: "Payments & FinTech", pct: 90 },
+      { name: "Data & ML Engineering", pct: 80 }
     ],
     leaders: [
-      {name:"Senior VP layer", role:"cross-org", note:"reduced to <12 from ~18 in 2024"}
+      { initials: "FK", name: "Senior Engineering Leaders", role: "Exits tied to performance cycle; monitor LinkedIn", status: "exited" }
     ],
     playbook: [
-      "Treat as opportunistic, not urgent — cuts are PIP/performance-driven, so vet candidate quality closely.",
-      "Focus on thinning senior eng leadership layer (Director/SVP-adjacent P6–P7) for leadership reqs.",
-      "Pre-IPO equity uncertainty can be a lever — pitch Intuit's liquid comp.",
-      "Source OneTech / platform engineers via Bengaluru alumni networks.",
-      "Keep on watch list — IPO timeline could trigger a larger restructuring wave later in 2026."
+      "Target Flipkart payments and fintech engineers — high alignment with Intuit's QuickBooks Money / payments roadmap.",
+      "Watch for Q3 2026 IPO-prep cuts — Walmart's push for profitability will likely trigger a second wave; set Google alerts now.",
+      "Performance-exit engineers are often strong candidates who lost out in stack ranking, not performance — message accordingly.",
+      "Reach out to Flipkart OneTech engineers with scale credentials (100M+ user systems) — major differentiator for Intuit India roles.",
+      "Use India FAANG alumni communities (IIM/IIT networks) to get warm intros to recently departed Flipkart senior engineers."
     ],
-    linkedin: '("Flipkart") AND ("engineering" OR "OneTech" OR "platform" OR "backend") AND ("Staff" OR "Senior Staff" OR "Principal" OR "Director") AND ("Bengaluru" OR "Bangalore")'
+    linkedin: '("Flipkart" OR "Flipkart Internet") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Sr. Software Engineer") AND ("Bengaluru" OR "Bangalore") AND ("Open to Work" OR "#opentowork")'
   },
+
   {
     name: "Gupshup",
-    logoClass: "logo-green",
-    meta: "~500 cut across rounds (100+ latest) · India = ~60% of revenue · Bengaluru / Mumbai",
-    urgency: "RED — Repeated rounds + 80% valuation markdown signal distress. No severance, 60-day notice = candidates searching NOW.",
-    urgencyClass: "u-red",
-    chips: ["500+ across rounds","100+ latest","No severance / 60-day notice","Fidelity markdown ~80%","IPO 12–24 mo"],
+    logoClass: "purple",
+    logoText: "GS",
+    newCompany: false,
+    meta: "100+ latest round (prev: 200 cut) · 80% valuation drop ($280M–$300M from $1.4B unicorn) · IPO delayed · India unit revenue fell 5% FY25",
+    urgency: "🔴 HIGH VALUE — Repeated rounds + 80% valuation crash = forced exits across senior engineering. Candidates highly motivated.",
+    urgencyClass: "red",
+    chips: [
+      { text: "Multiple Layoff Rounds", type: "hot" },
+      { text: "80% Valuation Drop", type: "hot" },
+      { text: "IPO Indefinitely Delayed", type: "hot" },
+      { text: "Conversational AI / CPaaS", type: "" },
+      { text: "India Revenue Declining", type: "warm" },
+      { text: "Cost-Cutting Mode", type: "" }
+    ],
     teams: [
-      {name:"Conversational-AI / messaging eng", match:88},
-      {name:"Backend / platform eng", match:84},
-      {name:"Junior–mid developers", match:70},
-      {name:"GTM / support", match:35}
+      { name: "Conversational AI / NLP Eng", pct: 92 },
+      { name: "CPaaS Platform Engineering", pct: 85 },
+      { name: "WhatsApp Business API Eng", pct: 80 },
+      { name: "ML / Generative AI", pct: 88 },
+      { name: "Backend / API Infrastructure", pct: 75 }
     ],
     leaders: [
-      {name:"Beerud Sheth", role:"CEO", note:"flagged IPO in 24 mo; redomicile to India planned"}
+      { initials: "GS", name: "Multiple Engineering Directors", role: "Org shrinking significantly; senior exits ongoing", status: "exited" }
     ],
     playbook: [
-      "High urgency — no-severance + 60-day notice means displaced engineers are job-hunting immediately.",
-      "Target conversational-AI / messaging-platform Staff engineers; rare applied-NLP skill set for fintech.",
-      "Lead with financial stability — Fidelity's ~80% markdown makes Intuit's stability a strong pull.",
-      "Mine Inc42/Entrackr comment threads and Bengaluru Gupshup alumni for direct contacts.",
-      "Act within the 60-day notice window before candidates accept competing offers."
+      "Gupshup's conversational AI and NLP engineers are a strong fit for Intuit's AI-powered tax and financial assistant roadmap.",
+      "Candidates here are highly motivated — IPO is off, equity is worthless at 80% markdown; Intuit equity is a real pitch.",
+      "Emphasise stability: Intuit's $14B revenue vs. Gupshup's existential uncertainty is a compelling contrast.",
+      "Target Principal Engineers and architects who built Gupshup's WhatsApp and AI pipeline — rare CPaaS expertise.",
+      "Act fast: multiple rounds means best talent is already being scooped; approach immediately after round confirmations."
     ],
-    linkedin: '("Gupshup") AND ("conversational AI" OR "messaging" OR "NLP" OR "backend" OR "platform") AND ("Staff" OR "Senior" OR "Principal" OR "Lead") AND ("Bengaluru" OR "Bangalore" OR "Mumbai")'
+    linkedin: '("Gupshup") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Engineering Lead" OR "AI Engineer") AND ("India" OR "Bengaluru" OR "Mumbai") AND ("Open to Work" OR "#opentowork")'
   },
+
   {
-    name: "Innovaccer",
-    logoClass: "logo-purple",
-    meta: "340 cut across India + US (3rd round in 4 yrs) · May 2026 · Noida / Bengaluru",
-    urgency: "AMBER — Third restructuring round and 'AI-native' pivot; recurring instability keeps strong eng on the market.",
-    urgencyClass: "u-amber",
-    chips: ["340 across India+US","3rd round / 4 yrs","AI-native pivot","$675M raised","$75M ESOP buyback Jan'26"],
+    name: "Cisco India",
+    logoClass: "indigo",
+    logoText: "CI",
+    newCompany: true,
+    meta: "4,000 global cuts (5% workforce · May 2026) · Legacy networking, Webex, Duo engineering impacted · Bengaluru hub significant · Record $15.8B revenue but AI pivot forces cuts",
+    urgency: "🟠 NEW — May 2026 cuts hitting engineering now. Webex, Duo, Talos, Meraki engineers entering market. Strong talent pool.",
+    urgencyClass: "amber",
+    chips: [
+      { text: "4,000 Global Cuts", type: "warm" },
+      { text: "NEW — Added Jun 2026", type: "new" },
+      { text: "Webex / Duo Engineering", type: "" },
+      { text: "AI Pivot Reorg", type: "" },
+      { text: "Legacy Networking Cut", type: "" },
+      { text: "Talos Security Impacted", type: "warm" }
+    ],
     teams: [
-      {name:"Healthcare data / analytics eng", match:85},
-      {name:"Platform & data integration", match:82},
-      {name:"AI/ML eng", match:74},
-      {name:"Ops / support", match:40}
+      { name: "Security Engineering (Duo/Talos)", pct: 85 },
+      { name: "Cloud & Platform (Webex/Meraki)", pct: 80 },
+      { name: "Network Infrastructure Eng", pct: 70 },
+      { name: "Backend / Distributed Systems", pct: 78 },
+      { name: "Silicon / Hardware (Bangalore)", pct: 65 }
     ],
     leaders: [
-      {name:"Abhinav Shashank", role:"Co-founder & CEO", note:"driving shift to 'AI-native' org"}
+      { initials: "CI", name: "Webex Engineering Leadership", role: "Significant cuts in Webex product and CX orgs", status: "exited" },
+      { initials: "TL", name: "Talos Research Team", role: "Security org restructuring mid-2026", status: "exited" }
     ],
     playbook: [
-      "Target displaced data-platform & analytics Staff engineers — strong fit for Intuit data/ML stack.",
-      "Recurring layoffs (3rd in 4 yrs) make retention pitch easy; emphasize Intuit stability.",
-      "Source across Noida and Bengaluru eng centres via Inc42/Entrackr coverage and alumni.",
-      "Note recent $75M ESOP buyback — some leavers are liquid and selective; lead with mission + scope.",
-      "Engage within 4–6 weeks of the May round while candidates are actively interviewing."
+      "Target Cisco Bangalore Webex and Duo engineers — security and collaboration are Intuit platform priorities.",
+      "Talos security researchers map well to Intuit's risk, fraud, and identity engineering teams.",
+      "Cisco's May cuts mean engineers are actively interviewing now — run LinkedIn searches with '#opentowork' filter this week.",
+      "Highlight Intuit's mission-driven culture vs. Cisco's legacy-networking identity crisis; candidates are actively questioning relevance.",
+      "Cisco engineers command premium comp — benchmark against Intuit IC5–IC7 bands and be prepared to move fast on comp."
     ],
-    linkedin: '("Innovaccer") AND ("data engineering" OR "analytics" OR "platform" OR "healthcare data" OR "machine learning") AND ("Staff" OR "Senior" OR "Principal") AND ("Noida" OR "Bengaluru" OR "Bangalore" OR "India")'
-  },
-  {
-    name: "Krutrim (Ola)",
-    logoClass: "logo-teal",
-    meta: "200+ cut across rounds · headcount 550→~150 (Aug'25–Mar'26) · Bengaluru",
-    urgency: "RED — Deep contraction, LLM & chip programs paused, senior exits. High-caliber AI talent suddenly available.",
-    urgencyClass: "u-red",
-    chips: ["200+ cut","550 → ~150 staff","LLM & semiconductor paused","Kruti chatbot killed","Senior exits"],
-    teams: [
-      {name:"AI research / LLM eng", match:90},
-      {name:"Semiconductor / chip eng", match:78},
-      {name:"Linguistics / NLP", match:72},
-      {name:"Consumer product eng", match:55}
-    ],
-    leaders: [
-      {name:"Bhavish Aggarwal", role:"Founder", note:"pivoting Krutrim to cloud services amid model retreat"},
-      {name:"Multiple senior leads", role:"AI research", note:"senior-level exits during restructuring"}
-    ],
-    playbook: [
-      "High urgency — rare India-based LLM/foundation-model engineers freed up as programs wind down.",
-      "Prioritize AI-research and applied-ML Staff/Principal ICs for Intuit's GenAI fintech initiatives.",
-      "Position against Krutrim's strategic retreat — pitch funded, shipping AI roadmap.",
-      "Source via Bengaluru AI-research circles, Business Standard/Inc42 coverage, and alumni referrals.",
-      "Move immediately — this caliber of AI talent is scarce and heavily contested across India."
-    ],
-    linkedin: '("Krutrim" OR "Ola Krutrim") AND ("LLM" OR "foundation model" OR "machine learning" OR "AI research" OR "NLP") AND ("Staff" OR "Senior" OR "Principal" OR "Lead") AND ("Bengaluru" OR "Bangalore")'
+    linkedin: '("Cisco" OR "Cisco Systems") AND ("Staff Engineer" OR "Senior Staff Engineer" OR "Principal Engineer" OR "Security Engineer" OR "Cloud Engineer") AND ("Bengaluru" OR "Bangalore" OR "India") AND ("Open to Work" OR "#opentowork")'
   }
 ];
 
-function render(){
-  document.getElementById('s-roles').textContent = ovStats.rolesCut;
-  document.getElementById('s-windows').textContent = ovStats.windows;
-  document.getElementById('s-wave').textContent = ovStats.nextWave;
-  document.getElementById('s-count').textContent = ovStats.count;
+function renderCards() {
+  const container = document.getElementById('cards-container');
+  companies.forEach(co => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <div class="card-header">
+        <div class="logo ${co.logoClass}">${co.logoText}</div>
+        <div class="card-title">
+          <h2>${co.name}${co.newCompany ? '<span class="new-company-badge">NEW</span>' : ''}</h2>
+          <div class="card-meta">${co.meta}</div>
+        </div>
+      </div>
 
-  const grid = document.getElementById('grid');
-  grid.innerHTML = companies.map(c => `
-    <div class="card">
-      <div class="card-head">
-        <div class="logo ${c.logoClass}">${c.name.charAt(0)}</div>
-        <div><h2>${c.name}</h2><div class="meta">${c.meta}</div></div>
+      <div class="urgency ${co.urgencyClass}">
+        <div class="urgency-dot"></div>
+        <span>${co.urgency}</span>
       </div>
-      <div class="urgency ${c.urgencyClass}">${c.urgency}</div>
-      <div class="chips">${c.chips.map(ch=>`<span class="chip">${ch}</span>`).join('')}</div>
-      <div class="sec">
-        <h3>Impacted teams · fit for P5–P7 sourcing</h3>
-        ${c.teams.map(t=>`<div class="team"><span class="tname">${t.name}</span><span class="bar"><i style="width:${t.match}%"></i></span><span class="pct">${t.match}%</span></div>`).join('')}
-      </div>
-      <div class="sec">
-        <h3>Leadership signals</h3>
-        ${c.leaders.map(l=>`<div class="leader"><b>${l.name}</b> <span>— ${l.role}; ${l.note}</span></div>`).join('')}
-      </div>
-      <div class="sec">
-        <h3>Sourcing playbook</h3>
-        <ol class="play">${c.playbook.map(p=>`<li>${p}</li>`).join('')}</ol>
-      </div>
-      <div class="boolean"><span class="lbl">LinkedIn boolean</span>${c.linkedin}</div>
-    </div>
-  `).join('');
 
-  const now = new Date();
-  document.getElementById('updated').textContent =
-    "Last refreshed: " + now.toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'}) + " · " + companies.length + " companies tracked.";
+      <div class="chips">
+        ${co.chips.map(c => `<span class="chip ${c.type}">${c.text}</span>`).join('')}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <div class="section-title">Engineering Team Match (P5–P7 Fit)</div>
+        ${co.teams.map(t => `
+          <div class="team-row">
+            <div class="team-name">${t.name}</div>
+            <div class="team-bar-wrap"><div class="team-bar" style="width:${t.pct}%"></div></div>
+            <div class="team-pct">${t.pct}%</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <div class="section-title">Key Leader Movements</div>
+        ${co.leaders.map(l => `
+          <div class="leader">
+            <div class="leader-avatar">${l.initials}</div>
+            <div class="leader-info">
+              <div class="leader-name">${l.name}</div>
+              <div class="leader-role">${l.role}</div>
+            </div>
+            <span class="leader-badge ${l.status}">${l.status === 'exited' ? 'Exited' : 'Sourced'}</span>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section">
+        <div class="section-title">Sourcing Playbook — Week of Jun 9</div>
+        ${co.playbook.map((p, i) => `
+          <div class="playbook-item">
+            <div class="play-num">${i+1}</div>
+            <div class="play-text">${p}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="linkedin-section">
+        <div class="linkedin-box">
+          <div class="linkedin-label">LinkedIn Boolean Search</div>
+          <div class="linkedin-query" id="lq-${co.name.replace(/\s/g,'')}">${co.linkedin}</div>
+          <button class="copy-btn" onclick="copyLI('lq-${co.name.replace(/\s/g,'')}')">Copy Query</button>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
 }
-render();
+
+function copyLI(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    const text = el.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = el.nextElementSibling;
+      if (btn) { btn.textContent = 'Copied!'; setTimeout(() => { btn.textContent = 'Copy Query'; }, 2000); }
+    }).catch(() => {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+    });
+  }
+}
+
+renderCards();
 </script>
 </body>
 </html>
