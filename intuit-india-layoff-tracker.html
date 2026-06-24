@@ -176,22 +176,22 @@
   </div>
   <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
     <span class="badge-intuit">INTUIT RECRUITING — CONFIDENTIAL</span>
-    <span class="last-updated">🔄 Auto-refreshed: June 22, 2026</span>
+    <span class="last-updated">🔄 Auto-refreshed: June 24, 2026</span>
   </div>
 </header>
 
 <!-- Summary Strip -->
 <div class="summary-strip">
   <div class="stat-cell">
-    <div class="stat-num red">~24,600</div>
+    <div class="stat-num red">~25,100</div>
     <div class="stat-label">India Roles Cut (2026)</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num amber">7</div>
+    <div class="stat-num amber">8</div>
     <div class="stat-label">Active Sourcing Windows</div>
   </div>
   <div class="stat-cell">
-    <div class="stat-num green">9</div>
+    <div class="stat-num green">10</div>
     <div class="stat-label">Companies Tracked</div>
   </div>
   <div class="stat-cell">
@@ -205,7 +205,7 @@
 </div>
 
 <main class="main">
-  <div class="section-title">🔥 Active Company Intelligence — Updated June 22, 2026</div>
+  <div class="section-title">🔥 Active Company Intelligence — Updated June 24, 2026</div>
   <div class="cards-grid" id="cards-container"></div>
 </main>
 
@@ -221,17 +221,18 @@ const companies = [
     name: "Oracle India",
     logoClass: "logo-red",
     logoText: "ORC",
-    meta: "12,000 India exits (40% workforce) · Final phase completed ~June 15, 2026 · Bengaluru, Hyderabad, Pune · $2.1B global restructuring (March 2026 SEC filing) · Roles: engineers, architects, DBAs, ERP/cloud infra, ops",
-    urgency: "SOURCE NOW — Window closing",
+    meta: "12,000 India exits (40% workforce) · Final phase CONFIRMED complete June 15, 2026 · Bengaluru, Hyderabad, Pune · $2.1B global restructuring (March 2026 SEC filing) · Roles: engineers, architects, DBAs, ERP/cloud infra, ops · AI coding tools cited as primary driver by Co-CEO Mike Sicilia",
+    urgency: "SOURCE NOW — Window narrowing fast",
     urgencyClass: "urgency-red",
     chips: [
       { text: "12,000 India exits", cls: "chip-red" },
-      { text: "Final phase complete", cls: "chip-red" },
+      { text: "Complete June 15, 2026", cls: "chip-red" },
       { text: "40% workforce cut", cls: "chip-red" },
       { text: "AI-driven reorg", cls: "chip-blue" },
       { text: "ERP/Cloud talent", cls: "chip-purple" },
       { text: "Severance paid", cls: "chip-amber" },
-      { text: "Bengaluru/Hyd/Pune", cls: "chip-muted" }
+      { text: "Bengaluru/Hyd/Pune", cls: "chip-muted" },
+      { text: "9 days since final wave", cls: "chip-amber" }
     ],
     teams: [
       { name: "OCI/Cloud Infrastructure Engineers", pct: 92 },
@@ -241,18 +242,18 @@ const companies = [
       { name: "Product & Engineering Managers", pct: 70 }
     ],
     leaders: [
-      { initials: "MS", name: "Mike Sicilia", role: "Co-CEO, Oracle", status: "active", statusCls: "leader-active" },
-      { initials: "VB", name: "VP Engineering India (unnamed)", role: "Multiple VPs restructured", status: "Watch", statusCls: "leader-watch" }
+      { initials: "MS", name: "Mike Sicilia", role: "Co-CEO, Oracle", status: "Active", statusCls: "leader-active" },
+      { initials: "VB", name: "VP Engineering India (unnamed)", role: "Multiple VPs restructured out", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
-      "<strong>This week:</strong> Run LinkedIn boolean for Oracle India Staff/Principal engineers in Bengaluru, Hyderabad, Pune with #opentowork or layoff posts since May 2026.",
-      "<strong>InMail wave:</strong> Lead with Intuit's mission-driven product work and India Center of Excellence — contrast against Oracle's AI-automation narrative causing the layoffs.",
-      "<strong>Communities:</strong> Monitor Oracle India employees on Blind (tagged 'Oracle'), Reddit r/india_jobs, and Quora India tech layoff threads for leads.",
+      "<strong>CRITICAL TIMING:</strong> Final wave completed June 15 — we are now 9 days in. Peak InMail response window is weeks 1–6 post-layoff. Act this week.",
+      "<strong>InMail wave:</strong> Lead with Intuit's mission-driven product work and India Center of Excellence — contrast against Oracle's AI-automation narrative that caused the layoffs.",
+      "<strong>Communities:</strong> Monitor Oracle India employees on Blind (tagged 'Oracle'), Reddit r/india_jobs, and Quora India tech layoff threads for fresh leads.",
       "<strong>Boolean:</strong> <code>\"Oracle\" AND (\"laid off\" OR \"looking for\" OR \"open to opportunities\") AND (\"Bangalore\" OR \"Hyderabad\" OR \"Pune\") AND (\"Staff\" OR \"Principal\" OR \"Senior Staff\")</code>",
-      "<strong>Urgency:</strong> 3–6 month post-layoff window is the prime sourcing zone (Sep 2026 deadline). Severance is paid — candidates have runway but are actively looking now."
+      "<strong>Deadline:</strong> 3–6 month post-layoff window is the prime sourcing zone — act before September 2026. Severance is paid so candidates have runway but are actively interviewing now."
     ],
     linkedin: "true",
-    ovStats: { cut: "12,000", window: "Now – Sep 2026", wave: "Complete" }
+    ovStats: { cut: "12,000", window: "Jun 15 – Sep 2026", wave: "Confirmed Complete Jun 15" }
   },
 
   // ── 2. ATLASSIAN INDIA ────────────────────────────────────────────────────────
@@ -260,13 +261,13 @@ const companies = [
     name: "Atlassian India",
     logoClass: "logo-blue",
     logoText: "ATL",
-    meta: "~900 India engineers cut (part of 1,600 global, ~10% workforce) · March 2026, completing end-June 2026 · Bangalore GCC · CTO replaced · Roles: software R&D, platform, Jira/Confluence engineers",
+    meta: "~250 India employees (16% of 1,600 global, ~10% global workforce) · March 11, 2026 announced, completing end-June 2026 · Bangalore GCC · CTO Rajeev Rajan stepped down March 31, 2026 · 900+ global R&D roles cut · Roles: software R&D, platform, Jira/Confluence engineers",
     urgency: "Source actively — Window open",
     urgencyClass: "urgency-red",
     chips: [
-      { text: "~900 India engineers", cls: "chip-red" },
-      { text: "Restructuring complete Jun 2026", cls: "chip-amber" },
-      { text: "CTO replaced", cls: "chip-red" },
+      { text: "~250 India employees", cls: "chip-red" },
+      { text: "Restructuring completing Jun 2026", cls: "chip-amber" },
+      { text: "CTO Rajeev Rajan exited", cls: "chip-red" },
       { text: "AI skill shift", cls: "chip-blue" },
       { text: "16-wk+ severance", cls: "chip-green" },
       { text: "Bangalore GCC", cls: "chip-muted" }
@@ -279,18 +280,18 @@ const companies = [
       { name: "Engineering Managers (P5+)", pct: 68 }
     ],
     leaders: [
-      { initials: "RM", name: "Rajeev Mathur (example)", role: "Engineering Director, India GCC", status: "Watch", statusCls: "leader-watch" },
-      { initials: "CTO", name: "Former CTO (role replaced)", role: "CTO restructured out", status: "Exited", statusCls: "leader-exited" }
+      { initials: "RJ", name: "Rajeev Rajan", role: "Former CTO, Atlassian (stepped down Mar 31, 2026)", status: "Exited", statusCls: "leader-exited" },
+      { initials: "SM", name: "Scott Farquhar / Mike Cannon-Brookes", role: "Co-CEOs, Atlassian", status: "Active", statusCls: "leader-active" }
     ],
     playbook: [
-      "<strong>Target now:</strong> Atlassian Bangalore GCC — focus Staff/Sr. Staff engineers 5–12 YoE laid off March–June 2026.",
+      "<strong>Target now:</strong> Atlassian Bangalore GCC — focus Staff/Sr. Staff engineers 5–12 YoE laid off March–June 2026. Restructuring completing this week.",
       "<strong>Message angle:</strong> Intuit's 'AI-amplified engineer' vision vs. Atlassian's forced transition — position as a company that upskills rather than cuts.",
       "<strong>InMail hook:</strong> Intuit India's platform work (TurboTax, QuickBooks, Credit Karma infra) maps directly to Atlassian's core DevTools expertise.",
       "<strong>Boolean:</strong> <code>\"Atlassian\" AND (\"laid off\" OR \"open to work\") AND \"Bangalore\" AND (\"Staff Engineer\" OR \"Principal Engineer\" OR \"Sr Staff\")</code>",
       "<strong>Timing:</strong> Severance includes pro-rated FY26 bonus + 16-wk pay — candidates have 4–5 months runway. Engage before they accept competing offers (July deadline)."
     ],
     linkedin: "true",
-    ovStats: { cut: "~900", window: "Now – Aug 2026", wave: "Completing Jun 2026" }
+    ovStats: { cut: "~250 India", window: "Now – Aug 2026", wave: "Completing Jun 2026" }
   },
 
   // ── 3. AMAZON INDIA ───────────────────────────────────────────────────────────
@@ -298,34 +299,35 @@ const companies = [
     name: "Amazon India / AWS",
     logoClass: "logo-orange",
     logoText: "AMZ",
-    meta: "~16,000 India roles at risk (part of ~30,000 global) · Announced Jan 28, 2026 · AWS + Retail · Bengaluru, Chennai, Hyderabad · Despite cuts: hiring 11,000 engineers in 2026 (AI/cloud focus)",
+    meta: "~16,000 India roles at risk (part of ~30,000 global) · Announced Jan 28, 2026 · AWS Bedrock teams: ~400 of 450 engineers in BLR/Chennai cut · AWS + Retail · Bengaluru, Chennai, Hyderabad · Amazon simultaneously hiring 11,000 engineers in 2026 (AI/cloud focus only)",
     urgency: "Source now — Ongoing cuts",
     urgencyClass: "urgency-red",
     chips: [
       { text: "~16,000 India at risk", cls: "chip-red" },
+      { text: "Bedrock team: 400/450 cut", cls: "chip-red" },
       { text: "AWS + Retail", cls: "chip-blue" },
       { text: "Jan 2026 announced", cls: "chip-amber" },
       { text: "AI reorg", cls: "chip-blue" },
       { text: "BLR/CHN/HYD", cls: "chip-muted" },
-      { text: "Hiring 11K engineers", cls: "chip-green" }
+      { text: "Hiring 11K engineers (AI)", cls: "chip-green" }
     ],
     teams: [
+      { name: "AWS Bedrock/GenAI Engineers (BLR/CHN)", pct: 95 },
       { name: "AWS Cloud/Platform Engineers", pct: 88 },
       { name: "Distributed Systems Engineers", pct: 85 },
       { name: "Backend/API Engineers (non-AI)", pct: 78 },
-      { name: "Data Engineers & Architects", pct: 75 },
-      { name: "Ops/Solutions Architects", pct: 65 }
+      { name: "Data Engineers & Architects", pct: 75 }
     ],
     leaders: [
       { initials: "AJ", name: "Andy Jassy", role: "CEO, Amazon (global context)", status: "Active", statusCls: "leader-active" },
       { initials: "VI", name: "India Engineering VPs", role: "Multiple under review", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
-      "<strong>Identify:</strong> Target AWS Bengaluru + Chennai engineers in non-AI tracks (HR, ops, content, traditional engineering). These teams face the deepest cuts.",
-      "<strong>Timing nuance:</strong> Amazon is hiring 11K engineers — so some Amazonians are surviving. Target only those who've posted #opentowork or recent layoff signals.",
+      "<strong>Priority pool:</strong> AWS Bedrock team in Bengaluru + Chennai — ~400 of 450 engineers were laid off. These are rare GenAI/cloud specialists now in the open market.",
+      "<strong>Timing nuance:</strong> Amazon is simultaneously hiring 11K engineers for AI-focused roles — filter carefully. Only target engineers who've posted #opentowork or layoff signals.",
       "<strong>Pitch:</strong> Intuit's FinTech-at-scale story vs. Amazon's cost-optimization culture — stability, mission, India engineering ownership.",
-      "<strong>Boolean:</strong> <code>\"Amazon\" OR \"AWS\" AND (\"laid off\" OR \"impacted\" OR \"looking\") AND (\"Bangalore\" OR \"Chennai\" OR \"Hyderabad\") AND (\"Staff\" OR \"Principal\" OR \"SDE-3\")</code>",
-      "<strong>Events:</strong> AWS India community meetups (AWS UG Bengaluru) are active — recruiters should attend to build pipeline from affected engineers."
+      "<strong>Boolean:</strong> <code>(\"Amazon\" OR \"AWS\") AND (\"laid off\" OR \"impacted\" OR \"looking\") AND (\"Bangalore\" OR \"Chennai\" OR \"Hyderabad\") AND (\"Staff\" OR \"Principal\" OR \"SDE-3\" OR \"Bedrock\") after:2026-01-01</code>",
+      "<strong>Events:</strong> AWS India community meetups (AWS UG Bengaluru) are active — attend to build pipeline from affected engineers. Next meetups likely in July 2026."
     ],
     linkedin: "true",
     ovStats: { cut: "~16,000 at risk", window: "Jan – Sep 2026", wave: "Ongoing" }
@@ -336,14 +338,14 @@ const companies = [
     name: "Flipkart",
     logoClass: "logo-purple",
     logoText: "FLK",
-    meta: "400–500 India employees (3–4% workforce) · Annual performance review exits · IPO prep mode (expected 12–24 months) · Bangalore HQ · Engineering + ops + marketing · OneTech org under review",
+    meta: "~500 India employees (March 2026, 3–4% workforce) · Annual performance review exits · IPO prep mode (expected 12–24 months) · Bangalore HQ · SVP count cut from ~18 (2024) to <12 · Engineering + ops + marketing impacted · Competition pressure from Amazon India and JioMart",
     urgency: "Monitor — Low-velocity window",
     urgencyClass: "urgency-amber",
     chips: [
-      { text: "400–500 exited", cls: "chip-amber" },
+      { text: "~500 exited Mar 2026", cls: "chip-amber" },
       { text: "Perf-based cuts", cls: "chip-amber" },
       { text: "IPO prep pressure", cls: "chip-blue" },
-      { text: "Lean margin push", cls: "chip-blue" },
+      { text: "SVP count down to <12", cls: "chip-red" },
       { text: "More waves likely", cls: "chip-red" },
       { text: "Bangalore HQ", cls: "chip-muted" }
     ],
@@ -359,14 +361,14 @@ const companies = [
       { initials: "VB", name: "Vikas Bansal", role: "CTO, Flipkart", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
-      "<strong>Pipeline-build:</strong> Flipkart's IPO pressure means further performance cuts likely through FY26. Build a long pipeline now for Q3–Q4 2026.",
+      "<strong>Pipeline-build:</strong> Flipkart's IPO pressure means further performance cuts likely through FY26. SVP layers being compressed — EMs and senior ICs are vulnerable.",
       "<strong>Target:</strong> Staff engineers in Payments/FinTech and Supply Chain Tech — direct value-add to Intuit QuickBooks Payments and Money platforms.",
       "<strong>Pitch:</strong> Intuit's public company stability vs. Flipkart's pre-IPO uncertainty. Equity upside story + mission-driven fintech.",
-      "<strong>Boolean:</strong> <code>\"Flipkart\" AND (\"open to work\" OR \"new opportunity\" OR \"1-star PIP\" OR \"laid off\") AND \"Bangalore\" AND (\"Staff\" OR \"Principal\" OR \"EM\")</code>",
-      "<strong>Monitor:</strong> Set LinkedIn alerts for Flipkart Bangalore engineers changing jobs — IPO pressure creates a slow but steady flow of talent through FY26."
+      "<strong>Boolean:</strong> <code>\"Flipkart\" AND (\"open to work\" OR \"new opportunity\" OR \"laid off\") AND \"Bangalore\" AND (\"Staff\" OR \"Principal\" OR \"EM\" OR \"Engineering Manager\")</code>",
+      "<strong>Monitor:</strong> Set LinkedIn alerts for Flipkart Bangalore engineers changing jobs — IPO pressure creates a slow but steady flow of talent through FY26. Q3 performance review cycle is the next trigger."
     ],
     linkedin: "true",
-    ovStats: { cut: "400–500", window: "Ongoing FY26", wave: "Performance cycle" }
+    ovStats: { cut: "~500", window: "Ongoing FY26", wave: "Performance cycle Mar 2026" }
   },
 
   // ── 5. GUPSHUP ────────────────────────────────────────────────────────────────
@@ -374,7 +376,7 @@ const companies = [
     name: "Gupshup",
     logoClass: "logo-teal",
     logoText: "GUP",
-    meta: "300+ India cuts across 3 rounds (200 + 100+ recent) · Valuation crashed ~80% (Fidelity markdown: $280–300M from $1.4B) · FY25 India revenue down 5%, profit down 52% · IPO delayed · Redomiciling to India",
+    meta: "300+ India cuts across 3 rounds (200 + 100+ in Sept 2025) · Fidelity markdown Apr 2026: ~$280–300M valuation (80% drop from $1.4B unicorn) · FY25 India revenue -5% (₹1,943 Cr), profit -52% (₹26 Cr) · IPO delayed — redomiciling to India first · No severance offered; 60-day notice period",
     urgency: "Source actively — Financial distress signal",
     urgencyClass: "urgency-amber",
     chips: [
@@ -382,8 +384,9 @@ const companies = [
       { text: "80% valuation drop", cls: "chip-red" },
       { text: "3 layoff rounds", cls: "chip-red" },
       { text: "IPO delayed", cls: "chip-amber" },
-      { text: "AI-native pivot", cls: "chip-blue" },
-      { text: "Conversational AI", cls: "chip-purple" }
+      { text: "No severance paid", cls: "chip-red" },
+      { text: "Conversational AI", cls: "chip-purple" },
+      { text: "Redomiciling to India", cls: "chip-blue" }
     ],
     teams: [
       { name: "Conversational AI / NLP Engineers", pct: 88 },
@@ -397,23 +400,23 @@ const companies = [
       { initials: "VB", name: "VP Engineering (watch)", role: "Team restructured", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
-      "<strong>Narrative:</strong> Gupshup's 80% valuation markdown signals existential risk — position Intuit as a stable, growing FinTech vs. a startup in distress.",
+      "<strong>Narrative:</strong> Gupshup's 80% valuation markdown + no severance signals existential risk — position Intuit as a stable, growing FinTech vs. a startup in distress.",
       "<strong>Target:</strong> Conversational AI/NLP and API platform engineers — fit for Intuit's AI-powered assistant and QuickBooks platform teams.",
-      "<strong>Outreach timing:</strong> Multiple rounds = ongoing anxiety. Engineers are receptive NOW without waiting for explicit layoff announcement.",
+      "<strong>Outreach timing:</strong> Multiple rounds + no severance = high anxiety, immediate job search. Engineers are receptive NOW without waiting for explicit layoff announcement.",
       "<strong>Boolean:</strong> <code>\"Gupshup\" AND (\"open to work\" OR \"exploring opportunities\") AND (\"Bangalore\" OR \"Mumbai\") AND (\"Staff\" OR \"Principal\" OR \"Senior\")</code>",
-      "<strong>Monitor:</strong> Watch for new funding rounds or further Fidelity markdowns — each press hit triggers new alumni to update profiles. Set Google Alert: 'Gupshup layoffs' + 'Gupshup funding'."
+      "<strong>Monitor:</strong> Google Alert set for 'Gupshup layoffs' + 'Gupshup funding'. Fidelity markdown in Apr 2026 already triggered fresh alumni profile updates — mine now."
     ],
     linkedin: "true",
-    ovStats: { cut: "300+", window: "Ongoing", wave: "3rd round complete" }
+    ovStats: { cut: "300+", window: "Ongoing", wave: "3rd round Sept 2025" }
   },
 
-  // ── 6. MICROSOFT INDIA (NEW) ──────────────────────────────────────────────────
+  // ── 6. MICROSOFT INDIA ───────────────────────────────────────────────────────
   {
     name: "Microsoft India",
     logoClass: "logo-indigo",
     logoText: "MSF",
     isNew: true,
-    meta: "Part of 9,000 global cuts announced June 4, 2026 · India: Bengaluru Azure team + Hyderabad sales engineering org · AI-aligned restructuring of Azure · Mid-level non-AI engineers disproportionately impacted · 15,300 total MSFT cuts in 2026 YTD",
+    meta: "Part of 9,000 global cuts announced June 4, 2026 · India: Bengaluru Azure team + Hyderabad sales engineering org confirmed cut · AI-aligned restructuring of Azure · Mid-level non-AI engineers disproportionately impacted · 15,300 total MSFT cuts in 2026 YTD",
     urgency: "Source now — Fresh layoff June 2026",
     urgencyClass: "urgency-red",
     chips: [
@@ -436,23 +439,23 @@ const companies = [
       { initials: "IC", name: "India Center Leadership", role: "Azure India VPs under review", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
-      "<strong>Priority target:</strong> Microsoft Bengaluru Azure engineers (non-AI tracks) — freshly impacted June 4, 2026. Strike while LinkedIn profiles are hot.",
+      "<strong>PRIME WINDOW:</strong> Microsoft Bengaluru Azure cuts landed June 4 — we are now in week 3. Peak InMail response window is weeks 2–6. Strike this week.",
       "<strong>InMail angle:</strong> Intuit's cloud-native FinTech platform (AWS + Azure hybrid) — immediate technical relevance for Azure engineers.",
       "<strong>Seniority filter:</strong> Focus L63–L65 (≈P5–P7 equivalent) — Staff and Principal-equivalent engineers laid off from Azure Bengaluru.",
       "<strong>Boolean:</strong> <code>\"Microsoft\" AND (\"laid off\" OR \"open to work\" OR \"impacted\") AND (\"Bangalore\" OR \"Hyderabad\") AND (\"Azure\" OR \"Staff\" OR \"Principal\" OR \"L64\" OR \"L65\") after:2026-06-01</code>",
-      "<strong>Act fast:</strong> Post-layoff peak engagement is weeks 2–6. This is week 3 — prime sourcing window. InMail response rates are highest now."
+      "<strong>Urgency deadline:</strong> Week 6 post-layoff = July 16. After that, response rates drop sharply as engineers accept competing offers. Do not wait."
     ],
     linkedin: "true",
     ovStats: { cut: "India portion of 9,000", window: "Jun – Oct 2026", wave: "June 4, 2026" }
   },
 
-  // ── 7. INTEL INDIA (NEW) ──────────────────────────────────────────────────────
+  // ── 7. INTEL INDIA ───────────────────────────────────────────────────────────
   {
     name: "Intel India",
     logoClass: "logo-sky",
     logoText: "INT",
     isNew: true,
-    meta: "3,200 global cuts (2nd wave, June 2026) after Feb 2026 first wave · India: Bengaluru client-computing group + Hyderabad Foundry pre-sales · Bengaluru Foundry R&D untouched · Semi-conductor + silicon engineering talent pool",
+    meta: "3,200 global cuts (2nd wave, June 2026) after Feb 2026 first wave · India: Bengaluru client-computing group + Hyderabad Foundry pre-sales · Bengaluru Foundry R&D explicitly untouched · CEO: Lip-Bu Tan (since 2025) driving restructuring · Semi-conductor + silicon engineering talent pool",
     urgency: "Source now — 2nd wave June 2026",
     urgencyClass: "urgency-red",
     chips: [
@@ -460,7 +463,7 @@ const companies = [
       { text: "BLR client-computing", cls: "chip-red" },
       { text: "HYD Foundry pre-sales", cls: "chip-red" },
       { text: "3,200 global", cls: "chip-amber" },
-      { text: "R&D Bangalore safe", cls: "chip-green" },
+      { text: "BLR R&D untouched", cls: "chip-green" },
       { text: "Feb + Jun waves", cls: "chip-muted" }
     ],
     teams: [
@@ -472,26 +475,26 @@ const companies = [
     ],
     leaders: [
       { initials: "PG", name: "Pat Gelsinger", role: "Former CEO (departed 2024)", status: "Exited", statusCls: "leader-exited" },
-      { initials: "LS", name: "Lip-Bu Tan", role: "CEO, Intel (2025–)", status: "Active", statusCls: "leader-active" }
+      { initials: "LT", name: "Lip-Bu Tan", role: "CEO, Intel (2025–)", status: "Active", statusCls: "leader-active" }
     ],
     playbook: [
       "<strong>Target pool:</strong> Intel Bengaluru client-computing engineers — hardware/software co-design expertise is rare and valuable for Intuit's platform infra teams.",
       "<strong>Distinguish:</strong> Intel Bengaluru Foundry R&D was NOT cut — only source from client-computing group and Hyderabad Foundry pre-sales.",
       "<strong>InMail angle:</strong> Software-focused Intel engineers (not chip designers) map well to Intuit's platform/infrastructure roles. Frame the pivot as growth.",
       "<strong>Boolean:</strong> <code>\"Intel\" AND (\"laid off\" OR \"open to work\") AND (\"Bangalore\" OR \"Hyderabad\") AND (\"client computing\" OR \"platform\" OR \"solutions engineer\" OR \"Staff\" OR \"Principal\") after:2026-06-01</code>",
-      "<strong>Double wave:</strong> Intel has done two rounds (Feb + Jun 2026) — alumni from both are in market. Cast wider to include Feb 2026 exits who may still be searching."
+      "<strong>Double wave:</strong> Intel has done two rounds (Feb + Jun 2026) — alumni from both are in market. Cast wider to include Feb 2026 exits who may still be searching (5 months out)."
     ],
     linkedin: "true",
     ovStats: { cut: "India portion of 3,200", window: "Jun – Nov 2026", wave: "Feb + Jun 2026" }
   },
 
-  // ── 8. SALESFORCE INDIA (NEW) ─────────────────────────────────────────────────
+  // ── 8. SALESFORCE INDIA ──────────────────────────────────────────────────────
   {
     name: "Salesforce India",
     logoClass: "logo-blue",
     logoText: "SFI",
     isNew: true,
-    meta: "'Capacity rebalancing' ~2,300 global · India delivery centers impacted · Agentforce AI reorg · Bengaluru, Hyderabad, Mumbai, Pune offices · CEO: 'zero new engineer hires in FY26 — using AI for all coding' · MuleSoft + Marketing Cloud teams hit",
+    meta: "'Capacity rebalancing' ~2,300 global · India delivery centers impacted · June 13, 2026: 86 India employees cut across MuleSoft + Marketing Cloud teams confirmed · Agentforce AI reorg · Bengaluru, Hyderabad, Mumbai, Pune offices · CEO Benioff: 'zero new engineer hires in FY26 — using AI for all coding'",
     urgency: "Source actively — AI-first reorg",
     urgencyClass: "urgency-amber",
     chips: [
@@ -499,6 +502,7 @@ const companies = [
       { text: "India delivery centers", cls: "chip-amber" },
       { text: "MuleSoft team hit", cls: "chip-red" },
       { text: "Marketing Cloud hit", cls: "chip-red" },
+      { text: "Jun 13: 86 India cuts confirmed", cls: "chip-red" },
       { text: "Zero new hires policy", cls: "chip-amber" },
       { text: "BLR/HYD/MUM/PUN", cls: "chip-muted" }
     ],
@@ -511,33 +515,33 @@ const companies = [
     ],
     leaders: [
       { initials: "MB", name: "Marc Benioff", role: "CEO, Salesforce", status: "Active", statusCls: "leader-active" },
-      { initials: "BM", name: "Bret Taylor", role: "Former Co-CEO (departed 2023)", status: "Exited", statusCls: "leader-exited" }
+      { initials: "BT", name: "Bret Taylor", role: "Former Co-CEO (departed 2023)", status: "Exited", statusCls: "leader-exited" }
     ],
     playbook: [
-      "<strong>Target:</strong> Salesforce India delivery center engineers in Bengaluru + Hyderabad — MuleSoft and Marketing Cloud teams most impacted.",
+      "<strong>Fresh cut:</strong> June 13 MuleSoft + Marketing Cloud India cuts confirmed (86 employees). These are the highest-value targets — act this week.",
       "<strong>Pitch angle:</strong> Salesforce froze all new engineer hires in FY26. Intuit offers actual engineering growth path and new product work — not just maintenance.",
       "<strong>High-value pool:</strong> MuleSoft integration engineers are rare and directly applicable to Intuit's API/integration platform and QuickBooks ecosystem.",
-      "<strong>Boolean:</strong> <code>\"Salesforce\" AND (\"laid off\" OR \"capacity rebalancing\" OR \"open to work\") AND (\"Bangalore\" OR \"Hyderabad\") AND (\"MuleSoft\" OR \"Staff\" OR \"Principal\" OR \"Architect\") after:2026-05-01</code>",
+      "<strong>Boolean:</strong> <code>\"Salesforce\" AND (\"laid off\" OR \"capacity rebalancing\" OR \"open to work\") AND (\"Bangalore\" OR \"Hyderabad\") AND (\"MuleSoft\" OR \"Staff\" OR \"Principal\" OR \"Architect\") after:2026-06-01</code>",
       "<strong>Differentiate:</strong> Benioff's 'AI replaces engineers' narrative is damaging morale. Intuit's 'AI-amplified engineers' message will resonate strongly with Salesforce alumni."
     ],
     linkedin: "true",
-    ovStats: { cut: "India portion of 2,300", window: "Jun – Oct 2026", wave: "June 2026" }
+    ovStats: { cut: "India portion of 2,300", window: "Jun – Oct 2026", wave: "June 2026 + Jun 13 update" }
   },
 
-  // ── 9. INNOVACCER (NEW) ───────────────────────────────────────────────────────
+  // ── 9. INNOVACCER ────────────────────────────────────────────────────────────
   {
     name: "Innovaccer",
     logoClass: "logo-green",
     logoText: "INN",
     isNew: true,
-    meta: "340 employees cut May 2026 (India + US) · 3rd layoff round in 4 years · AI-native transition per CEO Abhinav Shashank · HealthTech unicorn (healthcare data integration & analytics) · India engineering hub (Noida/Delhi NCR) · Clients: hospitals, insurers, providers",
+    meta: "340 employees cut May 2026 (India + US) · 3rd layoff round in 4 years · AI-native transition per CEO Abhinav Shashank · HealthTech unicorn ($3.45B valuation, $675M raised) · India engineering hub: Noida/Delhi NCR · ESOP buyback ₹600 Cr completed before cuts · Clients: hospitals, insurers, providers",
     urgency: "Source now — 3rd round, engineers anxious",
     urgencyClass: "urgency-amber",
     chips: [
       { text: "340 cut May 2026", cls: "chip-amber" },
       { text: "3rd round in 4 years", cls: "chip-red" },
       { text: "AI-native pivot", cls: "chip-blue" },
-      { text: "HealthTech unicorn", cls: "chip-purple" },
+      { text: "HealthTech unicorn $3.45B", cls: "chip-purple" },
       { text: "Data/Analytics talent", cls: "chip-blue" },
       { text: "Noida/Delhi NCR", cls: "chip-muted" }
     ],
@@ -550,7 +554,7 @@ const companies = [
     ],
     leaders: [
       { initials: "AS", name: "Abhinav Shashank", role: "CEO, Innovaccer", status: "Active", statusCls: "leader-active" },
-      { initials: "KD", name: "Kanav Hasija", role: "CPO, Innovaccer", status: "Watch", statusCls: "leader-watch" }
+      { initials: "KH", name: "Kanav Hasija", role: "CPO, Innovaccer", status: "Watch", statusCls: "leader-watch" }
     ],
     playbook: [
       "<strong>Third-round signal:</strong> Engineers at 3-time layoff companies are actively looking — morale is low, trust is broken. Outreach response rates will be high.",
@@ -561,6 +565,46 @@ const companies = [
     ],
     linkedin: "true",
     ovStats: { cut: "340 (India+US)", window: "May – Nov 2026", wave: "May 2026 (3rd)" }
+  },
+
+  // ── 10. OPENDOOR INDIA (NEW) ─────────────────────────────────────────────────
+  {
+    name: "Opendoor India",
+    logoClass: "logo-rose",
+    logoText: "OPD",
+    isNew: true,
+    meta: "ENTIRE India team of 250 employees shut down June 2026 · Offices: Hyderabad, Bengaluru, Chennai — ALL closed · CEO Kaz Nejatian announced AI replaced India operational workflows · No performance critique — CEO personally recommended affected employees · US-based real estate tech company (NASDAQ: OPEN) · Engineers received transition support + severance",
+    urgency: "SOURCE NOW — Entire team on market",
+    urgencyClass: "urgency-red",
+    chips: [
+      { text: "250 entire India team", cls: "chip-red" },
+      { text: "India operations SHUT", cls: "chip-red" },
+      { text: "June 2026", cls: "chip-red" },
+      { text: "CEO-endorsed talent", cls: "chip-green" },
+      { text: "HYD + BLR + CHN", cls: "chip-muted" },
+      { text: "Severance + outplacement", cls: "chip-amber" },
+      { text: "AI-native pivot", cls: "chip-blue" }
+    ],
+    teams: [
+      { name: "Software/Platform Engineers", pct: 90 },
+      { name: "Data Engineering & Analytics", pct: 85 },
+      { name: "Backend/API Engineers", pct: 88 },
+      { name: "Operations Engineering", pct: 75 },
+      { name: "ML/Workflow Automation Engineers", pct: 80 }
+    ],
+    leaders: [
+      { initials: "KN", name: "Kaz Nejatian", role: "CEO, Opendoor (personally endorsed India team)", status: "Active", statusCls: "leader-active" },
+      { initials: "IL", name: "India Engineering Lead (unknown)", role: "All India leadership exited", status: "Exited", statusCls: "leader-exited" }
+    ],
+    playbook: [
+      "<strong>HIGHEST PRIORITY:</strong> Opendoor shut its ENTIRE India operation in June 2026 — all 250 engineers are simultaneously on the market with CEO endorsement. Act immediately.",
+      "<strong>Rare signal:</strong> CEO Nejatian publicly called them 'great people' and recommended them to other employers. Candidate quality signal is exceptionally high for this pool.",
+      "<strong>Pitch angle:</strong> Opendoor's entire India team was eliminated to cut operational overhead — Intuit offers India-first engineering ownership, not offshore support. Contrast powerfully.",
+      "<strong>Boolean:</strong> <code>\"Opendoor\" AND (\"open to work\" OR \"laid off\" OR \"India operations\") AND (\"Hyderabad\" OR \"Bangalore\" OR \"Chennai\") AND (\"Engineer\" OR \"Staff\" OR \"Principal\" OR \"Lead\") after:2026-06-01</code>",
+      "<strong>Outreach:</strong> Target immediately — all 250 received severance + outplacement. They have runway but are actively interviewing now. Window closes by September 2026."
+    ],
+    linkedin: "true",
+    ovStats: { cut: "250 (entire India ops)", window: "Jun – Sep 2026", wave: "June 2026 (complete shutdown)" }
   }
 
 ]; // end companies array
@@ -615,7 +659,7 @@ function renderCards() {
       </div>
 
       <div class="playbook-section">
-        <div class="playbook-label">📋 Recruiter Playbook — Week of June 22, 2026</div>
+        <div class="playbook-label">📋 Recruiter Playbook — Week of June 24, 2026</div>
         ${co.playbook.map((step, i) => `
           <div class="playbook-step">
             <div class="step-num">${i+1}</div>
