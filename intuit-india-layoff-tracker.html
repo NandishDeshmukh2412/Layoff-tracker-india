@@ -154,19 +154,19 @@
 
 <div class="summary-strip">
   <div class="stat">
-    <div class="stat-val red" id="totalRoles">~16,500+</div>
+    <div class="stat-val red" id="totalRoles">~40,000+</div>
     <div class="stat-lbl">India Roles Cut (2026)</div>
   </div>
   <div class="stat">
-    <div class="stat-val amber" id="activeWindows">6</div>
+    <div class="stat-val amber" id="activeWindows">7</div>
     <div class="stat-lbl">Active Sourcing Windows</div>
   </div>
   <div class="stat">
-    <div class="stat-val" id="nextWave">Q3 2026</div>
-    <div class="stat-lbl">Next Expected Wave</div>
+    <div class="stat-val red" id="nextWave">Intel Jul 15 ⚠️</div>
+    <div class="stat-lbl">Next Confirmed Wave</div>
   </div>
   <div class="stat">
-    <div class="stat-val green" id="companiesTracked">8</div>
+    <div class="stat-val green" id="companiesTracked">9</div>
     <div class="stat-lbl">Companies Tracked</div>
   </div>
 </div>
@@ -197,10 +197,10 @@ const companies = [
     name: 'Oracle India',
     logoClass: 'logo-red',
     logoText: 'OR',
-    meta: '12,000 India exits · Jun 15 2026 final phase · Bengaluru / Hyderabad / Pune',
-    urgency: '🔴 PEAK WINDOW — Final phase complete Jun 15. Talent actively on market NOW.',
-    urgencyClass: 'urgency-red',
-    chips: ['12K India Exits', 'Jun 15 Final Phase', 'Bengaluru', 'Hyderabad', 'Pune', 'AI Restructuring', '$2.1B Reorg', '40% India Workforce Cut'],
+    meta: '12,000 India exits · Final phase complete Jun 15 · 2+ weeks post-cut · Bengaluru / Hyderabad / Pune',
+    urgency: '🟡 ACTIVE — Final phase closed Jun 15. Talent on market ~2 weeks now; top candidates actively evaluating offers. Engage before July end.',
+    urgencyClass: 'urgency-amber',
+    chips: ['12K India Exits', 'Final Phase Complete', 'Jul 2026 Sourcing Window', 'Bengaluru', 'Hyderabad', 'Pune', 'AI Restructuring', '$2.1B Reorg', '40% India Workforce Cut'],
     teams: [
       { name: 'OCI Engineering', desc: 'Cloud infra, distributed systems, SRE', match: 95 },
       { name: 'Database / Autonomous', desc: 'DB architects, autonomous DB engineers', match: 90 },
@@ -212,13 +212,13 @@ const companies = [
       { initials: 'SF', name: 'Safra Catz', role: 'Co-CEO (Global)', status: 'Active', statusClass: 'leader-active' },
     ],
     playbook: [
-      'Run LinkedIn Boolean search for Oracle Bengaluru / Hyderabad SWE Staff+ open to work — filter June 2026.',
-      'Message ex-Oracle cloud engineers directly: "We\'re building Intuit\'s platform for 100M SMBs — your OCI/infra background is directly relevant."',
+      'Run LinkedIn Boolean search for Oracle Bengaluru / Hyderabad SWE Staff+ open to work — filter June–July 2026 tenure end.',
+      'Message ex-Oracle cloud engineers: "We\'re building Intuit\'s platform for 100M SMBs — your OCI/infra background is directly relevant."',
       'Search GitHub for Oracle India contributors to open-source DB / cloud projects; ping via Issues/PRs.',
-      '<em>Time-sensitive:</em> Talent is fielding multiple offers now. Keep JD review + first-round scheduling to 48h SLA.',
-      'Cross-ref Oracle India alumni on Blind for teams specifically impacted (OCI, Fusion, Autonomous DB).',
+      '<em>July window:</em> ~2 weeks post-final-phase — top candidates are interviewing now. Keep JD review + first-round scheduling to 48h SLA.',
+      'Cross-ref Oracle India alumni on Blind for teams specifically impacted (OCI, Fusion, Autonomous DB). Many are comparing offers — Intuit mission + stability is a strong differentiator.',
     ],
-    ovStats: { cut: '12,000', pct: '40%', window: 'Jun–Aug', seniority: 'All levels' },
+    ovStats: { cut: '12,000', pct: '40%', window: 'Jul–Sep 2026', seniority: 'All levels' },
     linkedinSearch: true,
     linkedinQuery: '("Oracle" OR "Oracle India") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Sr. Staff" OR "Senior Staff") ("Bengaluru" OR "Hyderabad" OR "Pune") #opentowork',
   },
@@ -227,10 +227,10 @@ const companies = [
     name: 'Atlassian India',
     logoClass: 'logo-blue',
     logoText: 'AT',
-    meta: '1,600 global cuts · ~900 from engineering · Bengaluru hub · CTO exited Mar 31',
-    urgency: '🔴 HOT — Restructuring wrapping up June 2026. Ex-engineering talent available now.',
-    urgencyClass: 'urgency-red',
-    chips: ['1,600 Global Cuts', '~900 Engineering', 'Bangalore Hub', 'CTO Exited', 'June Completion', 'AI Pivot', '10% Global Workforce', 'JIRA / Confluence Teams'],
+    meta: '1,600 global cuts · ~900 from engineering · Restructuring COMPLETE Jun 30 · Bengaluru hub · CTO exited',
+    urgency: '🟡 ACTIVE — Restructuring completed June 30. July is the prime sourcing window — final paperwork issued, talent now job-searching.',
+    urgencyClass: 'urgency-amber',
+    chips: ['1,600 Global Cuts', '~900 Engineering', 'Bangalore Hub', 'CTO Exited', 'Restructuring Complete Jun 30', 'AI Pivot', '10% Global Workforce', 'JIRA / Confluence Teams', 'July Prime Window'],
     teams: [
       { name: 'Platform / Infra Eng', desc: 'Distributed systems, Kubernetes, observability', match: 95 },
       { name: 'Developer Tooling', desc: 'CI/CD, IDE integrations, developer experience', match: 90 },
@@ -243,12 +243,12 @@ const companies = [
     ],
     playbook: [
       'Target ex-Atlassian Staff / Principal engineers from the Platform and Developer Experience orgs — core Intuit infra fit.',
-      'Reach out via LinkedIn to profiles showing "Atlassian" + Bengaluru with tenure ending Q1 2026.',
+      'Reach out via LinkedIn to profiles showing "Atlassian" + Bengaluru with tenure ending Mar–Jun 2026.',
       'Lead with Intuit\'s developer platform work: "We\'re building the next-gen financial OS for SMBs — similar scale challenges to Jira\'s distributed infra."',
-      '<em>Act before July:</em> Atlassian is issuing final separation paperwork by June 30 — talent will start accepting offers within days.',
-      'Check for Atlassian India ex-employees forming startup clusters or posting about their search on LinkedIn.',
+      '<em>July is prime:</em> Final separation complete June 30 — talent is now actively in the market and making decisions. Prioritise outreach this week.',
+      'Check Blind and LinkedIn for Atlassian India ex-employees posting job searches; many have 4–6 weeks of runway before signing elsewhere.',
     ],
-    ovStats: { cut: '~500 India est.', pct: '~10%', window: 'Mar–Jul', seniority: 'Staff+' },
+    ovStats: { cut: '~500 India est.', pct: '~10%', window: 'Jul–Sep 2026', seniority: 'Staff+' },
     linkedinSearch: true,
     linkedinQuery: '("Atlassian") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Senior Staff Engineer") ("Bengaluru" OR "Bangalore") #opentowork',
   },
@@ -257,10 +257,10 @@ const companies = [
     name: 'Amazon India (AWS)',
     logoClass: 'logo-orange',
     logoText: 'AMZ',
-    meta: '16,000 global cuts · ~1,100+ India · AWS Bedrock team Bengaluru heavily hit',
-    urgency: '🟡 ACTIVE — Cuts ongoing through H1 2026. AWS Bedrock/GenAI team engineers prime targets.',
+    meta: '16,000 global cuts · ~1,100+ India · AWS Bedrock Bengaluru team decimated · H2 hiring plan 11K engineers',
+    urgency: '🟡 ACTIVE — H1 cuts complete. Displaced talent 1–6 months out; some placed, many still evaluating. AWS GenAI engineers remain high-priority targets.',
     urgencyClass: 'urgency-amber',
-    chips: ['16K Global Cuts', '~1,100 India Est.', 'Bengaluru', 'Chennai', 'Hyderabad', 'AWS Bedrock Hit', 'GenAI Teams', 'Jan–Jun 2026'],
+    chips: ['16K Global Cuts', '~1,100 India Est.', 'Bengaluru', 'Chennai', 'Hyderabad', 'AWS Bedrock Hit', 'GenAI Teams', 'H2 2026 Rehire Plan', 'Jan–Jun 2026'],
     teams: [
       { name: 'AWS GenAI / Bedrock', desc: '400 of ~450 Bengaluru Bedrock engineers impacted', match: 98 },
       { name: 'Distributed Systems', desc: 'AWS infra, service mesh, reliability engineers', match: 92 },
@@ -359,11 +359,11 @@ const companies = [
       { initials: 'SN', name: 'Satya Nadella', role: 'CEO Microsoft', status: 'Active · AI-first pivot', statusClass: 'leader-active' },
     ],
     playbook: [
-      '<em>Immediate action:</em> Cuts announced June 4 — contact Azure Bengaluru engineers within 2 weeks while they\'re deciding their next move.',
+      'Cuts were June 4 — now ~4 weeks out. Candidates are in active interview processes; accelerate outreach before they close elsewhere.',
       'Search LinkedIn for "Microsoft" Bengaluru engineers with open-to-work status from June 2026.',
       'Lead with Intuit\'s cloud-first architecture: "We\'re rebuilding financial services on cloud-native infra — your Azure background is directly transferable."',
       'Focus on Staff+ from Azure infrastructure and developer platform teams — highest P5–P7 density.',
-      'Monitor the Microsoft India Blind/LinkedIn posts — employees often signal job search before updating profiles.',
+      '<em>Closing window:</em> 4 weeks post-cut — top candidates will have accepted offers by mid-July. Prioritise this week\'s outreach.',
     ],
     ovStats: { cut: '~1,100 India', pct: '~12%', window: 'Jun–Aug 2026', seniority: 'Mid–Staff' },
     linkedinSearch: true,
@@ -374,10 +374,10 @@ const companies = [
     name: 'Intel India (GCC)',
     logoClass: 'logo-slate',
     logoText: 'IN',
-    meta: '3,200 global cuts Jun 6 2026 · ~700 India · Bengaluru + Hyderabad GCC · Second wave',
-    urgency: '🔴 HOT — Second wave, June 6. Client-computing + foundry engineers on market now.',
+    meta: '~700 India cuts (Jun 6) · THIRD WAVE confirmed Jul 15 2026 · Bengaluru + Hyderabad GCC',
+    urgency: '🔴 CRITICAL — Third round confirmed for July 15. Pre-announcement window open NOW — source engineers before the wave hits.',
     urgencyClass: 'urgency-red',
-    chips: ['~700 India Cuts', 'June 6 2026', 'Second Wave', 'Bengaluru GCC', 'Hyderabad GCC', 'Client Computing', 'Foundry Sales', 'Hardware-to-Software Pivot'],
+    chips: ['~700 India Cuts (Jun)', 'THIRD WAVE Jul 15', '⚠️ Pre-Announcement Window', 'Bengaluru GCC', 'Hyderabad GCC', 'Client Computing', 'Foundry Sales', 'Hardware-to-Software Pivot', '15K Global Cuts Total'],
     teams: [
       { name: 'Client Computing Eng', desc: 'CPU architecture, silicon validation, firmware', match: 72 },
       { name: 'Foundry Pre-Sales', desc: 'Technical solutions, customer engineering', match: 65 },
@@ -388,13 +388,13 @@ const companies = [
       { initials: 'LT', name: 'Lip-Bu Tan', role: 'CEO Intel', status: 'Active · Cost reduction focus', statusClass: 'leader-active' },
     ],
     playbook: [
-      'Target ex-Intel India platform software engineers — deep low-level / performance engineering skills are valuable for Intuit\'s core financial compute.',
-      'Intel engineers undergoing a hardware→software career shift are highly motivated. Lead with growth narrative.',
-      'Focus on Bengaluru Data Center and Cloud platform teams — strongest overlap with Intuit\'s infra needs.',
-      '<em>Second wave context:</em> Morale is low after two rounds. Stability and mission-driven work are strong selling points.',
-      'Look for Intel alumni forming informal study groups or attending AWS/GCP cert courses — early signal of intent to move to software-first roles.',
+      '<em>Act before Jul 15:</em> Third wave confirmed — reach Intel engineers NOW before they receive notifications. Pre-announcement outreach yields highest response rates.',
+      'Target platform software and Data Center teams from the Bengaluru GCC — hardware-to-cloud transition engineers are highly receptive.',
+      'Intel morale is severely damaged after three rounds. Lead with Intuit\'s mission, stability, and India growth trajectory.',
+      'After Jul 15, expect a surge in Intel profiles going open-to-work — set LinkedIn saved searches to alert immediately.',
+      'Intel engineers pivoting to software roles often pursue AWS/GCP certs — target those in certification communities too.',
     ],
-    ovStats: { cut: '~700 India', pct: 'GCC wave', window: 'Jun–Sep 2026', seniority: 'Mid–Staff' },
+    ovStats: { cut: '~700+ India', pct: 'GCC wave', window: 'Jul 2026 CRITICAL', seniority: 'Mid–Staff' },
     linkedinSearch: true,
     linkedinQuery: '("Intel" OR "Intel India") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Senior Software Engineer") ("Bengaluru" OR "Bangalore" OR "Hyderabad") #opentowork',
   },
@@ -417,8 +417,8 @@ const companies = [
       { initials: 'MB', name: 'Marc Benioff', role: 'CEO Salesforce', status: 'Active · Agentforce pivot', statusClass: 'leader-active' },
     ],
     playbook: [
-      '<em>Immediate:</em> Target ex-MuleSoft and Customer Success engineers — they often have deep API/integration + financial-services customer domain experience.',
-      'Reach out within 2 weeks of June 10 announcement for best conversion rates.',
+      'Cuts were June 7–10 — now ~3 weeks out. Window remains hot; target ex-MuleSoft and Customer Success engineers with API/integration + financial-services experience.',
+      '<em>Closing fast:</em> Best conversion window is 2–4 weeks post-cut — act this week before candidates accept competing offers.',
       'Message: "Intuit is building the AI-native financial platform for SMBs — your integration/API engineering background is directly applicable."',
       'Salesforce India has offices in Hyderabad, Bengaluru, Mumbai, Pune — run location-specific searches for each.',
       'Look for engineers who were in Agentforce-adjacent roles but not picked for the new AI teams — they have AI context + are now available.',
@@ -426,6 +426,36 @@ const companies = [
     ovStats: { cut: '~400 India', pct: '~17%', window: 'Jun–Aug 2026', seniority: 'Mid–Staff' },
     linkedinSearch: true,
     linkedinQuery: '("Salesforce" OR "MuleSoft" OR "Tableau") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Senior Software Engineer" OR "Staff MTS") ("Bengaluru" OR "Bangalore" OR "Hyderabad" OR "Mumbai" OR "Pune") #opentowork',
+  },
+  {
+    id: 'tcs',
+    name: 'TCS / Indian IT (Big 4)',
+    logoClass: 'logo-teal',
+    logoText: 'IT4',
+    meta: '23,460 TCS FY26 cuts + 12,000 more mid/senior planned · 7,700+ with 15+ yr exp across TCS, Infosys, Wipro, HCL, Cognizant',
+    urgency: '🟡 ACTIVE — Sustained multi-company wave. 7,700+ senior engineers (15+ yrs exp) displaced. Long sourcing window through FY27.',
+    urgencyClass: 'urgency-amber',
+    chips: ['23,460 TCS FY26 Cuts', '12K More Planned', '7,700+ Senior Exits', 'Infosys 950+ Fired', 'Wipro Restructuring', 'HCL Cuts', 'Cognizant Cuts', '15+ Yr Experience Pool', 'AI / PIP-Driven', 'Pan-India'],
+    teams: [
+      { name: 'Enterprise Platform Eng', desc: 'Java/Spring, microservices, cloud migration seniors', match: 82 },
+      { name: 'Data / Analytics', desc: 'Data engineering, BI, warehousing — 15+ yr profiles', match: 78 },
+      { name: 'Cloud / DevOps', desc: 'AWS/Azure/GCP-certified engineers exiting bench', match: 85 },
+      { name: 'Fintech / BFSI Domain', desc: 'Engineers with banking/fintech client experience', match: 92 },
+    ],
+    leaders: [
+      { initials: 'KK', name: 'K Krithivasan', role: 'CEO, TCS', status: 'Active · Cost + AI reorg', statusClass: 'leader-active' },
+      { initials: 'SP', name: 'Salil Parekh', role: 'CEO, Infosys', status: 'Active · PIP-led exits', statusClass: 'leader-active' },
+    ],
+    playbook: [
+      'Target BFSI / fintech-domain engineers from TCS, Infosys, Wipro with 8–15 years experience — they know financial services deeply, which maps perfectly to Intuit\'s SMB focus.',
+      'Source from bench-release pool: engineers on PIP or "performance exits" often have strong skills but fell into utilisation gaps — worth evaluating individually.',
+      'Lead pitch: "Move from services delivery to building your own product — own the architecture, not just implement it." This resonates strongly with IT services talent.',
+      'Use domain expertise as the hook: Intuit India works on real-money financial products for 100M+ users — meaningfully different from IT services project work.',
+      '<em>Long window:</em> TCS has 12,000 more mid/senior cuts planned — this talent pool will refresh through FY27. Set up ongoing LinkedIn search alerts.',
+    ],
+    ovStats: { cut: '23,460+ TCS', pct: '~2% TCS', window: 'FY26–FY27', seniority: 'Mid–Senior (15+ yr)' },
+    linkedinSearch: true,
+    linkedinQuery: '("TCS" OR "Tata Consultancy" OR "Infosys" OR "Wipro" OR "HCL Technologies" OR "Cognizant") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Architect" OR "Tech Lead" OR "Senior Engineer") ("Bengaluru" OR "Bangalore" OR "Hyderabad" OR "Pune" OR "Chennai") #opentowork',
   },
 ];
 
@@ -439,6 +469,7 @@ const logoColorMap = {
   microsoft: 'background: linear-gradient(135deg,#00a4ef,#0078d4)',
   intel: 'background: linear-gradient(135deg,#0171c5,#003c71)',
   salesforce: 'background: linear-gradient(135deg,#00a1e0,#1798c1)',
+  tcs: 'background: linear-gradient(135deg,#1a1a5e,#2563eb)',
 };
 
 let activeUrgency = 'all';
