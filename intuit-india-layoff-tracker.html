@@ -154,11 +154,11 @@
 
 <div class="summary-strip">
   <div class="stat">
-    <div class="stat-val red" id="totalRoles">~40,000+</div>
+    <div class="stat-val red" id="totalRoles">~42,000+</div>
     <div class="stat-lbl">India Roles Cut (2026)</div>
   </div>
   <div class="stat">
-    <div class="stat-val amber" id="activeWindows">7</div>
+    <div class="stat-val amber" id="activeWindows">13</div>
     <div class="stat-lbl">Active Sourcing Windows</div>
   </div>
   <div class="stat">
@@ -166,7 +166,7 @@
     <div class="stat-lbl">Next Confirmed Wave</div>
   </div>
   <div class="stat">
-    <div class="stat-val green" id="companiesTracked">9</div>
+    <div class="stat-val green" id="companiesTracked">13</div>
     <div class="stat-lbl">Companies Tracked</div>
   </div>
 </div>
@@ -197,10 +197,10 @@ const companies = [
     name: 'Oracle India',
     logoClass: 'logo-red',
     logoText: 'OR',
-    meta: '12,000 India exits · Final phase complete Jun 15 · 2+ weeks post-cut · Bengaluru / Hyderabad / Pune',
-    urgency: '🟡 ACTIVE — Final phase closed Jun 15. Talent on market ~2 weeks now; top candidates actively evaluating offers. Engage before July end.',
+    meta: '12,000 India exits · Final phase complete Jun 15 · ~2.5 weeks post-cut · FY26 filing flags more AI-driven cuts ahead · Bengaluru / Hyderabad / Pune',
+    urgency: '🟡 ACTIVE — Final phase closed Jun 15; window narrowing (~2.5 weeks out). Oracle\'s FY26 filing warns "further job reductions could follow" as AI reshapes ops — stay engaged for a possible second wave.',
     urgencyClass: 'urgency-amber',
-    chips: ['12K India Exits', 'Final Phase Complete', 'Jul 2026 Sourcing Window', 'Bengaluru', 'Hyderabad', 'Pune', 'AI Restructuring', '$2.1B Reorg', '40% India Workforce Cut'],
+    chips: ['12K India Exits', 'Final Phase Complete', 'Window Narrowing', 'Bengaluru', 'Hyderabad', 'Pune', 'AI Restructuring', 'FY26: More Cuts Warned', '40% India Workforce Cut'],
     teams: [
       { name: 'OCI Engineering', desc: 'Cloud infra, distributed systems, SRE', match: 95 },
       { name: 'Database / Autonomous', desc: 'DB architects, autonomous DB engineers', match: 90 },
@@ -215,8 +215,9 @@ const companies = [
       'Run LinkedIn Boolean search for Oracle Bengaluru / Hyderabad SWE Staff+ open to work — filter June–July 2026 tenure end.',
       'Message ex-Oracle cloud engineers: "We\'re building Intuit\'s platform for 100M SMBs — your OCI/infra background is directly relevant."',
       'Search GitHub for Oracle India contributors to open-source DB / cloud projects; ping via Issues/PRs.',
-      '<em>July window:</em> ~2 weeks post-final-phase — top candidates are interviewing now. Keep JD review + first-round scheduling to 48h SLA.',
+      '<em>Window closing:</em> ~4 weeks since layoffs began, ~2.5 weeks since final phase — top candidates are finalizing offers now. Keep JD review + first-round scheduling to 48h SLA.',
       'Cross-ref Oracle India alumni on Blind for teams specifically impacted (OCI, Fusion, Autonomous DB). Many are comparing offers — Intuit mission + stability is a strong differentiator.',
+      'Watch for a possible second wave: Oracle\'s FY26 SEC filing explicitly flags further AI-driven job reductions — set a standing LinkedIn alert for new Oracle India exits.',
     ],
     ovStats: { cut: '12,000', pct: '40%', window: 'Jul–Sep 2026', seniority: 'All levels' },
     linkedinSearch: true,
@@ -227,10 +228,10 @@ const companies = [
     name: 'Atlassian India',
     logoClass: 'logo-blue',
     logoText: 'AT',
-    meta: '1,600 global cuts · ~900 from engineering · Restructuring COMPLETE Jun 30 · Bengaluru hub · CTO exited',
-    urgency: '🟡 ACTIVE — Restructuring completed June 30. July is the prime sourcing window — final paperwork issued, talent now job-searching.',
-    urgencyClass: 'urgency-amber',
-    chips: ['1,600 Global Cuts', '~900 Engineering', 'Bangalore Hub', 'CTO Exited', 'Restructuring Complete Jun 30', 'AI Pivot', '10% Global Workforce', 'JIRA / Confluence Teams', 'July Prime Window'],
+    meta: '1,600 global cuts · ~900 from engineering · Restructuring completed Jun 30 (yesterday) · Bengaluru hub · CTO role split between 2 successors',
+    urgency: '🔴 HOT — Restructuring completed June 30, just 1 day ago. Bengaluru R&D talent hitting the market right now — peak sourcing window opens this week.',
+    urgencyClass: 'urgency-red',
+    chips: ['1,600 Global Cuts', '~900 Engineering', 'Bangalore Hub', 'Restructuring Complete Jun 30', 'Fresh: 1 Day Out', 'AI Pivot', '10% Global Workforce', 'JIRA / Confluence Teams', 'Peak Window Now'],
     teams: [
       { name: 'Platform / Infra Eng', desc: 'Distributed systems, Kubernetes, observability', match: 95 },
       { name: 'Developer Tooling', desc: 'CI/CD, IDE integrations, developer experience', match: 90 },
@@ -239,14 +240,16 @@ const companies = [
     ],
     leaders: [
       { initials: 'RR', name: 'Rajeev Rajan', role: 'Former CTO', status: 'Exited Mar 31 2026', statusClass: 'leader-exited' },
+      { initials: 'TM', name: 'Taroon Mandhana', role: 'CTO, Teamwork (successor)', status: 'Active · internal promotion', statusClass: 'leader-active' },
+      { initials: 'VR', name: 'Vikram Rao', role: 'CTO, Enterprise & Chief Trust Officer (successor)', status: 'Active · internal promotion', statusClass: 'leader-active' },
       { initials: 'MCB', name: 'Mike Cannon-Brookes', role: 'CEO', status: 'Active · Announced cuts Mar 11', statusClass: 'leader-active' },
     ],
     playbook: [
       'Target ex-Atlassian Staff / Principal engineers from the Platform and Developer Experience orgs — core Intuit infra fit.',
       'Reach out via LinkedIn to profiles showing "Atlassian" + Bengaluru with tenure ending Mar–Jun 2026.',
       'Lead with Intuit\'s developer platform work: "We\'re building the next-gen financial OS for SMBs — similar scale challenges to Jira\'s distributed infra."',
-      '<em>July is prime:</em> Final separation complete June 30 — talent is now actively in the market and making decisions. Prioritise outreach this week.',
-      'Check Blind and LinkedIn for Atlassian India ex-employees posting job searches; many have 4–6 weeks of runway before signing elsewhere.',
+      '<em>Peak window now:</em> Restructuring completed June 30, just yesterday — talent is only now entering the market. Move fastest here of any tracked company this week.',
+      'CTO role was split between two internal successors (Mandhana, Rao), not backfilled externally — signals no incoming senior leadership hires from outside; the opportunity is entirely at the IC/Staff+ level.',
     ],
     ovStats: { cut: '~500 India est.', pct: '~10%', window: 'Jul–Sep 2026', seniority: 'Staff+' },
     linkedinSearch: true,
@@ -257,8 +260,8 @@ const companies = [
     name: 'Amazon India (AWS)',
     logoClass: 'logo-orange',
     logoText: 'AMZ',
-    meta: '16,000 global cuts · ~1,100+ India · AWS Bedrock Bengaluru team decimated · H2 hiring plan 11K engineers',
-    urgency: '🟡 ACTIVE — H1 cuts complete. Displaced talent 1–6 months out; some placed, many still evaluating. AWS GenAI engineers remain high-priority targets.',
+    meta: '16,000 global cuts · ~1,100+ India · AWS Bedrock Bengaluru team hit hard (AWS disputes exact scale) · H2 hiring plan 11K engineers',
+    urgency: '🟡 ACTIVE — H1 cuts complete. Displaced talent 1–6 months out; some placed, many still evaluating. AWS GenAI engineers remain high-priority targets. Note: AWS has publicly disputed the "400 of 450 Bedrock engineers" figure as inflated — verify specifics per candidate.',
     urgencyClass: 'urgency-amber',
     chips: ['16K Global Cuts', '~1,100 India Est.', 'Bengaluru', 'Chennai', 'Hyderabad', 'AWS Bedrock Hit', 'GenAI Teams', 'H2 2026 Rehire Plan', 'Jan–Jun 2026'],
     teams: [
@@ -286,8 +289,8 @@ const companies = [
     name: 'Flipkart',
     logoClass: 'logo-yellow',
     logoText: 'FK',
-    meta: '500 India cuts · IPO prep · SVP headcount reduced from 18→<12 · Bengaluru HQ',
-    urgency: '🟡 ACTIVE — IPO-driven cost-cutting. Senior leadership exodus creates Staff+ gaps worth exploring.',
+    meta: '500 India cuts · IPO prep · SVP headcount reduced from 18→<12 · New "OneTech" AI-first org unifies eng/product/data · Bengaluru HQ',
+    urgency: '🟡 ACTIVE — IPO-driven cost-cutting continues alongside selective AI-platform leadership hiring (OneTech). Senior leadership exodus creates Staff+ gaps worth exploring.',
     urgencyClass: 'urgency-amber',
     chips: ['500 Jobs Cut', 'IPO Preparation', 'SVP Count Reduced', 'Engineering + Marketing', 'Bengaluru HQ', 'Walmart-Owned', 'Perf-Based Exits', '3–4% Workforce'],
     teams: [
@@ -299,6 +302,7 @@ const companies = [
     leaders: [
       { initials: 'KV', name: 'Kalyan Krishnamurthy', role: 'CEO Flipkart', status: 'Active', statusClass: 'leader-active' },
       { initials: 'SVP', name: 'Multiple SVPs', role: 'Senior VP layer', status: 'Reduced: 18 → <12 (2026)', statusClass: 'leader-exited' },
+      { initials: 'SO', name: 'Smita Ojha', role: 'VP Engineering, Central Platforms Group (new hire)', status: 'Active · leads OneTech push', statusClass: 'leader-active' },
     ],
     playbook: [
       'Target ex-Flipkart Staff Engineers from the OneTech (platform) org — high-scale commerce infra maps directly to Intuit\'s platform needs.',
@@ -316,10 +320,10 @@ const companies = [
     name: 'Gupshup',
     logoClass: 'logo-pink',
     logoText: 'GS',
-    meta: '500+ India cuts across rounds · Valuation dropped 80% to ~$280–300M · IPO delayed',
-    urgency: '🟡 ACTIVE — Ongoing distress signals. Repeated cuts = sustained talent availability window.',
-    urgencyClass: 'urgency-amber',
-    chips: ['500+ Layoffs 2024–26', '80% Valuation Drop', 'IPO Delayed', 'No Severance', 'Revenue Decline', 'Fintech / CPaaS', 'Mumbai / Bangalore', 'Unicorn → Distressed'],
+    meta: '800+ India cuts across 3 rounds (500 → 200 → 100+ most recent) · Valuation dropped 80% to ~$280–300M · IPO still delayed',
+    urgency: '🔴 HOT — Third layoff round (100+) just confirmed within the past 1–2 weeks, on top of two prior rounds. No severance for those declining the 60-day notice — high financial urgency to move.',
+    urgencyClass: 'urgency-red',
+    chips: ['800+ Layoffs Across 3 Rounds', 'Fresh Round: <2 Weeks Ago', '80% Valuation Drop', 'IPO Delayed', 'No Severance', 'Revenue Decline', 'Fintech / CPaaS', 'Mumbai / Bangalore', 'Unicorn → Distressed'],
     teams: [
       { name: 'Conversational AI', desc: 'NLP, chatbot infra, LLM fine-tuning engineers', match: 92 },
       { name: 'Platform / API Infra', desc: 'CPaaS platform, messaging infra, API gateway', match: 85 },
@@ -332,11 +336,11 @@ const companies = [
     playbook: [
       'Target Gupshup\'s conversational AI engineers — direct experience with LLM-powered customer interactions, perfect for Intuit Assist.',
       'Lead with stability pitch: "Intuit has been profitable for 30+ years — this is a chance to build AI at scale without funding uncertainty."',
-      'Gupshup did not offer severance — talent is financially motivated to move quickly. Expedite offer process.',
+      'Gupshup did not offer severance to staff declining the 60-day notice — talent is financially motivated to move quickly. Expedite offer process.',
       'Look for engineers from Gupshup\'s India unit (60% of revenue comes from India ops) — they understand SMB/financial services domain.',
-      '<em>Urgency:</em> Company may face further distress in H2 2026 if IPO stays delayed. Monitor Fidelity valuation updates.',
+      '<em>Urgency — act now:</em> Third round (100+ cuts) just hit within the past 1–2 weeks, three rounds in under 18 months. This is the freshest and most active window yet — prioritise this week.',
     ],
-    ovStats: { cut: '500+', pct: '>25%', window: 'Dec 2024–mid 2026', seniority: 'All levels' },
+    ovStats: { cut: '800+', pct: '>35% cumulative', window: 'Dec 2024–Jul 2026 (3 rounds)', seniority: 'All levels' },
     linkedinSearch: true,
     linkedinQuery: '("Gupshup") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Senior Engineer" OR "Tech Lead") ("Bengaluru" OR "Bangalore" OR "Mumbai") #opentowork',
   },
@@ -345,10 +349,10 @@ const companies = [
     name: 'Microsoft India',
     logoClass: 'logo-teal',
     logoText: 'MS',
-    meta: '9,000 global cuts Jun 4 2026 · ~1,100 India · Azure Bengaluru + Hyderabad Sales Eng',
-    urgency: '🔴 HOT — Cuts announced June 4. Talent shock fresh — engage within 30 days for best response rates.',
-    urgencyClass: 'urgency-red',
-    chips: ['9K Global Cuts', '~1,100 India', 'June 4 2026', 'Azure Bengaluru', 'Hyderabad Sales Eng', 'India Dev Center', 'GCC Impacted', 'AI Reorg'],
+    meta: '9,000 global cuts Jun 4 2026 · ~1,100 India · ~4 weeks post-cut · Azure Bengaluru + Hyderabad Sales Eng',
+    urgency: '🟡 ACTIVE — Cuts now ~4 weeks old; the acute shock window has passed but many candidates remain in 60–90 day notice/severance periods and are actively sourceable.',
+    urgencyClass: 'urgency-amber',
+    chips: ['9K Global Cuts', '~1,100 India', 'June 4 2026', '4 Weeks Post-Cut', 'Azure Bengaluru', 'Hyderabad Sales Eng', 'India Dev Center', 'GCC Impacted', 'AI Reorg'],
     teams: [
       { name: 'Azure Bengaluru', desc: 'Cloud infra, Azure services, platform engineering', match: 95 },
       { name: 'Sales Engineering', desc: 'Solutions architects, technical sales eng (Hyd)', match: 72 },
@@ -359,7 +363,7 @@ const companies = [
       { initials: 'SN', name: 'Satya Nadella', role: 'CEO Microsoft', status: 'Active · AI-first pivot', statusClass: 'leader-active' },
     ],
     playbook: [
-      'Cuts were June 4 — now ~4 weeks out. Candidates are in active interview processes; accelerate outreach before they close elsewhere.',
+      'Cuts were June 4 — now ~4 weeks out. Most candidates are in notice/severance periods (60–90 days) and remain reachable, but many are already in active interview processes elsewhere — move promptly.',
       'Search LinkedIn for "Microsoft" Bengaluru engineers with open-to-work status from June 2026.',
       'Lead with Intuit\'s cloud-first architecture: "We\'re rebuilding financial services on cloud-native infra — your Azure background is directly transferable."',
       'Focus on Staff+ from Azure infrastructure and developer platform teams — highest P5–P7 density.',
@@ -374,8 +378,8 @@ const companies = [
     name: 'Intel India (GCC)',
     logoClass: 'logo-slate',
     logoText: 'IN',
-    meta: '~700 India cuts (Jun 6) · THIRD WAVE confirmed Jul 15 2026 · Bengaluru + Hyderabad GCC',
-    urgency: '🔴 CRITICAL — Third round confirmed for July 15. Pre-announcement window open NOW — source engineers before the wave hits.',
+    meta: '~700 India cuts (Jun 6, second wave) hit Bengaluru client-computing + Hyderabad Foundry pre-sales · THIRD WAVE confirmed on-track for Jul 15 2026 · just 2 weeks out',
+    urgency: '🔴 CRITICAL — Third round still confirmed and on track for July 15 — now only 2 weeks away, no signs of delay. Pre-announcement window open NOW — source engineers before the wave hits.',
     urgencyClass: 'urgency-red',
     chips: ['~700 India Cuts (Jun)', 'THIRD WAVE Jul 15', '⚠️ Pre-Announcement Window', 'Bengaluru GCC', 'Hyderabad GCC', 'Client Computing', 'Foundry Sales', 'Hardware-to-Software Pivot', '15K Global Cuts Total'],
     teams: [
@@ -388,7 +392,7 @@ const companies = [
       { initials: 'LT', name: 'Lip-Bu Tan', role: 'CEO Intel', status: 'Active · Cost reduction focus', statusClass: 'leader-active' },
     ],
     playbook: [
-      '<em>Act before Jul 15:</em> Third wave confirmed — reach Intel engineers NOW before they receive notifications. Pre-announcement outreach yields highest response rates.',
+      '<em>Act before Jul 15:</em> Third wave confirmed and on-track, now just 2 weeks away — reach Intel engineers NOW before they receive notifications. Pre-announcement outreach yields highest response rates.',
       'Target platform software and Data Center teams from the Bengaluru GCC — hardware-to-cloud transition engineers are highly receptive.',
       'Intel morale is severely damaged after three rounds. Lead with Intuit\'s mission, stability, and India growth trajectory.',
       'After Jul 15, expect a surge in Intel profiles going open-to-work — set LinkedIn saved searches to alert immediately.',
@@ -403,9 +407,9 @@ const companies = [
     name: 'Salesforce India',
     logoClass: 'logo-violet',
     logoText: 'SF',
-    meta: '2,300 global cuts Jun 7–10 2026 · ~400 India · Customer success + MuleSoft + delivery deprioritized',
-    urgency: '🔴 HOT — Cuts June 7–10. Agentforce reorg displaces customer-success-aligned engineers.',
-    urgencyClass: 'urgency-red',
+    meta: '2,300 global cuts Jun 7–10 2026 · ~400 India · ~3-4 weeks post-cut · Customer success + MuleSoft + delivery deprioritized',
+    urgency: '🟡 ACTIVE — Cuts were June 7–10, now ~3-4 weeks out; acute window closing but ongoing AI-first reorg keeps risk of further rounds elevated.',
+    urgencyClass: 'urgency-amber',
     chips: ['2,300 Global Cuts', '~400 India', 'Jun 7–10 2026', 'Agentforce Reorg', 'MuleSoft Impacted', 'Customer Success Cut', 'Bengaluru', 'Hyderabad', 'Pune', 'Mumbai'],
     teams: [
       { name: 'MuleSoft Integration', desc: 'API integration, ESB, middleware platform engineers', match: 88 },
@@ -457,6 +461,119 @@ const companies = [
     linkedinSearch: true,
     linkedinQuery: '("TCS" OR "Tata Consultancy" OR "Infosys" OR "Wipro" OR "HCL Technologies" OR "Cognizant") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Architect" OR "Tech Lead" OR "Senior Engineer") ("Bengaluru" OR "Bangalore" OR "Hyderabad" OR "Pune" OR "Chennai") #opentowork',
   },
+  {
+    id: 'hyvee',
+    name: 'Hy-Vee India (GCC)',
+    logoClass: 'logo-red',
+    logoText: 'HV',
+    meta: 'Entire India engineering center shut · ~150 engineers cut overnight Jun 29 · Zero advance notice · India GCC',
+    urgency: '🔴 CRITICAL — Entire India tech hub shut via a single Teams call on Jun 29 (2 days ago). Full team hit the market simultaneously with zero notice — maximum flight risk and availability.',
+    urgencyClass: 'urgency-red',
+    chips: ['NEW', '150 Engineers Cut', 'Entire India Center Shut', 'Zero Notice', 'Jun 29 2026', 'Severance Disputed', 'US Grocery Chain GCC', 'Director Networking Publicly'],
+    teams: [
+      { name: 'Backend / Platform Eng', desc: 'Core GCC engineering team, full-stack + platform', match: 90 },
+      { name: 'Engineering Leadership', desc: 'Director-level and team leads who ran the India GCC', match: 85 },
+      { name: 'Data / Analytics', desc: 'Retail data engineering typical of a grocery-chain GCC', match: 75 },
+    ],
+    leaders: [
+      { initials: 'AG', name: 'Amit Goel', role: 'Director of Engineering, India', status: 'Exited Jun 29 2026 · networking for team', statusClass: 'leader-exited' },
+    ],
+    playbook: [
+      'Priority #1: Reach out via Amit Goel\'s (ex-Director of Engineering) LinkedIn post — he is actively helping his former team find roles, making this the warmest possible intro.',
+      'The entire India engineering center closed in one meeting — assume the whole team across levels is job-searching simultaneously; move within days, not weeks.',
+      'Lead with stability messaging: "Intuit has been profitable for 30+ years — no risk of a single-call shutdown."',
+      '<em>Act this week:</em> Reports of zero severance notice mean candidates face urgent financial pressure — fast-track interview loops.',
+      'Search LinkedIn for "Hy-Vee" + India engineering profiles marked #opentowork since Jun 29 2026.',
+    ],
+    ovStats: { cut: '~150', pct: '100% (site closed)', window: 'Jul 2026', seniority: 'All levels' },
+    linkedinSearch: true,
+    linkedinQuery: '("Hy-Vee") (site:linkedin.com/in) ("Software Engineer" OR "Staff Engineer" OR "Engineering Manager" OR "Director of Engineering") ("India" OR "Bengaluru" OR "Bangalore") #opentowork',
+  },
+  {
+    id: 'opendoor',
+    name: 'Opendoor India',
+    logoClass: 'logo-teal',
+    logoText: 'OD',
+    meta: '250 India employees cut · Entire Hyderabad + Bengaluru sites wound down · Severance provided · Jun 2026',
+    urgency: '🔴 HOT — Full India team of 250 laid off with structured severance/outplacement. Clean, fast exits mean candidates are immediately available and unencumbered.',
+    urgencyClass: 'urgency-red',
+    chips: ['NEW', '250 India Employees Cut', 'Full Site Closure', 'Hyderabad + Bengaluru', 'Severance Provided', 'US Real-Estate Tech', 'AI-Native Consolidation', 'Jun 2026'],
+    teams: [
+      { name: 'Product Engineering', desc: 'Full-stack product eng standing up India ops since 2024', match: 92 },
+      { name: 'Data Engineering', desc: 'Pricing/data pipelines for real-estate platform', match: 85 },
+      { name: 'Platform / Infra', desc: 'Cloud infra supporting the US-facing product', match: 82 },
+    ],
+    leaders: [
+      { initials: 'SL', name: 'Site Leadership', role: 'Hyderabad / Bengaluru site leads', status: 'Exited Jun 2026', statusClass: 'leader-exited' },
+    ],
+    playbook: [
+      'Target ex-Opendoor India product and data engineers from the Hyderabad and Bengaluru sites — both fully closed, so the entire local bench is available.',
+      'Severance + outplacement support means candidates are calm and evaluating rather than panicked — pitch mission and stability over urgency.',
+      'Search LinkedIn for "Opendoor" + Hyderabad/Bengaluru, filtering for exits dated June 2026.',
+      'Message with specificity: "Intuit\'s SMB fintech platform has the same real-time pricing/data-scale challenges as Opendoor\'s home-valuation engine."',
+      '<em>Window:</em> Structured exit with severance gives a slightly longer runway than "no notice" shutdowns — still prioritize outreach within 4–6 weeks.',
+    ],
+    ovStats: { cut: '250', pct: '100% (sites closed)', window: 'Jul–Aug 2026', seniority: 'Mid–Staff' },
+    linkedinSearch: true,
+    linkedinQuery: '("Opendoor") (site:linkedin.com/in) ("Software Engineer" OR "Staff Engineer" OR "Data Engineer" OR "Senior Engineer") ("Hyderabad" OR "Bengaluru" OR "Bangalore") #opentowork',
+  },
+  {
+    id: 'mpl',
+    name: 'Mobile Premier League (MPL)',
+    logoClass: 'logo-orange',
+    logoText: 'MPL',
+    meta: '~300 of 500 India staff cut (60%) · Real-money gaming ban ends India revenue · Engineering hit hard',
+    urgency: '🔴 CRITICAL — Regulatory ban eliminated India revenue entirely; CEO confirms no India revenue ahead. Engineering org effectively winding down — act immediately.',
+    urgencyClass: 'urgency-red',
+    chips: ['NEW', '300 of 500 Cut (60%)', 'Real-Money Gaming Ban', 'No India Revenue Ahead', 'CEO Confirmed via Memo', 'Gaming / Backend Eng', 'Regulatory-Driven Collapse'],
+    teams: [
+      { name: 'Backend / Scale Eng', desc: 'Real-time gaming backend, high-concurrency systems', match: 95 },
+      { name: 'Anti-Fraud / Risk Eng', desc: 'Fraud detection for real-money transactions', match: 88 },
+      { name: 'Mobile App Eng', desc: 'Android/iOS gaming app engineering', match: 82 },
+      { name: 'Data Engineering', desc: 'Real-time analytics, player-behavior data pipelines', match: 80 },
+    ],
+    leaders: [
+      { initials: 'SS', name: 'Sai Srinivas', role: 'CEO, MPL', status: 'Active · confirmed no India revenue ahead', statusClass: 'leader-active' },
+    ],
+    playbook: [
+      'Target backend/scale engineers who built MPL\'s real-time, high-concurrency gaming infra — directly transferable to Intuit\'s high-traffic financial platforms.',
+      'This is a regulatory-driven, irreversible collapse — nearly the entire India engineering org is or will be redundant; cast a wide net.',
+      'Anti-fraud/risk engineers are especially valuable — real-money-transaction fraud detection maps closely to fintech risk engineering.',
+      'Lead with mission stability: "Move from a banned business model to a regulated, 30-year-profitable fintech platform."',
+      '<em>Act now:</em> CEO has publicly confirmed no future India revenue — remaining engineers know their roles aren\'t durable and are likely already looking.',
+    ],
+    ovStats: { cut: '~300', pct: '60%', window: 'Jul 2026', seniority: 'Mid–Staff' },
+    linkedinSearch: true,
+    linkedinQuery: '("Mobile Premier League" OR "MPL") (site:linkedin.com/in) ("Software Engineer" OR "Staff Engineer" OR "Backend Engineer" OR "SDE") ("Bengaluru" OR "Bangalore" OR "India") #opentowork',
+  },
+  {
+    id: 'innovaccer',
+    name: 'Innovaccer',
+    logoClass: 'logo-blue',
+    logoText: 'INV',
+    meta: '340 roles cut India+US (May 2026) · Third restructuring round in 4 years · Healthtech AI unicorn, $3.45B valuation',
+    urgency: '🟡 ACTIVE — Third layoff round in four years signals sustained instability despite unicorn valuation. Engineers increasingly receptive even without personally being cut.',
+    urgencyClass: 'urgency-amber',
+    chips: ['NEW', '340 Roles Cut (India+US)', '3rd Round in 4 Years', '$3.45B Valuation', 'AI-Native Restructuring', 'Healthtech Data Platform', 'India-Founded Unicorn', 'May 2026'],
+    teams: [
+      { name: 'Data / ML Engineering', desc: 'Healthcare data platform, ML pipelines, FHIR infra', match: 92 },
+      { name: 'Platform Engineering', desc: 'Core data platform, distributed systems', match: 88 },
+      { name: 'Product Engineering', desc: 'Provider/payer-facing product engineering', match: 78 },
+    ],
+    leaders: [
+      { initials: 'AS', name: 'Abhinav Shashank', role: 'CEO, Innovaccer', status: 'Active · communicated cuts via internal memo', statusClass: 'leader-active' },
+    ],
+    playbook: [
+      'Target Staff+ data/ML engineers from Innovaccer\'s healthcare data platform — strong fit for Intuit\'s AI/data infra needs.',
+      'Repeated restructuring (3rd round in 4 years) means even engineers who survived this round are receptive to stability-focused outreach.',
+      'Lead with: "Move from repeated restructuring cycles to a 30+ year profitable company investing in AI, not cutting because of it."',
+      'Search LinkedIn for "Innovaccer" + Noida/Bengaluru engineers with tenure gaps or exits dated around May 2026.',
+      '<em>Passive pipeline:</em> Build relationships now — a 4th round is plausible given the pattern; be first to reach out when it happens.',
+    ],
+    ovStats: { cut: '~340 (India+US)', pct: 'Undisclosed split', window: 'Ongoing (May 2026 round)', seniority: 'Staff+' },
+    linkedinSearch: true,
+    linkedinQuery: '("Innovaccer") (site:linkedin.com/in) ("Staff Engineer" OR "Principal Engineer" OR "Senior Data Engineer" OR "ML Engineer") ("Noida" OR "Bengaluru" OR "Bangalore") #opentowork',
+  },
 ];
 
 // Custom logo colors (overrides for companies needing non-standard colors)
@@ -470,6 +587,10 @@ const logoColorMap = {
   intel: 'background: linear-gradient(135deg,#0171c5,#003c71)',
   salesforce: 'background: linear-gradient(135deg,#00a1e0,#1798c1)',
   tcs: 'background: linear-gradient(135deg,#1a1a5e,#2563eb)',
+  hyvee: 'background: linear-gradient(135deg,#c8102e,#7a0c1e)',
+  opendoor: 'background: linear-gradient(135deg,#0d9488,#134e4a)',
+  mpl: 'background: linear-gradient(135deg,#ff6b00,#7c2d92)',
+  innovaccer: 'background: linear-gradient(135deg,#2563eb,#0ea5e9)',
 };
 
 let activeUrgency = 'all';
